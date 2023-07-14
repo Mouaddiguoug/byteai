@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:byteai/controller/character_controller.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +23,6 @@ class DashBoard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return Sizer(builder: (context, orientation, deviceType) {
       return GetX<DashBoardController>(
         init: DashBoardController(),
@@ -42,62 +43,72 @@ class DashBoard extends StatelessWidget {
                       : controller.index.value == 2
                           ? const TextToImageScreen()
                           : SettingScreen(),
-              bottomNavigationBar: ConvexAppBar(
-                initialActiveIndex: controller.index.value,
-                backgroundColor: ConstantColors.cardViewColor,
-                activeColor: ConstantColors.primary,
-                color: Colors.white,
-                height: 55,
-                curveSize: 80,
-                onTabNotify: (index)  {
-                  if (index == 1) {
-                    setCharacter();
-                    // Get.to(const ChatBotScreen());
-                    return false;
-                  }
-                  return true;
-                },
-                items: [
-                  TabItem(
-                    activeIcon: Padding(
-                      padding: const EdgeInsets.all(18),
-                      child: SvgPicture.asset('assets/icons/ic_home.svg',
-                          semanticsLabel: 'Acme Logo'.tr),
-                    ),
-                    icon: SvgPicture.asset('assets/icons/ic_home.svg',
-                        semanticsLabel: 'Acme Logo'.tr),
+              bottomNavigationBar: Padding(
+                padding: const EdgeInsets.all(10.0),
+                child: ClipRRect(
+                  borderRadius: BorderRadius.circular(20),
+                  child: ConvexAppBar(
+                    initialActiveIndex: controller.index.value,
+                    backgroundColor: ConstantColors.cardViewColor.withOpacity(0.9),
+                    activeColor: ConstantColors.cardViewColor.withOpacity(0.1),
+                    color: Colors.white,
+                    height: 55,
+                    onTabNotify: (index) {
+                      if (index == 1) {
+                        setCharacter();
+                        // Get.to(const ChatBotScreen());
+                        return false;
+                      }
+                      return true;
+                    },
+                    items: [
+                      TabItem(
+                        activeIcon: Padding(
+                          padding:  EdgeInsets.only(top: 3.5.h),
+                          child: SvgPicture.asset('assets/icons/ic_home.svg',
+                              semanticsLabel: 'Acme Logo'.tr),
+                        ),
+                        icon: SvgPicture.asset(
+                            'assets/icons/inactive_ic_home.svg',
+                            semanticsLabel: 'Acme Logo'.tr),
+                      ),
+                      TabItem(
+                        activeIcon: Padding(
+                          padding:  EdgeInsets.only(top: 3.5.h),
+                          child: SvgPicture.asset(
+                              'assets/icons/inactive_ic_chat.svg',
+                              semanticsLabel: 'Acme Logo'.tr),
+                        ),
+                        icon: SvgPicture.asset(
+                            'assets/icons/inactive_ic_chat.svg',
+                            semanticsLabel: 'Acme Logo'.tr),
+                      ),
+                      TabItem(
+                        activeIcon: Padding(
+                          padding:  EdgeInsets.only(top: 3.5.h),
+                          child: SvgPicture.asset('assets/icons/ic_image.svg',
+                              semanticsLabel: 'Acme Logo'.tr),
+                        ),
+                        icon: SvgPicture.asset(
+                            'assets/icons/inactive_ic_image.svg',
+                            semanticsLabel: 'Acme Logo'.tr),
+                      ),
+                      TabItem(
+                        activeIcon: Padding(
+                          padding:  EdgeInsets.only(top: 3.5.h),
+                          child: SvgPicture.asset('assets/icons/ic_setting.svg',
+                              semanticsLabel: 'Acme Logo'.tr),
+                        ),
+                        icon: SvgPicture.asset(
+                            'assets/icons/inactive_ic_setting.svg',
+                            semanticsLabel: 'Acme Logo'.tr),
+                      ),
+                    ],
+                    onTap: (index) {
+                      controller.index.value = index;
+                    },
                   ),
-                  TabItem(
-                    activeIcon: Padding(
-                      padding: EdgeInsets.all(18.w),
-                      child: SvgPicture.asset('assets/icons/ic_chat.svg',
-                          semanticsLabel: 'Acme Logo'.tr),
-                    ),
-                    icon: SvgPicture.asset('assets/icons/ic_chat.svg',
-                        semanticsLabel: 'Acme Logo'.tr),
-                  ),
-                  TabItem(
-                    activeIcon: Padding(
-                      padding: const EdgeInsets.all(18),
-                      child: SvgPicture.asset('assets/icons/ic_image.svg',
-                          semanticsLabel: 'Acme Logo'.tr),
-                    ),
-                    icon: SvgPicture.asset('assets/icons/ic_image.svg',
-                        semanticsLabel: 'Acme Logo'.tr),
-                  ),
-                  TabItem(
-                    activeIcon: Padding(
-                      padding: const EdgeInsets.all(18),
-                      child: SvgPicture.asset('assets/icons/ic_setting.svg',
-                          semanticsLabel: 'Acme Logo'.tr),
-                    ),
-                    icon: SvgPicture.asset('assets/icons/ic_setting.svg',
-                        semanticsLabel: 'Acme Logo'.tr),
-                  ),
-                ],
-                onTap: (index) {
-                  controller.index.value = index;
-                },
+                ),
               ));
         },
       );
@@ -119,7 +130,6 @@ Future<void> setCharacter() async {
   var characters = Get.put(CharacterController());
   await Preferences.setString(Preferences.selectedCharacters,
       characters.selectedCharacter.value!.name.toString());
-  Get.to(const ChatBotScreen(), arguments: {
-    'charactersData': characters.selectedCharacter.value
-  });
+  Get.to(const ChatBotScreen(),
+      arguments: {'charactersData': characters.selectedCharacter.value});
 }

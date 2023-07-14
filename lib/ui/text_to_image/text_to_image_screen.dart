@@ -1,7 +1,9 @@
 import 'dart:developer';
 
+import 'package:byteai/res/assets_res.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:byteai/constant/constant.dart';
@@ -160,20 +162,29 @@ class TextToImageScreen extends StatelessWidget {
                           child: Padding(
                             padding: const EdgeInsets.all(5.0),
                             child: Container(
+                              width: 12.w,
+                              height: 6.h,
                               decoration: BoxDecoration(
-                                  borderRadius: BorderRadius.circular(50),
-                                  color: ConstantColors.primary),
-                              child: const Icon(
-                                Icons.send_rounded,
-                                color: Colors.white,
-                              ),
+                                gradient: LinearGradient(
+                                    begin: const FractionalOffset(0, 0),
+                                    end: const FractionalOffset(1, 1),
+                                    stops: const [
+                                      0,
+                                      1.0
+                                    ],
+                                    colors: [
+                                      Color(0xff64229c),
+                                      Color(0xff4975aa),
+                                    ]),
+                                  borderRadius: BorderRadius.circular(50)),
+                              child: Image.asset(AssetsRes.SEND, width: 2.h),
                             ),
                           ),
                         ),
                         filled: true,
-                        fillColor: ConstantColors.cardViewColor,
+                        fillColor: ConstantColors.searchField.withOpacity(0.15),
                         contentPadding: const EdgeInsets.only(
-                            left: 10, right: 10, top: 10, bottom: 10),
+                            left: 10, right: 10, top: 30, bottom: 10),
                         enabledBorder: OutlineInputBorder(
                           borderSide:
                               BorderSide(color: ConstantColors.cardViewColor),
@@ -187,137 +198,129 @@ class TextToImageScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  Row(
-                    children: [
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.selectedImageOption.value = "256x256";
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: controller.selectedImageOption.value ==
-                                        "256x256"
-                                    ? ConstantColors.primary
-                                    : ConstantColors.cardViewColor,
-                                shape: BoxShape.rectangle,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(30))),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Center(
-                                  child: Text(
-                                "256x256".tr,
-                                style: TextStyle(
-                                    color:
-                                        controller.selectedImageOption.value ==
-                                                "256x256"
-                                            ? Colors.white
-                                            : ConstantColors.hintTextColor),
-                              )),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.selectedImageOption.value = "512x512";
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: controller.selectedImageOption.value ==
-                                        "512x512"
-                                    ? ConstantColors.primary
-                                    : ConstantColors.cardViewColor,
-                                shape: BoxShape.rectangle,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(30))),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Center(
-                                  child: Text(
-                                "512x512".tr,
-                                style: TextStyle(
-                                    color:
-                                        controller.selectedImageOption.value ==
-                                                "512x512"
-                                            ? Colors.white
-                                            : ConstantColors.hintTextColor),
-                              )),
-                            ),
-                          ),
-                        ),
-                      ),
-                      const SizedBox(
-                        width: 10,
-                      ),
-                      Expanded(
-                        child: GestureDetector(
-                          onTap: () {
-                            controller.selectedImageOption.value = "1024x024";
-                          },
-                          child: Container(
-                            decoration: BoxDecoration(
-                                color: controller.selectedImageOption.value ==
-                                        "1024x024"
-                                    ? ConstantColors.primary
-                                    : ConstantColors.cardViewColor,
-                                shape: BoxShape.rectangle,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(30))),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 10),
-                              child: Center(
-                                  child: Text(
-                                "1024x024".tr,
-                                style: TextStyle(
-                                    color:
-                                        controller.selectedImageOption.value ==
-                                                "1024x024"
-                                            ? Colors.white
-                                            : ConstantColors.hintTextColor),
-                              )),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                  Visibility(
-                    visible:
-                        Constant.isActiveSubscription == true ? false : true,
+                  Container(
+                    height: 10.h,
+                    decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(20),
+                        gradient: LinearGradient(
+                          begin: Alignment.topRight,
+                          end: Alignment.bottomLeft,
+                          colors: [
+                            Color(0xff071431),
+                            Color(0xff20347C).withOpacity(0.43),
+                          ],
+                        )),
                     child: Padding(
-                      padding: const EdgeInsets.only(bottom: 10, top: 10),
+                      padding: const EdgeInsets.all(8.0),
                       child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
-                          FittedBox(
-                            child: Text(
-                                '${'You have'.tr} ${controller.imageLimit} ${'free messages left'.tr} ',
-                                style: TextStyle(color: Colors.white, fontSize: 5.sp)),
-                          ),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          Image.asset('assets/icons/ic_subscription_icon.png',
-                              width: 18),
-                          const SizedBox(
-                            width: 5,
-                          ),
-                          InkWell(
+                          Expanded(
+                            child: GestureDetector(
                               onTap: () {
-                                Get.to(const SubscriptionScreen());
+                                controller.selectedImageOption.value =
+                                    "256x256";
                               },
-                              child: FittedBox(
-                                child: Text("Subscribe Now".tr,
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.20),
+                                      ),
+                                      BoxShadow(
+                                          color: Colors.white.withOpacity(0.25),
+                                          spreadRadius: -4.0,
+                                          blurRadius: 4.0,
+                                          offset: Offset(0, 1)),
+                                    ],
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: Center(
+                                      child: Text(
+                                    "256x256".tr,
                                     style:
-                                        TextStyle(color: ConstantColors.orange, fontSize: 7.sp)),
-                              )),
+                                        TextStyle(color: ConstantColors.white),
+                                  )),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.selectedImageOption.value =
+                                    "512x512";
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.20),
+                                      ),
+                                      BoxShadow(
+                                          color: Colors.white.withOpacity(0.25),
+                                          spreadRadius: -4.0,
+                                          blurRadius: 4.0,
+                                          offset: Offset(0, 1)),
+                                    ],
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: Center(
+                                      child: Text(
+                                    "512x512".tr,
+                                    style:
+                                        TextStyle(color: ConstantColors.white),
+                                  )),
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 10,
+                          ),
+                          Expanded(
+                            child: GestureDetector(
+                              onTap: () {
+                                controller.selectedImageOption.value =
+                                    "1024x024";
+                              },
+                              child: Container(
+                                decoration: BoxDecoration(
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Colors.black.withOpacity(0.20),
+                                      ),
+                                      BoxShadow(
+                                          color: Colors.white.withOpacity(0.25),
+                                          spreadRadius: -4.0,
+                                          blurRadius: 4.0,
+                                          offset: Offset(0, 1)),
+                                    ],
+                                    shape: BoxShape.rectangle,
+                                    borderRadius: const BorderRadius.all(
+                                        Radius.circular(10))),
+                                child: Padding(
+                                  padding:
+                                      const EdgeInsets.symmetric(vertical: 10),
+                                  child: Center(
+                                      child: Text(
+                                    "1024x024".tr,
+                                    style: TextStyle(color: Colors.white),
+                                  )),
+                                ),
+                              ),
+                            ),
+                          ),
                         ],
                       ),
                     ),

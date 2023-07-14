@@ -103,9 +103,47 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
-    - assets/icons/
-    - assets/images/
+    - assets/icons/chat_gpt_icon.png
+    - assets/icons/ic_apple.png
+    - assets/icons/ic_camera.svg
+    - assets/icons/ic_chat.svg
+    - assets/icons/ic_close.svg
+    - assets/icons/ic_faq.svg
+    - assets/icons/ic_google.png
+    - assets/icons/ic_home.svg
+    - assets/icons/ic_image.svg
+    - assets/icons/ic_logout.svg
+    - assets/icons/ic_mail.svg
+    - assets/icons/ic_privacy_policy.svg
+    - assets/icons/ic_rate.svg
+    - assets/icons/ic_right.svg
+    - assets/icons/ic_setting.svg
+    - assets/icons/ic_share.svg
+    - assets/icons/ic_subscription.svg
+    - assets/icons/ic_subscription_icon.png
+    - assets/icons/ic_support.svg
+    - assets/icons/ic_user.svg
+    - assets/icons/inactive_ic_chat.svg
+    - assets/icons/inactive_ic_home.svg
+    - assets/icons/inactive_ic_image.svg
+    - assets/icons/inactive_ic_setting.svg
+    - assets/icons/send.png
+    - assets/images/ai.png
+    - assets/images/astrologyIcon.png
+    - assets/images/gift.png
+    - assets/images/ic_launcher.png
+    - assets/images/intro_1.gif
+    - assets/images/intro_2.gif
+    - assets/images/intro_3.gif
+    - assets/images/login_logo.png
+    - assets/images/onbording_bg.png
+    - assets/images/playstore.png
+    - assets/images/profile_placeholder.png
+    - assets/images/splash_bg.png
     - assets/images/splash_logo.png
+    - assets/images/subscription_background.png
+    - assets/images/subscription_icon.png
+    - assets/images/subscrption_item.png
     - assets/sounds/speech_to_text_cancel.m4r
     - assets/sounds/speech_to_text_listening.m4r
     - assets/sounds/speech_to_text_stop.m4r
