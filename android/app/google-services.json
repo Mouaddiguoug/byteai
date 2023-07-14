@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "132517787168",
+    "project_id": "byteai-5387b",
+    "storage_bucket": "byteai-5387b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132517787168:android:b369968a5064712c702e45",
+        "android_client_info": {
+          "package_name": "com.app.byteai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132517787168-cu7c85828e4ou8qpib9vrjk8jrat7p3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAW7TeNYxwVxH9jdIWGnb3uyiq_sCjP7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132517787168-cu7c85828e4ou8qpib9vrjk8jrat7p3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:132517787168:android:12bd679b98d61438702e45",
+        "android_client_info": {
+          "package_name": "com.app.byteai"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "132517787168-cu7c85828e4ou8qpib9vrjk8jrat7p3p.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDAW7TeNYxwVxH9jdIWGnb3uyiq_sCjP7I"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "132517787168-cu7c85828e4ou8qpib9vrjk8jrat7p3p.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
