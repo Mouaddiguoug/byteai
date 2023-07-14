@@ -1,10 +1,10 @@
-import 'package:flutter/material.dart';
-import 'package:get/get.dart';
 import 'package:byteai/constant/show_toast_dialog.dart';
 import 'package:byteai/controller/reset_password_controller.dart';
 import 'package:byteai/theam/constant_colors.dart';
 import 'package:byteai/theam/text_field_them.dart';
 import 'package:byteai/utils/Preferences.dart';
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
   const ResetPasswordScreen({Key? key}) : super(key: key);
@@ -16,8 +16,6 @@ class ResetPasswordScreen extends StatelessWidget {
         builder: (controller) {
           return Scaffold(
             backgroundColor: ConstantColors.background,
-            appBar:
-                AppBar(title: Text('Change Password'.tr), centerTitle: true),
             body: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 10),
               child: Form(
@@ -26,6 +24,8 @@ class ResetPasswordScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    Center(child: Image.asset('assets/images/galaxy.png')),
+                    Container(height: 16),
                     Text(
                       'New Password'.tr,
                       style: const TextStyle(color: Colors.white),
@@ -33,7 +33,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
                         child: TextFieldThem.boxBuildTextField(
-                          hintText: 'New Password'.tr,
+                          hintText: ''.tr,
                           controller: controller.passwordController.value,
                           obscureText: false,
                           validators: (String? value) {
@@ -51,7 +51,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     Padding(
                         padding: const EdgeInsets.only(top: 5, bottom: 10),
                         child: TextFieldThem.boxBuildTextField(
-                          hintText: 'Confirm new password'.tr,
+                          hintText: ''.tr,
                           controller:
                               controller.conformPasswordController.value,
                           obscureText: false,

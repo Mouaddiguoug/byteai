@@ -3,7 +3,7 @@ import 'dart:ui';
 class ConstantColors {
   static Color primary = const Color(0xff04AC84);
 
-  static Color background = const Color(0xff221E2C);
+  static Color background = const Color.fromRGBO(8, 21, 52, 1.0);
   static Color cardViewColor = const Color(0xff363141);
 
   // static Color green = const Color(0xff04AC84);
