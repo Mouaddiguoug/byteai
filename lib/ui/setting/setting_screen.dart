@@ -539,7 +539,7 @@ class SettingScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to(const ResetPasswordScreen());
+                              Get.to( ResetPasswordScreen());
                             },
                             child: Container(
                               decoration: BoxDecoration(

@@ -5,118 +5,167 @@ import 'package:byteai/theam/text_field_them.dart';
 import 'package:byteai/utils/Preferences.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:sizer/sizer.dart';
 
 class ResetPasswordScreen extends StatelessWidget {
-  const ResetPasswordScreen({Key? key}) : super(key: key);
+   ResetPasswordScreen({Key? key}) : super(key: key);
+  final ResetPasswordController controller = ResetPasswordController();
 
   @override
   Widget build(BuildContext context) {
-    return GetX<ResetPasswordController>(
-        init: ResetPasswordController(),
-        builder: (controller) {
-          return Scaffold(
-            backgroundColor: ConstantColors.background,
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: Form(
-                key: controller.formKey.value,
-                autovalidateMode: AutovalidateMode.onUserInteraction,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Center(child: Image.asset('assets/images/galaxy.png')),
-                    Container(height: 16),
-                    Text(
-                      'New Password'.tr,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        child: TextFieldThem.boxBuildTextField(
-                          hintText: ''.tr,
-                          controller: controller.passwordController.value,
-                          obscureText: false,
-                          validators: (String? value) {
-                            if (value!.isNotEmpty) {
-                              return null;
-                            } else {
-                              return '*required'.tr;
-                            }
-                          },
-                        )),
-                    Text(
-                      'Confirm new password'.tr,
-                      style: const TextStyle(color: Colors.white),
-                    ),
-                    Padding(
-                        padding: const EdgeInsets.only(top: 5, bottom: 10),
-                        child: TextFieldThem.boxBuildTextField(
-                          hintText: ''.tr,
-                          controller:
-                              controller.conformPasswordController.value,
-                          obscureText: false,
-                          validators: (String? value) {
-                            if (value!.isNotEmpty) {
-                              return null;
-                            } else {
-                              return '*required'.tr;
-                            }
-                          },
-                        )),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width,
-                      child: ElevatedButton(
-                        onPressed: () async {
-                          if (controller.formKey.value.currentState!
-                              .validate()) {
-                            if (controller.passwordController.value.text ==
-                                controller
-                                    .conformPasswordController.value.text) {
-                              Map<String, String> bodyParams = {
-                                'user_id':
-                                    Preferences.getString(Preferences.userId),
-                                'password':
-                                    controller.passwordController.value.text,
-                              };
-                              await controller
-                                  .resetPassword(bodyParams)
-                                  .then((value) {
-                                if (value != null) {
-                                  if (value == true) {
-                                    Get.back(result: true);
-                                  } else {
-                                    ShowToastDialog.showToast(
-                                        'Something want wrong...'.tr);
-                                  }
-                                }
-                              });
-                            } else {
-                              ShowToastDialog.showToast(
-                                  "Password doesn't match".tr);
-                            }
-                          }
-                        },
-                        style: ElevatedButton.styleFrom(
-                            foregroundColor: Colors.white,
-                            backgroundColor: ConstantColors.primary,
-                            shape: const StadiumBorder()),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              horizontal: 20.0, vertical: 12),
-                          child: Text('Login'.tr,
-                              style:
-                                  const TextStyle(fontWeight: FontWeight.w600)),
-                        ),
+    return GetBuilder<ResetPasswordController>(
+      init: controller,
+      builder: (_) {
+        return Scaffold(
+          backgroundColor: ConstantColors.background,
+          body: Form(
+            key: controller.formKey.value,
+            autovalidateMode: AutovalidateMode.onUserInteraction,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                // Logo - Image
+                Center(child: Image.asset('assets/images/galaxy.png')),
+                // Sized Box to add space between the logo and the form
+                const SizedBox(height: 30),
+                // form
+                Expanded(
+                  child: Container(
+                    decoration: BoxDecoration(
+                      color: const Color.fromARGB(255, 115, 117, 229),
+                      borderRadius: BorderRadius.only(
+                        topRight: Radius.circular(100.0),
+                        topLeft: Radius.zero,
+                        bottomRight: Radius.circular(30.0),
+                        bottomLeft: Radius.circular(30.0),
                       ),
                     ),
-                  ],
+
+                    padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        SizedBox(height: 20),
+                        // text changer le mot de passe
+                        Center(
+                          child: Text(
+                            'Changer le mot de passe',
+                            style: TextStyle(fontSize: 20, color: Colors.white),
+                          ),
+                        ),
+                        SizedBox(height: 30),
+                        Text(
+                          'New Password'.tr,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5, bottom: 10),
+                          child: TextFieldThem.boxBuildTextField(
+                            hintText: ''.tr,
+                            controller: controller.passwordController.value,
+                            obscureText: false,
+                            validators: (String? value) {
+                              if (value!.isNotEmpty) {
+                                return null;
+                              } else {
+                                return '*required'.tr;
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        Text(
+                          'Confirm new password'.tr,
+                          style: const TextStyle(color: Colors.white),
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5, bottom: 10),
+                          child: TextFieldThem.boxBuildTextField(
+                            hintText: ''.tr,
+                            controller: controller.conformPasswordController.value,
+                            obscureText: false,
+                            validators: (String? value) {
+                              if (value!.isNotEmpty) {
+                                return null;
+                              } else {
+                                return '*required'.tr;
+                              }
+                            },
+                          ),
+                        ),
+                        SizedBox(height: 15),
+                        // confirm Button
+                        Container(
+                          child: Center(
+                            child: SizedBox(
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(8),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topCenter,
+                                    end: Alignment.bottomCenter,
+                                    stops: [0.3734, 0.8036, 1],
+                                    colors: [
+                                      Color(0xFF601A81),
+                                      Color.fromRGBO(14, 111, 117, 0.479167),
+                                      Color.fromRGBO(49, 26, 189, 0),
+                                    ],
+                                  ),
+                                ),
+                                child: ElevatedButton(
+                                  onPressed: () async {
+                                    if (controller.formKey.value.currentState!.validate()) {
+                                      if (controller.passwordController.value.text ==
+                                          controller.conformPasswordController.value.text) {
+                                        Map<String, String> bodyParams = {
+                                          'user_id': Preferences.getString(Preferences.userId),
+                                          'password': controller.passwordController.value.text,
+                                        };
+                                        await controller.resetPassword(bodyParams).then((value) {
+                                          if (value != null) {
+                                            if (value == true) {
+                                              Get.back(result: true);
+                                            } else {
+                                              ShowToastDialog.showToast('Something went wrong...'.tr);
+                                            }
+                                          }
+                                        });
+                                      } else {
+                                        ShowToastDialog.showToast("Password doesn't match".tr);
+                                      }
+                                    }
+                                  },
+                                  // Button style
+                                  style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    shadowColor: Colors.transparent,
+                                    backgroundColor: Colors.transparent,
+                                    minimumSize: Size(244, 50),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(8), // Adjust the value as needed
+                                    ),
+                                  ),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
+                                    child: Text(
+                                      'Login'.tr,
+                                      style: const TextStyle(fontWeight: FontWeight.w600),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
                 ),
-              ),
+              ],
             ),
-          );
-        });
+          ),
+        );
+      },
+    );
   }
 }
