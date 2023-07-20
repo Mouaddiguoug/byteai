@@ -81,7 +81,7 @@ class AiCodeScreen extends StatelessWidget {
                         contentPadding: const EdgeInsets.only(
                             left: 10, right: 10, top: 10, bottom: 10),
                         enabledBorder: OutlineInputBorder(
-                          borderSide: BorderSide(color: ConstantColors.white),
+                          borderSide: BorderSide(color: Colors.white),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(

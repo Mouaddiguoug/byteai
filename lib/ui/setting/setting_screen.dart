@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:io';
 
+import 'package:byteai/res/assets_res.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -514,7 +515,7 @@ class SettingScreen extends StatelessWidget {
                                     ),
                                     InkWell(
                                       onTap: () {
-                                        Get.to(const ResetPasswordScreen());
+                                        Get.to(() => ResetPasswordScreen());
                                       },
                                       child: Container(
                                         decoration: BoxDecoration(
@@ -706,9 +707,6 @@ class SettingScreen extends StatelessWidget {
                                   ),
                                 ),
                               ),
-                              SizedBox(
-                                height: 10,
-                              ),
                             ],
                           ),
                         ),
@@ -724,9 +722,10 @@ class SettingScreen extends StatelessWidget {
                                   borderRadius: BorderRadius.circular(80),
                                   child: controller.profileImage.isEmpty
                                       ? Image.asset(
+                                    AssetsRes.PROFILE_PLACEHOLDER,
                                       height: 120,
                                       width: 120,
-                                      'assets/images/profile_placeholder.png')
+                                      )
                                       : CachedNetworkImage(
                                     imageUrl:
                                     controller.profileImage.toString(),

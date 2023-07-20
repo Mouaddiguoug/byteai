@@ -126,7 +126,7 @@ class _ImageViewState extends State<ImageView> {
                           width: MediaQuery.of(context).size.width / 2,
                           height: 50,
                           decoration: BoxDecoration(
-                            color: ConstantColors.white.withOpacity(0.25),
+                            color: Colors.white.withOpacity(0.25),
                             borderRadius: BorderRadius.circular(10),
                           ),
                           child: Row(

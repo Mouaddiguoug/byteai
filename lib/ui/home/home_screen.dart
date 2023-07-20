@@ -180,7 +180,7 @@ class HomeScreen extends StatelessWidget {
                                               MediaQuery.of(context).size.width *
                                                   0.40,
                                           decoration: BoxDecoration(
-                                            color: ConstantColors.white.withOpacity(0.20),
+                                            color: Colors.white.withOpacity(0.20),
                                             borderRadius: const BorderRadius.all(
                                                 Radius.circular(10)),
                                           ),
@@ -219,7 +219,7 @@ class HomeScreen extends StatelessWidget {
                                                 MediaQuery.of(context).size.width *
                                                     0.40,
                                             decoration: BoxDecoration(
-                                              color: ConstantColors.white.withOpacity(0.20),
+                                              color: Colors.white.withOpacity(0.20),
                                               borderRadius: const BorderRadius.all(
                                                   Radius.circular(10)),
                                             ),

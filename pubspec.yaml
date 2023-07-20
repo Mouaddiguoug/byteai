@@ -104,8 +104,10 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/ai.png
+    - assets/icons/arrow.svg
     - assets/icons/astrology.png
     - assets/icons/chat_gpt_icon.png
+    - assets/icons/closeBtn.svg
     - assets/icons/ic_apple.png
     - assets/icons/ic_camera.svg
     - assets/icons/ic_chat.svg
@@ -130,38 +132,35 @@ flutter:
     - assets/icons/inactive_ic_image.svg
     - assets/icons/inactive_ic_setting.svg
     - assets/icons/send.png
+    - assets/icons/vvv.svg
     - assets/images/ai.png
+    - assets/images/anotherbg.png
+    - assets/images/anotherbg_cropped.png
     - assets/images/astrologyIcon.png
+    - assets/images/bg.png
+    - assets/images/galaxy.png
     - assets/images/gift.png
+    - assets/images/iPhone 13/Chatbot_Mascot-removebg-preview 5.png
     - assets/images/ic_launcher.png
     - assets/images/intro_1.gif
+    - assets/images/intro_1_new.png
+    - assets/images/intro_1_new_v2.png
     - assets/images/intro_2.gif
     - assets/images/intro_3.gif
     - assets/images/login_logo.png
+    - assets/images/login_logo_new.png
+    - assets/images/login_logo_new_v2.png
     - assets/images/onbording_bg.png
     - assets/images/playstore.png
     - assets/images/profile_placeholder.png
     - assets/images/shadow.png
     - assets/images/splash_bg.png
-    - assets/icons/
-    - assets/icons/arrow.svg
-    - assets/icons/closeBtn.svg
-    - assets/icons/vvv.svg
-    - assets/images/
-    - assets/images/anotherbg.png
-    - assets/images/anotherbg_cropped.png
-    - assets/images/bg.png
-    - assets/images/byteIA(2).zip
-    - assets/images/intro_1_new.png
-    - assets/images/intro_1_new_v2.png
-    - assets/images/login_logo_new.png
-    - assets/images/login_logo_new_v2.png
     - assets/images/splash_logo.png
+    - assets/images/splash_logo_new.png
     - assets/images/subscription_background.png
+    - assets/images/subscription_background_2.png
     - assets/images/subscription_icon.png
     - assets/images/subscrption_item.png
-    - assets/images/splash_logo_new.png
-    - assets/images/subscription_background_2.png
     - assets/sounds/speech_to_text_cancel.m4r
     - assets/sounds/speech_to_text_listening.m4r
     - assets/sounds/speech_to_text_stop.m4r
@@ -182,12 +181,57 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
+    - family: Akshar-Bold
+      fonts:
+        - asset: assets/fonts/Akshar/Akshar-Bold.ttf
+    - family: Akshar-Light
+      fonts:
+        - asset: assets/fonts/Akshar/Akshar-Light.ttf
+    - family: Akshar-Medium
+      fonts:
+        - asset: assets/fonts/Akshar/Akshar-Medium.ttf
     - family: Akshar-Regular
       fonts:
         - asset: assets/fonts/Akshar/Akshar-Regular.ttf
+    - family: Akshar-SemiBold
+      fonts:
+        - asset: assets/fonts/Akshar/Akshar-SemiBold.ttf
+    - family: Roboto-Black
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Black.ttf
+    - family: Roboto-BlackItalic
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-BlackItalic.ttf
+    - family: Roboto-Bold
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Bold.ttf
+    - family: Roboto-BoldItalic
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-BoldItalic.ttf
+    - family: Roboto-Italic
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Italic.ttf
+    - family: Roboto-Light
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Light.ttf
+    - family: Roboto-LightItalic
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-LightItalic.ttf
     - family: Roboto-Medium
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Medium.ttf
+    - family: Roboto-MediumItalic
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-MediumItalic.ttf
+    - family: Roboto-Regular
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Regular.ttf
+    - family: Roboto-Thin
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-Thin.ttf
+    - family: Roboto-ThinItalic
+      fonts:
+        - asset: assets/fonts/Roboto/Roboto-ThinItalic.ttf
 
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700

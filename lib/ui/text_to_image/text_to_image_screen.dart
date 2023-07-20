@@ -248,7 +248,7 @@ class TextToImageScreen extends StatelessWidget {
                                       child: Text(
                                     "256x256".tr,
                                     style:
-                                        TextStyle(color: ConstantColors.white),
+                                        TextStyle(color: Colors.white),
                                   )),
                                 ),
                               ),
@@ -291,7 +291,7 @@ class TextToImageScreen extends StatelessWidget {
                                       child: Text(
                                     "512x512".tr,
                                     style:
-                                        TextStyle(color: ConstantColors.white),
+                                        TextStyle(color: Colors.white),
                                   )),
                                 ),
                               ),
