@@ -27,12 +27,12 @@ class _ImageViewState extends State<ImageView> {
   final CarouselController _controller = CarouselController();
 
   int _currentIndex = 0;
+  int _progress = 0;
 
   @override
   void initState() {
     // TODO: implement initState
     _currentIndex = widget.index;
-
     super.initState();
   }
 
@@ -45,18 +45,6 @@ class _ImageViewState extends State<ImageView> {
           padding: const EdgeInsets.all(8.0),
           child: Row(
             children: [
-              InkWell(
-                  onTap: () async {
-                    ShowToastDialog.showLoader('Downloading ....'.tr);
-                    await ImageDownloader.downloadImage(widget.imageList[_currentIndex].url.toString()).whenComplete(() {
-                      ShowToastDialog.closeLoader();
-                      ShowToastDialog.showToast("${'Image Download successfully'.tr} ");
-                    });
-                  },
-                  child: const Icon(Icons.download, color: Colors.white)),
-              const SizedBox(
-                width: 20,
-              ),
               InkWell(
                   onTap: () async {
                     ShowToastDialog.showLoader('Please wait ....'.tr);
@@ -97,7 +85,6 @@ class _ImageViewState extends State<ImageView> {
                     .map((item) => Center(
                             child: CachedNetworkImage(
                           imageUrl: item.url.toString(),
-                          fit: BoxFit.none,
                           height: height,
                           placeholder: (context, url) => Container(
                             color: const Color(0xfff5f8fd),
@@ -122,27 +109,42 @@ class _ImageViewState extends State<ImageView> {
                         ShowToastDialog.showToast('Image Download successfully'.tr);
                       });
                     },
-                    child: Container(
-                      width: MediaQuery.of(context).size.width / 2,
-                      height: 50,
-                      decoration: BoxDecoration(
-                        color: ConstantColors.cardViewColor,
-                        borderRadius: BorderRadius.circular(40),
-                      ),
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        crossAxisAlignment: CrossAxisAlignment.center,
-                        children: [
-                          const Icon(Icons.download, color: Colors.white),
-                          const SizedBox(
-                            width: 10,
+                    child: Stack(
+                      children: [
+                        ClipRRect(
+                          borderRadius: BorderRadius.circular(10),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width / 2,
+                            height: 50,
+                            child: LinearProgressIndicator(
+                              value: _progress.floorToDouble(),
+                              backgroundColor: Colors.transparent,
+                            ),
                           ),
-                          Text(
-                            'Download'.tr,
-                            style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.w500),
+                        ),
+                        Container(
+                          width: MediaQuery.of(context).size.width / 2,
+                          height: 50,
+                          decoration: BoxDecoration(
+                            color: ConstantColors.white.withOpacity(0.25),
+                            borderRadius: BorderRadius.circular(10),
                           ),
-                        ],
-                      ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.center,
+                            children: [
+                              Text(
+                                'Download'.tr,
+                                style: const TextStyle(color: Colors.white70, fontWeight: FontWeight.w500),
+                              ),
+                              const SizedBox(
+                                width: 10,
+                              ),
+                              const Icon(Icons.download, color: Colors.white),
+                            ],
+                          ),
+                        ),
+                      ],
                     )),
                 const SizedBox(
                   height: 50,

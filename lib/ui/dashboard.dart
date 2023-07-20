@@ -95,9 +95,9 @@ class DashBoard extends StatelessWidget {
                       ),
                       TabItem(
                         activeIcon: Padding(
-                          padding:  EdgeInsets.only(top: 3.5.h),
+                          padding: EdgeInsets.only(top: 3.h),
                           child: SvgPicture.asset('assets/icons/ic_setting.svg',
-                              semanticsLabel: 'Acme Logo'.tr),
+                              semanticsLabel: 'Acme Logo'.tr,),
                         ),
                         icon: SvgPicture.asset(
                             'assets/icons/inactive_ic_setting.svg',

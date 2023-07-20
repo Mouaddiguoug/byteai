@@ -103,6 +103,8 @@ flutter:
   # the material Icons class.
   uses-material-design: true
   assets:
+    - assets/icons/ai.png
+    - assets/icons/astrology.png
     - assets/icons/chat_gpt_icon.png
     - assets/icons/ic_apple.png
     - assets/icons/ic_camera.svg
@@ -139,6 +141,7 @@ flutter:
     - assets/images/onbording_bg.png
     - assets/images/playstore.png
     - assets/images/profile_placeholder.png
+    - assets/images/shadow.png
     - assets/images/splash_bg.png
     - assets/images/splash_logo.png
     - assets/images/subscription_background.png

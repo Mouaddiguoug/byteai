@@ -165,17 +165,17 @@ class TextToImageScreen extends StatelessWidget {
                               width: 12.w,
                               height: 6.h,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    begin: const FractionalOffset(0, 0),
-                                    end: const FractionalOffset(1, 1),
-                                    stops: const [
-                                      0,
-                                      1.0
-                                    ],
-                                    colors: [
-                                      Color(0xff64229c),
-                                      Color(0xff4975aa),
-                                    ]),
+                                  gradient: LinearGradient(
+                                      begin: const FractionalOffset(0, 0),
+                                      end: const FractionalOffset(1, 1),
+                                      stops: const [
+                                        0,
+                                        1.0
+                                      ],
+                                      colors: [
+                                        Color(0xff64229c),
+                                        Color(0xff4975aa),
+                                      ]),
                                   borderRadius: BorderRadius.circular(50)),
                               child: Image.asset(AssetsRes.SEND, width: 2.h),
                             ),
@@ -222,7 +222,13 @@ class TextToImageScreen extends StatelessWidget {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
+                                    image: controller.selectedImageOption.value ==
+                                        "256x256" ? DecorationImage(
+                                      image: AssetImage(AssetsRes.SHADOW),
+                                      fit: BoxFit.fill,
+                                    ) : null,
                                     boxShadow: [
+
                                       BoxShadow(
                                         color: Colors.black.withOpacity(0.20),
                                       ),
@@ -258,7 +264,13 @@ class TextToImageScreen extends StatelessWidget {
                                     "512x512";
                               },
                               child: Container(
+
                                 decoration: BoxDecoration(
+                                    image: controller.selectedImageOption.value ==
+                                    "512x512" ? DecorationImage(
+                                      image: AssetImage(AssetsRes.SHADOW),
+                                      fit: BoxFit.fill,
+                                    ) : null,
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.black.withOpacity(0.20),
@@ -296,6 +308,12 @@ class TextToImageScreen extends StatelessWidget {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
+                                    image: controller.selectedImageOption.value ==
+                                        "1024x024" ? DecorationImage(
+                                      image: AssetImage(AssetsRes.SHADOW),
+                                      fit: BoxFit.fill,
+
+                                    ) : null,
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.black.withOpacity(0.20),

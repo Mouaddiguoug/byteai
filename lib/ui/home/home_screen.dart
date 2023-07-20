@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:byteai/res/assets_res.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -132,7 +133,7 @@ class HomeScreen extends StatelessWidget {
                                                   fit: BoxFit.fill),
                                             ),
                                           ),
-                                          color: Colors.black.withOpacity(0.5),
+                                          color: Color(0xff081534),
                                           placeholder: (context, url) =>
                                               const Center(
                                                   child:
@@ -147,100 +148,110 @@ class HomeScreen extends StatelessWidget {
                     if (controller.topCategoryList.isNotEmpty)
                       Padding(
                         padding: EdgeInsets.symmetric(
-                            horizontal: 0.5.w, vertical: 0.5.w),
+                            horizontal: 1.w, vertical: 0.5.h),
                         child: SizedBox(
-                            height: 12.w,
-                            child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 6),
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        Get.to(const AiCodeScreen());
-                                      },
-                                      child: Container(
-                                        height: 12.w,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.45,
-                                        decoration: BoxDecoration(
-                                          color: ConstantColors.cardViewColor,
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20)),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.center,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.center,
-                                          children: [
-                                            Image.asset(
-                                                controller.topCategoryList[0]
-                                                        .icon ??
-                                                    "",
-                                                fit: BoxFit.fill,
-                                                width: 7.w,
-                                                height: 7.w),
-                                            SizedBox(width: 4.w),
-                                            Text(
-                                                controller.topCategoryList[0]
-                                                        .name?.tr ??
-                                                    "",
-                                                style: TextStyle(
-                                                    color: Colors.white,
-                                                    fontSize: 10.sp)),
-                                          ],
-                                        ),
-                                      ),
-                                    ),
-                                  ),
-                                  Padding(
-                                    padding: const EdgeInsets.only(right: 6),
-                                    child: GestureDetector(
-                                      onTap: () async {
-                                        Get.to(const AstrologyScreen());
-                                      },
-                                      child: Container(
-                                        height: 12.w,
-                                        width:
-                                            MediaQuery.of(context).size.width *
-                                                0.45,
-                                        decoration: BoxDecoration(
-                                          color: ConstantColors.cardViewColor,
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(20)),
-                                        ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(
-                                              horizontal: 26, vertical: 8),
+                            height: 11.h,
+                            child: Container(
+                              height: 10.h,
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(10),
+                                  gradient: LinearGradient(
+                                    begin: Alignment.topRight,
+                                    end: Alignment.bottomLeft,
+                                    colors: [
+                                      Color(0xff1832D9),
+                                      Color(0xff6BA39F).withOpacity(0.2),
+                                      Color(0xff1832D9).withOpacity(0.43),
+                                    ],
+                                  )),
+                              child: Padding(
+                                padding: EdgeInsets.symmetric(horizontal: 3.w),
+                                child: Row(
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.spaceBetween,
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () async {
+                                          Get.to(const AiCodeScreen());
+                                        },
+                                        child: Container(
+                                          height: 7.h,
+                                          width:
+                                              MediaQuery.of(context).size.width *
+                                                  0.40,
+                                          decoration: BoxDecoration(
+                                            color: ConstantColors.white.withOpacity(0.20),
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(10)),
+                                          ),
                                           child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.center,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.center,
                                             children: [
                                               Image.asset(
-                                                  controller.topCategoryList[1]
-                                                          .icon ??
-                                                      "",
+                                                  AssetsRes.AI,
                                                   fit: BoxFit.fill,
                                                   width: 7.w,
                                                   height: 7.w),
                                               SizedBox(width: 4.w),
-                                              FittedBox(
-                                                child: Text(
-                                                    controller.topCategoryList[1]
-                                                            .name?.tr ??
-                                                        "",
-                                                    style: TextStyle(
-                                                        color: Colors.white,
-                                                        fontSize: 9.sp)),
-                                              ),
+                                              Text(
+                                                  controller.topCategoryList[0]
+                                                          .name?.tr ??
+                                                      "",
+                                                  style: TextStyle(
+                                                      color: Colors.white,
+                                                      fontSize: 10.sp)),
                                             ],
                                           ),
                                         ),
                                       ),
-                                    ),
-                                  )
-                                ])),
+                                      Padding(
+                                        padding: const EdgeInsets.only(right: 6),
+                                        child: GestureDetector(
+                                          onTap: () async {
+                                            Get.to(const AstrologyScreen());
+                                          },
+                                          child: Container(
+                                            height: 7.h,
+                                            width:
+                                                MediaQuery.of(context).size.width *
+                                                    0.40,
+                                            decoration: BoxDecoration(
+                                              color: ConstantColors.white.withOpacity(0.20),
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10)),
+                                            ),
+                                            child: Padding(
+                                              padding: EdgeInsets.symmetric(
+                                                  horizontal: 4.w, vertical: 8),
+                                              child: Row(
+                                                children: [
+                                                  Image.asset(
+                                                      AssetsRes.ASTROLOGY,
+                                                      fit: BoxFit.fill,
+                                                      width: 7.w,
+                                                      height: 7.w),
+                                                  SizedBox(width: 4.w),
+                                                  FittedBox(
+                                                    child: Text(
+                                                        controller.topCategoryList[1]
+                                                                .name?.tr ??
+                                                            "",
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 9.sp)),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      )
+                                    ]),
+                              ),
+                            )),
                       ),
                     SizedBox(
                       height: 1.5.h,

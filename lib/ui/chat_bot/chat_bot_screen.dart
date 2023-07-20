@@ -236,7 +236,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                                                 BorderRadius.circular(50),
                                             color: controller.messageController
                                                     .value.text.isEmpty
-                                                ? Colors.grey
+                                                ? ConstantColors.background
                                                 : ConstantColors.primary),
                                         child: const Icon(
                                           Icons.send_rounded,
@@ -300,38 +300,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                       }),
                     ],
                   ),
-          ),
-          bottomNavigationBar: Visibility(
-            visible: Constant.isActiveSubscription == true ? false : true,
-            child: Padding(
-              padding: const EdgeInsets.only(top: 5, bottom: 10),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  FittedBox(
-                    child: Text(
-                        '${'You have'.tr} ${controller.chatLimit} ${'free messages left'.tr}',
-                        style: TextStyle(color: Colors.white, fontSize: 5.sp)),
-                  ),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  Image.asset('assets/icons/ic_subscription_icon.png',
-                      width: 18),
-                  const SizedBox(
-                    width: 5,
-                  ),
-                  InkWell(
-                      onTap: () {
-                        Get.to(const SubscriptionScreen());
-                      },
-                      child: Text('Subscribe Now'.tr,
-                          style: TextStyle(color: ConstantColors.orange))),
-                ],
-              ),
-            ),
-          ),
+          )
         );
       },
     );

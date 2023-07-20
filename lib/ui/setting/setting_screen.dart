@@ -22,6 +22,7 @@ import 'package:byteai/ui/profile_update/profile_update_screen.dart';
 import 'package:byteai/ui/reset_password/reset_password_screen.dart';
 import 'package:byteai/ui/subscription/subscription_screen.dart';
 import 'package:byteai/utils/Preferences.dart';
+import 'package:sizer/sizer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 class SettingScreen extends StatelessWidget {
@@ -34,8 +35,9 @@ class SettingScreen extends StatelessWidget {
         builder: (controller) {
           return Scaffold(
             backgroundColor: ConstantColors.background,
+            extendBodyBehindAppBar: true,
             appBar:
-                AppBar(title: Text('Settings'.tr), centerTitle: true, actions: [
+                AppBar(title: Text('Settings'.tr), centerTitle: true, backgroundColor: Colors.black.withOpacity(0.3), actions: [
               Padding(
                 padding: const EdgeInsets.all(8.0),
                 child: Center(
@@ -45,41 +47,706 @@ class SettingScreen extends StatelessWidget {
                 )),
               )
             ]),
-            body: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 10),
-              child: SingleChildScrollView(
-                child: Column(
-                  children: [
-                    Stack(
-                      alignment: Alignment.bottomCenter,
+            body: SingleChildScrollView(
+              child: Stack(
+                children: [
+                  Container(
+                    width: 100.w,
+                    height: 35.h,
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: [
+                          Color(0xff42197b),
+                          Color(0xff396785),
+                        ]
+                      )
+                    ),
+                  ),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 10),
+                    child: Stack(
                       children: [
-                        Center(
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.circular(80),
-                            child: controller.profileImage.isEmpty
-                                ? Image.asset(
-                                    height: 120,
-                                    width: 120,
-                                    'assets/images/profile_placeholder.png')
-                                : CachedNetworkImage(
+                        Container(
+
+                          margin: EdgeInsets.only(top: 25.h),
+                          decoration: BoxDecoration(
+                            color: ConstantColors.background,
+                            borderRadius: BorderRadius.circular(30)
+                          ),
+                          height: 150.h,
+                          child: Column(
+                            children: [
+                              SizedBox(height: 10.h,),
+                              Preferences.getBoolean(Preferences.isLogin)
+                                  ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.center,
+                                children: [
+                                  Text(
+                                      controller.userModel.value.data!.name
+                                          .toString(),
+                                      style: const TextStyle(
+                                          color: Colors.white, fontSize: 18)),
+                                  Text(
+                                      controller.userModel.value.data!.email
+                                          .toString(),
+                                      style: TextStyle(
+                                          color: ConstantColors.hintTextColor,
+                                          fontSize: 16)),
+                                ],
+                              )
+                                  : ElevatedButton(
+                                onPressed: () async {
+                                  FocusScope.of(context).unfocus();
+                                  Get.off(const LoginScreen(
+                                    redirectType: "",
+                                  ));
+                                },
+                                style: ElevatedButton.styleFrom(
+                                    foregroundColor: Colors.white,
+                                    backgroundColor: ConstantColors.primary,
+                                    shape: const StadiumBorder()),
+                                child: Padding(
+                                  padding: const EdgeInsets.symmetric(
+                                      horizontal: 12.0, vertical: 10),
+                                  child: Text('Login'.tr,
+                                      style: const TextStyle(
+                                          fontWeight: FontWeight.w600)),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 20,
+                              ),
+                              Visibility(
+                                visible: Preferences.getBoolean(Preferences.isLogin),
+                                child: InkWell(
+                                  onTap: () async {
+                                    await Get.to(() => ProfileUpdateScreen());
+                                    controller.getUser();
+                                  },
+                                  child: Container(
+                                    decoration: BoxDecoration(
+                                        color: ConstantColors.cardViewColor,
+                                        shape: BoxShape.rectangle,
+                                        borderRadius:
+                                        const BorderRadius.all(Radius.circular(10))),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(
+                                          vertical: 10, horizontal: 10),
+                                      child: Row(
+                                        children: [
+                                          Container(
+                                            decoration: BoxDecoration(
+                                                color: ConstantColors.background,
+                                                shape: BoxShape.rectangle,
+                                                borderRadius: const BorderRadius.all(
+                                                    Radius.circular(10))),
+                                            child: Padding(
+                                              padding: const EdgeInsets.all(10.0),
+                                              child: SvgPicture.asset(
+                                                  height: 20,
+                                                  width: 20,
+                                                  'assets/icons/ic_user.svg',
+                                                  semanticsLabel: 'Acme Logo'.tr),
+                                            ),
+                                          ),
+                                          const SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            'Profile'.tr,
+                                            style: const TextStyle(color: Colors.white),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  Get.to(const SubscriptionScreen());
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: SvgPicture.asset(
+                                                height: 20,
+                                                width: 20,
+                                                'assets/icons/ic_subscription.svg',
+                                                semanticsLabel: 'Acme Logo'.tr),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Manage Subscriptions'.tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  LaunchReview.launch(
+                                    androidAppId: "com.app.byteai",
+                                    iOSAppId: "com.app.byteai",
+                                  );
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: SvgPicture.asset(
+                                                height: 20,
+                                                width: 20,
+                                                'assets/icons/ic_rate.svg',
+                                                semanticsLabel: 'Acme Logo'.tr),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Rate App'.tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () {
+                                  share();
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: SvgPicture.asset(
+                                                height: 20,
+                                                width: 20,
+                                                'assets/icons/ic_share.svg',
+                                                semanticsLabel: 'Acme Logo'.tr),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Share With Friends".tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  final uri =
+                                  Uri.parse(Constant.privacyPolicy.toString());
+                                  if (!await launchUrl(uri)) {
+                                    throw Exception('Could not launch $uri');
+                                  }
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: SvgPicture.asset(
+                                                height: 20,
+                                                width: 20,
+                                                'assets/icons/ic_privacy_policy.svg',
+                                                semanticsLabel: 'Acme Logo'.tr),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Privacy Policy'.tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  final uri =
+                                  Uri.parse(Constant.termsAndCondition.toString());
+                                  if (!await launchUrl(uri)) {
+                                    throw Exception('Could not launch $uri');
+                                  }
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: SvgPicture.asset(
+                                                height: 20,
+                                                width: 20,
+                                                'assets/icons/ic_privacy_policy.svg',
+                                                semanticsLabel: 'Acme Logo'.tr),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "Terms & Conditions".tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  final uri = Uri.parse(Constant.faqLink.toString());
+                                  if (!await launchUrl(uri)) {
+                                    throw Exception('Could not launch $uri');
+                                  }
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: SvgPicture.asset(
+                                                height: 20,
+                                                width: 20,
+                                                'assets/icons/ic_faq.svg',
+                                                semanticsLabel: 'Acme Logo'.tr),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          "FAQs".tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  final Uri params = Uri(
+                                    scheme: 'mailto',
+                                    path: Constant.supportEmail,
+                                    query: 'subject=&body=', //add subject and body here
+                                  );
+
+                                  if (await launchUrl(params)) {
+                                    await launchUrl(params);
+                                  } else {
+                                    throw 'Could not launch $params';
+                                  }
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: SvgPicture.asset(
+                                                height: 20,
+                                                width: 20,
+                                                'assets/icons/ic_support.svg',
+                                                semanticsLabel: 'Acme Logo'.tr),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Customer Support'.tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Visibility(
+                                visible: Preferences.getBoolean(Preferences.isLogin),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    InkWell(
+                                      onTap: () {
+                                        Get.to(const ResetPasswordScreen());
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: ConstantColors.cardViewColor,
+                                            shape: BoxShape.rectangle,
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(10))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 10),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: ConstantColors.background,
+                                                    shape: BoxShape.rectangle,
+                                                    borderRadius: const BorderRadius.all(
+                                                        Radius.circular(10))),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(10.0),
+                                                  child: Icon(Icons.password_sharp,
+                                                      size: 20, color: Colors.white),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                'Forgot Password'.tr,
+                                                style:
+                                                const TextStyle(color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  Get.to(const LanguageScreen());
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: const Padding(
+                                            padding: EdgeInsets.all(10.0),
+                                            child: Icon(
+                                              Icons.language,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          'Change language'.tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              Visibility(
+                                visible: Preferences.getBoolean(Preferences.isLogin),
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.start,
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: [
+                                    const SizedBox(
+                                      height: 10,
+                                    ),
+                                    InkWell(
+                                      onTap: () async {
+                                        deleteDialog(context, controller);
+                                      },
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            color: ConstantColors.cardViewColor,
+                                            shape: BoxShape.rectangle,
+                                            borderRadius: const BorderRadius.all(
+                                                Radius.circular(10))),
+                                        child: Padding(
+                                          padding: const EdgeInsets.symmetric(
+                                              vertical: 10, horizontal: 10),
+                                          child: Row(
+                                            children: [
+                                              Container(
+                                                decoration: BoxDecoration(
+                                                    color: ConstantColors.background,
+                                                    shape: BoxShape.rectangle,
+                                                    borderRadius: const BorderRadius.all(
+                                                        Radius.circular(10))),
+                                                child: const Padding(
+                                                  padding: EdgeInsets.all(10.0),
+                                                  child: Icon(
+                                                    Icons.delete,
+                                                    color: Colors.white,
+                                                  ),
+                                                ),
+                                              ),
+                                              const SizedBox(
+                                                width: 10,
+                                              ),
+                                              Text(
+                                                "Delete Account".tr,
+                                                style:
+                                                const TextStyle(color: Colors.white),
+                                              ),
+                                            ],
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 10,
+                              ),
+                              InkWell(
+                                onTap: () async {
+                                  Preferences.clearSharPreference();
+                                  Purchases.logOut();
+                                  await FirebaseAuth.instance.signOut();
+
+                                  Get.off(const LoginScreen(
+                                    redirectType: "",
+                                  ));
+                                },
+                                child: Container(
+                                  decoration: BoxDecoration(
+                                      color: ConstantColors.cardViewColor,
+                                      shape: BoxShape.rectangle,
+                                      borderRadius:
+                                      const BorderRadius.all(Radius.circular(10))),
+                                  child: Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        vertical: 10, horizontal: 10),
+                                    child: Row(
+                                      children: [
+                                        Container(
+                                          decoration: BoxDecoration(
+                                              color: ConstantColors.background,
+                                              shape: BoxShape.rectangle,
+                                              borderRadius: const BorderRadius.all(
+                                                  Radius.circular(10))),
+                                          child: Padding(
+                                            padding: const EdgeInsets.all(10.0),
+                                            child: SvgPicture.asset(
+                                                height: 20,
+                                                width: 20,
+                                                'assets/icons/ic_logout.svg',
+                                                semanticsLabel: 'Acme Logo'.tr),
+                                          ),
+                                        ),
+                                        const SizedBox(
+                                          width: 10,
+                                        ),
+                                        Text(
+                                          Preferences.getBoolean(Preferences.isLogin)
+                                              ? 'Logout'.tr
+                                              : 'Login'.tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              SizedBox(
+                                height: 10,
+                              ),
+                            ],
+                          ),
+                        ),
+                        Positioned(
+                          top: 16.5.h,
+                          left: 0,
+                          right: 0,
+                          child: Stack(
+                            alignment: Alignment.bottomCenter,
+                            children: [
+                              Center(
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(80),
+                                  child: controller.profileImage.isEmpty
+                                      ? Image.asset(
+                                      height: 120,
+                                      width: 120,
+                                      'assets/images/profile_placeholder.png')
+                                      : CachedNetworkImage(
                                     imageUrl:
-                                        controller.profileImage.toString(),
+                                    controller.profileImage.toString(),
                                     height: 120,
                                     width: 120,
                                     fit: BoxFit.cover,
                                     progressIndicatorBuilder:
                                         (context, url, downloadProgress) =>
-                                            Center(
-                                      child: CircularProgressIndicator(
-                                          value: downloadProgress.progress),
-                                    ),
+                                        Center(
+                                          child: CircularProgressIndicator(
+                                              value: downloadProgress.progress),
+                                        ),
                                     errorWidget: (context, url, error) =>
-                                        const Icon(Icons.error),
+                                    const Icon(Icons.error),
                                   ),
-                          ),
-                        ),
-                        Preferences.getBoolean(Preferences.isLogin)
-                            ? InkWell(
+                                ),
+                              ),
+
+                              Preferences.getBoolean(Preferences.isLogin)
+                                  ? InkWell(
                                 onTap: () =>
                                     buildBottomSheet(context, controller),
                                 child: Padding(
@@ -98,644 +765,14 @@ class SettingScreen extends StatelessWidget {
                                   ),
                                 ),
                               )
-                            : Container(),
+                                  : Container(),
+                            ],
+                          ),
+                        ),
                       ],
                     ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    Preferences.getBoolean(Preferences.isLogin)
-                        ? Column(
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Text(
-                                  controller.userModel.value.data!.name
-                                      .toString(),
-                                  style: const TextStyle(
-                                      color: Colors.white, fontSize: 18)),
-                              Text(
-                                  controller.userModel.value.data!.email
-                                      .toString(),
-                                  style: TextStyle(
-                                      color: ConstantColors.hintTextColor,
-                                      fontSize: 16)),
-                            ],
-                          )
-                        : ElevatedButton(
-                            onPressed: () async {
-                              FocusScope.of(context).unfocus();
-                              Get.off(const LoginScreen(
-                                redirectType: "",
-                              ));
-                            },
-                            style: ElevatedButton.styleFrom(
-                                foregroundColor: Colors.white,
-                                backgroundColor: ConstantColors.primary,
-                                shape: const StadiumBorder()),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  horizontal: 12.0, vertical: 10),
-                              child: Text('Login'.tr,
-                                  style: const TextStyle(
-                                      fontWeight: FontWeight.w600)),
-                            ),
-                          ),
-                    const SizedBox(
-                      height: 20,
-                    ),
-                    Visibility(
-                      visible: Preferences.getBoolean(Preferences.isLogin),
-                      child: InkWell(
-                        onTap: () async {
-                          await Get.to(const ProfileUpdateScreen());
-                          controller.getUser();
-                        },
-                        child: Container(
-                          decoration: BoxDecoration(
-                              color: ConstantColors.cardViewColor,
-                              shape: BoxShape.rectangle,
-                              borderRadius:
-                                  const BorderRadius.all(Radius.circular(10))),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 10, horizontal: 10),
-                            child: Row(
-                              children: [
-                                Container(
-                                  decoration: BoxDecoration(
-                                      color: ConstantColors.background,
-                                      shape: BoxShape.rectangle,
-                                      borderRadius: const BorderRadius.all(
-                                          Radius.circular(10))),
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: SvgPicture.asset(
-                                        height: 20,
-                                        width: 20,
-                                        'assets/icons/ic_user.svg',
-                                        semanticsLabel: 'Acme Logo'.tr),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  width: 10,
-                                ),
-                                Text(
-                                  'Profile'.tr,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ],
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        Get.to(const SubscriptionScreen());
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      'assets/icons/ic_subscription.svg',
-                                      semanticsLabel: 'Acme Logo'.tr),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Manage Subscriptions'.tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        LaunchReview.launch(
-                          androidAppId: "com.app.byteai",
-                          iOSAppId: "com.app.byteai",
-                        );
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      'assets/icons/ic_rate.svg',
-                                      semanticsLabel: 'Acme Logo'.tr),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Rate App'.tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () {
-                        share();
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      'assets/icons/ic_share.svg',
-                                      semanticsLabel: 'Acme Logo'.tr),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Share With Friends".tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        final uri =
-                            Uri.parse(Constant.privacyPolicy.toString());
-                        if (!await launchUrl(uri)) {
-                          throw Exception('Could not launch $uri');
-                        }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      'assets/icons/ic_privacy_policy.svg',
-                                      semanticsLabel: 'Acme Logo'.tr),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Privacy Policy'.tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        final uri =
-                            Uri.parse(Constant.termsAndCondition.toString());
-                        if (!await launchUrl(uri)) {
-                          throw Exception('Could not launch $uri');
-                        }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      'assets/icons/ic_privacy_policy.svg',
-                                      semanticsLabel: 'Acme Logo'.tr),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "Terms & Conditions".tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        final uri = Uri.parse(Constant.faqLink.toString());
-                        if (!await launchUrl(uri)) {
-                          throw Exception('Could not launch $uri');
-                        }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      'assets/icons/ic_faq.svg',
-                                      semanticsLabel: 'Acme Logo'.tr),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                "FAQs".tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        final Uri params = Uri(
-                          scheme: 'mailto',
-                          path: Constant.supportEmail,
-                          query: 'subject=&body=', //add subject and body here
-                        );
-
-                        if (await launchUrl(params)) {
-                          await launchUrl(params);
-                        } else {
-                          throw 'Could not launch $params';
-                        }
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      'assets/icons/ic_support.svg',
-                                      semanticsLabel: 'Acme Logo'.tr),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Customer Support'.tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Visibility(
-                      visible: Preferences.getBoolean(Preferences.isLogin),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          InkWell(
-                            onTap: () {
-                              Get.to(const ResetPasswordScreen());
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: ConstantColors.cardViewColor,
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: ConstantColors.background,
-                                          shape: BoxShape.rectangle,
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10))),
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(10.0),
-                                        child: Icon(Icons.password_sharp,
-                                            size: 20, color: Colors.white),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      'Forgot Password'.tr,
-                                      style:
-                                          const TextStyle(color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        Get.to(const LanguageScreen());
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: const Padding(
-                                  padding: EdgeInsets.all(10.0),
-                                  child: Icon(
-                                    Icons.language,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                'Change language'.tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    Visibility(
-                      visible: Preferences.getBoolean(Preferences.isLogin),
-                      child: Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(
-                            height: 10,
-                          ),
-                          InkWell(
-                            onTap: () async {
-                              deleteDialog(context, controller);
-                            },
-                            child: Container(
-                              decoration: BoxDecoration(
-                                  color: ConstantColors.cardViewColor,
-                                  shape: BoxShape.rectangle,
-                                  borderRadius: const BorderRadius.all(
-                                      Radius.circular(10))),
-                              child: Padding(
-                                padding: const EdgeInsets.symmetric(
-                                    vertical: 10, horizontal: 10),
-                                child: Row(
-                                  children: [
-                                    Container(
-                                      decoration: BoxDecoration(
-                                          color: ConstantColors.background,
-                                          shape: BoxShape.rectangle,
-                                          borderRadius: const BorderRadius.all(
-                                              Radius.circular(10))),
-                                      child: const Padding(
-                                        padding: EdgeInsets.all(10.0),
-                                        child: Icon(
-                                          Icons.delete,
-                                          color: Colors.white,
-                                        ),
-                                      ),
-                                    ),
-                                    const SizedBox(
-                                      width: 10,
-                                    ),
-                                    Text(
-                                      "Delete Account".tr,
-                                      style:
-                                          const TextStyle(color: Colors.white),
-                                    ),
-                                  ],
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 10,
-                    ),
-                    InkWell(
-                      onTap: () async {
-                        Preferences.clearSharPreference();
-                        Purchases.logOut();
-                        await FirebaseAuth.instance.signOut();
-
-                        Get.off(const LoginScreen(
-                          redirectType: "",
-                        ));
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: ConstantColors.cardViewColor,
-                            shape: BoxShape.rectangle,
-                            borderRadius:
-                                const BorderRadius.all(Radius.circular(10))),
-                        child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 10, horizontal: 10),
-                          child: Row(
-                            children: [
-                              Container(
-                                decoration: BoxDecoration(
-                                    color: ConstantColors.background,
-                                    shape: BoxShape.rectangle,
-                                    borderRadius: const BorderRadius.all(
-                                        Radius.circular(10))),
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10.0),
-                                  child: SvgPicture.asset(
-                                      height: 20,
-                                      width: 20,
-                                      'assets/icons/ic_logout.svg',
-                                      semanticsLabel: 'Acme Logo'.tr),
-                                ),
-                              ),
-                              const SizedBox(
-                                width: 10,
-                              ),
-                              Text(
-                                Preferences.getBoolean(Preferences.isLogin)
-                                    ? 'Logout'.tr
-                                    : 'Login'.tr,
-                                style: const TextStyle(color: Colors.white),
-                              ),
-                            ],
-                          ),
-                        ),
-                      ),
-                    ),
-                    const SizedBox(
-                      height: 30,
-                    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           );

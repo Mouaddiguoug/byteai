@@ -16,7 +16,7 @@ import 'package:byteai/service/api_services.dart';
 import 'package:byteai/utils/Preferences.dart';
 
 class Constant {
-  static String? openAiApiKey = "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";
+  static String? openAiApiKey = "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";
 
   static String? publicAppSpecificAPIKeysOfAndroid = "";
   static String? publicAppSpecificAPIKeysOfIos = "";

@@ -14,8 +14,8 @@ import 'package:byteai/service/api_services.dart';
 class ProfileUpdationController extends GetxController {
   final formKey = GlobalKey<FormState>().obs;
 
-  Rx<TextEditingController> nameController = TextEditingController().obs;
-  Rx<TextEditingController> emailController = TextEditingController().obs;
+  Rx<String> name = "".obs;
+  Rx<String> email = "".obs;
 
   @override
   void onInit() {
@@ -28,8 +28,8 @@ class ProfileUpdationController extends GetxController {
 
   getUser() {
     userModel.value = Constant.getUserData();
-    nameController.value.text = userModel.value.data!.name.toString();
-    emailController.value.text = userModel.value.data!.email.toString();
+    name.value = userModel.value.data!.name.toString();
+    email.value = userModel.value.data!.email.toString();
   }
 
   Future<bool?> updateProfile(Map<String, String> bodyParams) async {

@@ -46,7 +46,8 @@
         android:icon="@mipmap/launcher_icon"
         android:usesCleartextTraffic="true"
         android:roundIcon="@mipmap/ic_launcher"
-        tools:targetApi="m">
+        tools:targetApi="m"
+        android:requestLegacyExternalStorage="true">
 
 
 

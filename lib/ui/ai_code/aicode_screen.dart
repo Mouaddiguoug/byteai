@@ -81,8 +81,7 @@ class AiCodeScreen extends StatelessWidget {
                         contentPadding: const EdgeInsets.only(
                             left: 10, right: 10, top: 10, bottom: 10),
                         enabledBorder: OutlineInputBorder(
-                          borderSide:
-                              BorderSide(color: ConstantColors.cardViewColor),
+                          borderSide: BorderSide(color: ConstantColors.white),
                           borderRadius: BorderRadius.circular(10),
                         ),
                         focusedBorder: OutlineInputBorder(
@@ -138,12 +137,24 @@ class AiCodeScreen extends StatelessWidget {
                       child: Container(
                         width: MediaQuery.of(context).size.width,
                         decoration: BoxDecoration(
-                            color: controller.isSelected.value == false
-                                ? Colors.grey
-                                : ConstantColors.primary,
+
+                            boxShadow: [
+                              BoxShadow(
+                                  color: Color(0xffB563FF),
+                                  spreadRadius: 6.0,
+                                  blurRadius: 6.0,
+                                  offset: Offset(0, 1)),
+                            ],
+                            gradient: LinearGradient(
+                                begin: Alignment.bottomLeft,
+                                end: Alignment.topRight,
+                                colors: [
+                                  Color(0xff0311ABD),
+                                  Color(0xff601A81),
+                                ]),
                             shape: BoxShape.rectangle,
                             borderRadius:
-                                const BorderRadius.all(Radius.circular(6))),
+                                const BorderRadius.all(Radius.circular(15))),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 13, horizontal: 8),
@@ -188,7 +199,8 @@ class AiCodeScreen extends StatelessWidget {
                     FittedBox(
                       child: Text(
                           '${'You have'.tr} ${controller.writerLimit} ${'free messages left'.tr} ',
-                          style: TextStyle(color: Colors.white, fontSize: 5.sp)),
+                          style:
+                              TextStyle(color: Colors.white, fontSize: 5.sp)),
                     ),
                     const SizedBox(
                       width: 5,
@@ -203,7 +215,8 @@ class AiCodeScreen extends StatelessWidget {
                           Get.to(const SubscriptionScreen());
                         },
                         child: Text('Subscribe Now'.tr,
-                            style: TextStyle(color: ConstantColors.orange, fontSize: 6.sp))),
+                            style: TextStyle(
+                                color: ConstantColors.orange, fontSize: 6.sp))),
                   ],
                 ),
               ),
@@ -309,7 +322,7 @@ class AiCodeScreen extends StatelessWidget {
                     horizontal: 10,
                   ),
                   decoration: BoxDecoration(
-                      color: ConstantColors.primary,
+                      color: Color(0xff8038A1).withOpacity(0.54),
                       borderRadius: const BorderRadius.only(
                           topRight: Radius.circular(10),
                           topLeft: Radius.circular(10),

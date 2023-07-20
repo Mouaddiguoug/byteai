@@ -5,6 +5,8 @@
 class AssetsRes {
   static const String PLUGIN_NAME = 'byteai';
   static const String PLUGIN_VERSION = '1.0.5+9';
+  static const String AI = 'assets/icons/ai.png';
+  static const String ASTROLOGY = 'assets/icons/astrology.png';
   static const String CHAT_GPT_ICON = 'assets/icons/chat_gpt_icon.png';
   static const String IC_APPLE = 'assets/icons/ic_apple.png';
   static const String IC_CAMERA = 'assets/icons/ic_camera.svg';
@@ -30,7 +32,6 @@ class AssetsRes {
   static const String INACTIVE_IC_IMAGE = 'assets/icons/inactive_ic_image.svg';
   static const String INACTIVE_IC_SETTING = 'assets/icons/inactive_ic_setting.svg';
   static const String SEND = 'assets/icons/send.png';
-  static const String AI = 'assets/images/ai.png';
   static const String ASTROLOGYICON = 'assets/images/astrologyIcon.png';
   static const String GIFT = 'assets/images/gift.png';
   static const String IC_LAUNCHER = 'assets/images/ic_launcher.png';
@@ -41,6 +42,7 @@ class AssetsRes {
   static const String ONBORDING_BG = 'assets/images/onbording_bg.png';
   static const String PLAYSTORE = 'assets/images/playstore.png';
   static const String PROFILE_PLACEHOLDER = 'assets/images/profile_placeholder.png';
+  static const String SHADOW = 'assets/images/shadow.png';
   static const String SPLASH_BG = 'assets/images/splash_bg.png';
   static const String SPLASH_LOGO = 'assets/images/splash_logo.png';
   static const String SUBSCRIPTION_BACKGROUND = 'assets/images/subscription_background.png';
