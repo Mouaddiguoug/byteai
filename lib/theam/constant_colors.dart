@@ -2,7 +2,6 @@ import 'dart:ui';
 
 class ConstantColors {
   static Color primary = const Color(0xff04AC84);
-  static Color white = const Color(0xff0FFFFF);
 
   static Color background = const Color(0xff081534);
   static Color cardViewColor = const Color(0xff363141);
@@ -13,6 +12,6 @@ class ConstantColors {
 
   static Color titleTextColor = const Color(0xff242123);
   static Color subTitleTextColor = const Color(0xff666666);
-  static Color hintTextColor = const Color(0xff95909F);
+  static Color hintTextColor = const Color(0xffd0cece);
   static Color orange = const Color(0xffFFA738);
 }

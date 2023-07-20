@@ -2,11 +2,18 @@
 class Assets {
   Assets._();
 
+  static const String assetsImagesBg = 'assets/images/bg.png';
+  static const String assetsImagesSplashLogo = 'assets/images/splash_logo.png';
+  static const String assetsSoundsSpeechToTextCancel = 'assets/sounds/speech_to_text_cancel.m4r';
+  static const String assetsSoundsSpeechToTextListening = 'assets/sounds/speech_to_text_listening.m4r';
+  static const String assetsSoundsSpeechToTextStop = 'assets/sounds/speech_to_text_stop.m4r';
   static const String iconsChatGptIcon = 'assets/icons/chat_gpt_icon.png';
+  static const String iconsIcApple = 'assets/icons/ic_apple.png';
   static const String iconsIcCamera = 'assets/icons/ic_camera.svg';
   static const String iconsIcChat = 'assets/icons/ic_chat.svg';
   static const String iconsIcClose = 'assets/icons/ic_close.svg';
   static const String iconsIcFaq = 'assets/icons/ic_faq.svg';
+  static const String iconsIcGoogle = 'assets/icons/ic_google.png';
   static const String iconsIcHome = 'assets/icons/ic_home.svg';
   static const String iconsIcImage = 'assets/icons/ic_image.svg';
   static const String iconsIcLogout = 'assets/icons/ic_logout.svg';
@@ -20,15 +27,26 @@ class Assets {
   static const String iconsIcSubscriptionIcon = 'assets/icons/ic_subscription_icon.png';
   static const String iconsIcSupport = 'assets/icons/ic_support.svg';
   static const String iconsIcUser = 'assets/icons/ic_user.svg';
+  static const String imagesAi = 'assets/images/ai.png';
+  static const String imagesAstrologyIcon = 'assets/images/astrologyIcon.png';
+  static const String imagesBg = 'assets/images/bg.png';
+  static const String imagesGalaxy = 'assets/images/galaxy.png';
+  static const String imagesGift = 'assets/images/gift.png';
+  static const String imagesIcLauncher = 'assets/images/ic_launcher.png';
   static const String imagesIntro1 = 'assets/images/intro_1.gif';
   static const String imagesIntro2 = 'assets/images/intro_2.gif';
   static const String imagesIntro3 = 'assets/images/intro_3.gif';
   static const String imagesLoginLogo = 'assets/images/login_logo.png';
   static const String imagesOnbordingBg = 'assets/images/onbording_bg.png';
+  static const String imagesPlaystore = 'assets/images/playstore.png';
   static const String imagesProfilePlaceholder = 'assets/images/profile_placeholder.png';
   static const String imagesSplashBg = 'assets/images/splash_bg.png';
   static const String imagesSplashLogo = 'assets/images/splash_logo.png';
   static const String imagesSubscriptionBackground = 'assets/images/subscription_background.png';
   static const String imagesSubscriptionIcon = 'assets/images/subscription_icon.png';
   static const String imagesSubscrptionItem = 'assets/images/subscrption_item.png';
+  static const String soundsSpeechToTextCancel = 'assets/sounds/speech_to_text_cancel.m4r';
+  static const String soundsSpeechToTextListening = 'assets/sounds/speech_to_text_listening.m4r';
+  static const String soundsSpeechToTextStop = 'assets/sounds/speech_to_text_stop.m4r';
+
 }

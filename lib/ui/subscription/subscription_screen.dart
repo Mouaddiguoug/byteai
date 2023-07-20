@@ -34,8 +34,8 @@ class SubscriptionScreen extends StatelessWidget {
                 decoration: const BoxDecoration(
                   image: DecorationImage(
                     image:
-                        AssetImage("assets/images/subscription_background.png"),
-                    fit: BoxFit.fill,
+                        AssetImage("assets/images/anotherbg.png"),
+                    fit: BoxFit.cover,
                   ),
                 ),
                 child: Padding(
@@ -53,130 +53,180 @@ class SubscriptionScreen extends StatelessWidget {
                             child: Row(
                               mainAxisAlignment: MainAxisAlignment.end,
                               crossAxisAlignment: CrossAxisAlignment.end,
+
                               children: [
-                                SvgPicture.asset('assets/icons/ic_close.svg',
+
+                                SvgPicture.asset('assets/icons/closeBtn.svg',
                                     width: 5.w, semanticsLabel: 'Acme Logo'),
                               ],
                             ),
                           ),
                         ),
-                        Center(
-                          child: Image.asset(
-                              width: 60.w,
-                              height: 40.h,
-                              'assets/images/subscription_icon.png'),
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+
+                        Stack(
                           children: [
-                            Padding(
-                              padding: const EdgeInsets.only(top: 5),
-                              child: Text(
-                                'Choose your plan!'.tr,
-                                style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 10.sp,
-                                    fontWeight: FontWeight.w600,
-                                    letterSpacing: 2),
+
+                            Container(
+                              child: Center(
+                                child: Image.asset(
+                                    width: 185.w,
+                                    height: 80.h,
+                                    'assets/images/subscription_background_2.png'),
                               ),
                             ),
-                            SizedBox(
-                              height: 2.h,
-                            ),
-                            Row(
+
+
+                            Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
-                                SvgPicture.asset('assets/icons/ic_right.svg',
-                                    width: 2.w,
-                                    height: 2.h,
-                                    semanticsLabel: 'Acme Logo'),
-                                const SizedBox(
-                                  width: 10,
+                                 SizedBox(
+                                  height: 35.h,
                                 ),
-                                Expanded(
-                                  child: RichText(
-                                    text: TextSpan(
-                                      children: <TextSpan>[
-                                        TextSpan(
-                                            text: "${'High Word Limit'.tr} ",
-                                            style: TextStyle(
-                                                color: ConstantColors.primary,
-                                                letterSpacing: 1.5)),
-                                        TextSpan(
-                                            text: 'for Questions & Answers'.tr,
-                                            style: const TextStyle(
-                                                color: Colors.white,
-                                                letterSpacing: 1.5)),
-                                      ],
+                                Padding(
+
+                                  padding: const EdgeInsets.only(top: 5),
+                                  child: Center(
+                                    child: Text(
+                                      'Choisissez votre plan !'.tr,
+                                      style: TextStyle(
+                                          fontFamily: 'Roboto',
+                                          fontSize: 24,
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.w400,
+                                          letterSpacing: 2),
                                     ),
                                   ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset('assets/icons/ic_right.svg',
-                                    width: 2.w,
-                                    height: 2.h,
-                                    semanticsLabel: 'Acme Logo'.tr),
-                                const SizedBox(
-                                  width: 10,
                                 ),
-                                RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: '${'Unlimited'.tr} ',
-                                          style: TextStyle(
-                                              color: ConstantColors.primary,
-                                              letterSpacing: 1.5)),
-                                      TextSpan(
-                                          text: 'Questions & Answers'.tr,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              letterSpacing: 1.5)),
-                                    ],
-                                  ),
-                                )
-                              ],
-                            ),
-                            const SizedBox(
-                              height: 15,
-                            ),
-                            Row(
-                              children: [
-                                SvgPicture.asset('assets/icons/ic_right.svg',
-                                    width: 2.w,
-                                    height: 2.h,
-                                    semanticsLabel: 'Acme Logo'.tr),
-                                const SizedBox(
-                                  width: 10,
+                                SizedBox(
+                                  height: 4.h,
                                 ),
-                                RichText(
-                                  text: TextSpan(
-                                    children: <TextSpan>[
-                                      TextSpan(
-                                          text: '${'Ads Free'.tr} ',
-                                          style: TextStyle(
-                                              color: ConstantColors.primary,
-                                              letterSpacing: 1.5)),
-                                      TextSpan(
-                                          text: 'experience'.tr,
-                                          style: const TextStyle(
-                                              color: Colors.white,
-                                              letterSpacing: 1.5)),
-                                    ],
+                                Row(
+                                  children: [
+                                    SvgPicture.asset('assets/icons/ic_right.svg',
+                                        width: 3.w,
+                                        height: 3.h,
+                                        ),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    Expanded(
+                                      child: RichText(
+                                        text: TextSpan(
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                                text: "${'High word limit for questions and answers'.tr} ",
+                                                style: TextStyle(
+                                                    color: Colors.white,
+                                                    letterSpacing: 1.5)),
+                                          ],
+                                        ),
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset('assets/icons/ic_right.svg',
+                                        width: 3.w,
+                                        height: 3.h,
+                                        semanticsLabel: 'Acme Logo'.tr),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: '${'Unlimited questions and answers'.tr} ',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  letterSpacing: 1.5)),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 15,
+                                ),
+                                Row(
+                                  children: [
+                                    SvgPicture.asset('assets/icons/ic_right.svg',
+                                        width: 3.w,
+                                        height: 3.h,
+                                        semanticsLabel: 'Acme Logo'.tr),
+                                    const SizedBox(
+                                      width: 10,
+                                    ),
+                                    RichText(
+                                      text: TextSpan(
+                                        children: <TextSpan>[
+                                          TextSpan(
+                                              text: '${'Ads free experience'.tr} ',
+                                              style: TextStyle(
+                                                  color: Colors.white,
+                                                  letterSpacing: 1.5)),
+                                        ],
+                                      ),
+                                    )
+                                  ],
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+                                InkWell(
+                                  onTap: () async {
+                                    if (Preferences.getBoolean(Preferences.isLogin)) {
+                                      await initPlatformState(controller,
+                                          controller.selectedSubscription.value);
+                                    } else {
+                                      Get.off(const LoginScreen(
+                                        redirectType: "subscription",
+                                      ));
+                                    }
+                                  },
+                                  child: Container(
+                                    width: MediaQuery.of(context).size.width,
+                                    decoration: BoxDecoration(
+                                        color: ConstantColors.primary,
+                                        shape: BoxShape.rectangle,
+
+                                       gradient: LinearGradient(
+                                        begin: FractionalOffset.centerLeft,
+                                        end: FractionalOffset.centerRight,
+                                        colors: [
+                                          Color(0xFF601A81),
+                                          Color.fromRGBO(14, 111, 117, 0.479167),
+                                          Color.fromRGBO(49, 26, 189, 0),
+                                        ],
+                                      ),
+
+                                    ),
+                                    child: Padding(
+                                      padding: const EdgeInsets.symmetric(vertical: 20),
+                                      child: Center(
+                                        child: Text(
+                                          "Continue".tr,
+                                          style: const TextStyle(color: Colors.white),
+                                        ),
+                                      ),
+                                    ),
                                   ),
-                                )
+                                ),
+                                const SizedBox(
+                                  height: 20,
+                                ),
+
                               ],
-                            )
+                            ),
+
+
                           ],
                         ),
-                        const SizedBox(
-                          height: 10,
-                        ),
+
                         controller.isLoading.value
                             ? const Center(
                                 child: CircularProgressIndicator(),
@@ -251,7 +301,7 @@ class SubscriptionScreen extends StatelessWidget {
                                                     ),
                                                   ],
                                                 ),
-                                                Visibility(
+                                                Visibility (
                                                   visible: subscriptionData
                                                               .discount !=
                                                           null &&
@@ -308,86 +358,15 @@ class SubscriptionScreen extends StatelessWidget {
                                   );
                                 },
                               ),
-                        const SizedBox(
-                          height: 20,
-                        ),
-                        InkWell(
-                          onTap: () async {
-                            if (Preferences.getBoolean(Preferences.isLogin)) {
-                              await initPlatformState(controller,
-                                  controller.selectedSubscription.value);
-                            } else {
-                              Get.off(const LoginScreen(
-                                redirectType: "subscription",
-                              ));
-                            }
-                          },
-                          child: Container(
-                            width: MediaQuery.of(context).size.width,
-                            decoration: BoxDecoration(
-                                color: ConstantColors.primary,
-                                shape: BoxShape.rectangle,
-                                borderRadius: const BorderRadius.all(
-                                    Radius.circular(30))),
-                            child: Padding(
-                              padding: const EdgeInsets.symmetric(vertical: 20),
-                              child: Center(
-                                child: Text(
-                                  "Continue".tr,
-                                  style: const TextStyle(color: Colors.white),
-                                ),
-                              ),
-                            ),
-                          ),
-                        ),
-                        const SizedBox(
-                          height: 20,
-                        ),
+
                         Row(children: [
-                          Expanded(
-                            child: InkWell(
-                              onTap: () async {
-                                final uri = Uri.parse(
-                                    Constant.privacyPolicy.toString());
-                                if (!await launchUrl(uri)) {
-                                  throw Exception('Could not launch $uri');
-                                }
-                              },
-                              child: Text("Privacy policy".tr,
-                                  style: const TextStyle(
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.w600)),
-                            ),
-                          ),
-                          Expanded(
-                            child: InkWell(
-                              onTap: () async {
-                                final uri = Uri.parse(
-                                    Constant.termsAndCondition.toString());
-                                if (!await launchUrl(uri)) {
-                                  throw Exception('Could not launch $uri');
-                                }
-                              },
-                              child: Align(
-                                alignment: Alignment.centerRight,
-                                child: InkWell(
-                                  child: Text("Terms & Conditions".tr,
-                                      style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w600)),
-                                ),
-                              ),
-                            ),
-                          )
+
+
                         ]),
                         const SizedBox(
                           height: 20,
                         ),
-                        Text(
-                          '${'Subscription will be charged to your payment method through your'.tr} ${Platform.isAndroid ? "Google play Belling account".tr : "iTunes Billing account".tr}. ${'your subscription will automatically renew unless canceled at least 24 hours before the end of current period.Mange your subscription in account setting after purchase'.tr}',
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(color: Colors.white),
-                        ),
+
                       ],
                     ),
                   ),

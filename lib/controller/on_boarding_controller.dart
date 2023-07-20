@@ -10,17 +10,10 @@ class OnBoardingController extends GetxController {
 
   List<OnboardingModel> onBoardingList = [
     OnboardingModel(
-        'assets/images/intro_1.gif',
+        'assets/images/intro_1_new_v2.png',
         'Quickl is intended to boost your productivity by quick access to information.'
             .tr,
         'Your AI assistant'.tr),
-    OnboardingModel(
-        'assets/images/intro_2.gif',
-        'Quickl understand and response to your messages in a natural way.'.tr,
-        'Human-like Conversations'.tr),
-    OnboardingModel(
-        'assets/images/intro_3.gif',
-        'I can write your essays, emails, code, text and more.'.tr,
-        'I can do anything'.tr),
+
   ];
 }
