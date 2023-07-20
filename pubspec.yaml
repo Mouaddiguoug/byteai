@@ -104,9 +104,21 @@ flutter:
   uses-material-design: true
   assets:
     - assets/icons/
+    - assets/icons/arrow.svg
+    - assets/icons/closeBtn.svg
+    - assets/icons/vvv.svg
     - assets/images/
+    - assets/images/anotherbg.png
+    - assets/images/anotherbg_cropped.png
     - assets/images/bg.png
+    - assets/images/byteIA(2).zip
+    - assets/images/intro_1_new.png
+    - assets/images/intro_1_new_v2.png
+    - assets/images/login_logo_new.png
+    - assets/images/login_logo_new_v2.png
     - assets/images/splash_logo.png
+    - assets/images/splash_logo_new.png
+    - assets/images/subscription_background_2.png
     - assets/sounds/speech_to_text_cancel.m4r
     - assets/sounds/speech_to_text_listening.m4r
     - assets/sounds/speech_to_text_stop.m4r
@@ -127,11 +139,10 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   fonts:
-    - family: Akshar
+    - family: Akshar-Regular
       fonts:
         - asset: assets/fonts/Akshar/Akshar-Regular.ttf
-
-    - family: Roboto
+    - family: Roboto-Medium
       fonts:
         - asset: assets/fonts/Roboto/Roboto-Medium.ttf
 

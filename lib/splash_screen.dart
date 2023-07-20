@@ -63,10 +63,10 @@ class _SplashScreenState extends State<SplashScreen> {
             body: Container(
               decoration: const BoxDecoration(
                   image: DecorationImage(
-                      image: AssetImage('assets/images/splash_bg.png'),
+                      image: AssetImage('assets/images/anotherbg_cropped.png'),
                       fit: BoxFit.fill)),
               child: Center(
-                child: Image.asset('assets/images/splash_logo.png', width: 320),
+                child: Image.asset('assets/images/splash_logo_new.png', width: 320),
               ),
             ),
           );

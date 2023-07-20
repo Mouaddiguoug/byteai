@@ -10,6 +10,6 @@ class ConstantColors {
 
   static Color titleTextColor = const Color(0xff242123);
   static Color subTitleTextColor = const Color(0xff666666);
-  static Color hintTextColor = const Color(0xff95909F);
+  static Color hintTextColor = const Color(0xffd0cece);
   static Color orange = const Color(0xffFFA738);
 }

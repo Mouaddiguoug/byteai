@@ -12,27 +12,43 @@ class ButtonThem {
     required Color btnColor,
     required Color txtColor,
     double btnHeight = 50,
-    double txtSize = 14,
+    double txtSize = 16,
     double btnWidthRatio = 0.9,
     required Function() onPress,
     bool isVisible = true,
   }) {
     return Visibility(
       visible: isVisible,
-      child: SizedBox(
-        width: Responsive.width(100, context) * btnWidthRatio,
-        child: MaterialButton(
-          onPressed: onPress,
-          height: btnHeight,
-          elevation: 0.5,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(30),
+      child: Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(8),
+          gradient: LinearGradient(
+
+            begin: FractionalOffset.centerLeft,
+            end: FractionalOffset.centerRight,
+
+            colors: [
+              Color(0xFF601A81),
+              Color.fromRGBO(14, 111, 117, 0.479167),
+              Color.fromRGBO(49, 26, 189, 0),
+            ],
           ),
-          color: btnColor,
-          child: Text(
-            title.toUpperCase(),
-            textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w600),
+        ),
+        child: SizedBox(
+          width: Responsive.width(100, context) * btnWidthRatio,
+          child: MaterialButton(
+            onPressed: onPress,
+            height: btnHeight,
+            elevation: 0.5,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(30),
+            ),
+            color: btnColor,
+            child: Text(
+              title.toUpperCase(),
+              textAlign: TextAlign.center,
+              style: GoogleFonts.poppins(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w500),
+            ),
           ),
         ),
       ),
@@ -86,7 +102,7 @@ class ButtonThem {
               Text(
                 title.toUpperCase(),
                 textAlign: TextAlign.center,
-                style: GoogleFonts.poppins(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w600),
+                style: GoogleFonts.roboto(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w600),
               ),
             ],
           ),

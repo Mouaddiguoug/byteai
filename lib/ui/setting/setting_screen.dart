@@ -23,6 +23,9 @@ import 'package:byteai/ui/reset_password/reset_password_screen.dart';
 import 'package:byteai/ui/subscription/subscription_screen.dart';
 import 'package:byteai/utils/Preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:byteai/splash_screen.dart';
+import 'package:byteai/controller/on_boarding_controller.dart';
+import 'package:byteai/ui/on_boarding_screen.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({Key? key}) : super(key: key);
@@ -539,7 +542,8 @@ class SettingScreen extends StatelessWidget {
                           ),
                           InkWell(
                             onTap: () {
-                              Get.to( ResetPasswordScreen());
+                              // Testing : to change later
+                              Get.to(ResetPasswordScreen());
                             },
                             child: Container(
                               decoration: BoxDecoration(
