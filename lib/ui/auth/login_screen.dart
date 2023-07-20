@@ -40,37 +40,57 @@ class LoginScreen extends StatelessWidget {
               body: Sizer(builder: (context, orientation, deviceType) {
                 return Stack(
                   children: [
-                    Padding(
-                      padding:
-                          EdgeInsets.symmetric(horizontal: 2.h, vertical: 8.h),
-                      child: Form(
-                        key: controller.formKey.value,
-                        child: Container(
-                          child: SingleChildScrollView(
-                            child: Column(
-                              // mainAxisAlignment: MainAxisAlignment.center,
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                Center(
-                                    child: Image.asset(
-                                        AssetsRes.LOGIN_LOGO_NEW_V2)),
-                                Container(
+                    Form(
+                      key: controller.formKey.value,
+                      child: Container(
+
+                        child: SingleChildScrollView(
+                          child: Column(
+                            // mainAxisAlignment: MainAxisAlignment.center,
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              SizedBox(
+                                  height: 5.h
+                              ),
+
+                              Center(
+                                  child: Image.asset(
+                                      AssetsRes.LOGIN_LOGO_NEW_V2, height: 20.h,)),
+                              // Component : Email + mot de passe + connexion button + login with google
+                              Container(
+                                height: 100.h,
+                                decoration: BoxDecoration(
+                                  image: DecorationImage(
+                                    image: AssetImage('assets/images/bg.png'),
+                                    fit: BoxFit.cover,
+                                  ),
+                                  borderRadius: BorderRadius.only(
+                                    topRight: Radius.circular(100.0),
+                                    topLeft: Radius.zero,
+                                    bottomRight: Radius.circular(30.0),
+                                    bottomLeft: Radius.circular(30.0),
+                                  ),
+                                ),
+                                child: Padding(
+
+                                  padding: const EdgeInsets.all(35.0),
                                   child: Column(children: [
                                     Center(
                                         child: Text(
-                                      'Sign in',
-                                      style: TextStyle(
-                                          color: Colors.white, fontSize: 15.sp),
-                                    )),
+                                          'Sign in',
+                                          style: TextStyle(
+                                              color: Colors.white, fontSize: 15.sp),
+                                        )),
                                     SizedBox(
                                       height: 4.h,
                                     ),
+
                                     Padding(
                                         padding: EdgeInsets.only(top: 1.h),
                                         child: TextFieldThem.boxBuildTextField(
                                           hintText: 'Email'.tr,
                                           controller:
-                                              controller.emailController.value,
+                                          controller.emailController.value,
                                           validators: (p0) =>
                                               Constant().validateEmail(p0),
                                         )),
@@ -84,8 +104,8 @@ class LoginScreen extends StatelessWidget {
                                           suffixData: IconButton(
                                             onPressed: () {
                                               controller.passwordVisible.value =
-                                                  !controller
-                                                      .passwordVisible.value;
+                                              !controller
+                                                  .passwordVisible.value;
                                               // ignore: invalid_use_of_protected_member
                                               controller.refresh();
                                             },
@@ -101,7 +121,7 @@ class LoginScreen extends StatelessWidget {
                                           controller: controller
                                               .passwordController.value,
                                           obscureText:
-                                              controller.passwordVisible.value,
+                                          controller.passwordVisible.value,
                                           validators: (String? value) {
                                             if (value!.isNotEmpty) {
                                               return null;
@@ -113,7 +133,7 @@ class LoginScreen extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment:
-                                          CrossAxisAlignment.end,
+                                      CrossAxisAlignment.end,
                                       children: [
                                         InkWell(
                                           onTap: () {
@@ -124,7 +144,7 @@ class LoginScreen extends StatelessWidget {
                                             'Forgot Password?'.tr,
                                             textAlign: TextAlign.end,
                                             style:
-                                                TextStyle(color: Colors.white),
+                                            TextStyle(color: Colors.white),
                                           ),
                                         ),
                                       ],
@@ -132,7 +152,7 @@ class LoginScreen extends StatelessWidget {
                                     SizedBox(
                                       height: 5.h,
                                     ),
-                                    // vanilla Login Button
+                                    // vanilla Login Connexion Button
                                     Container(
                                       child: ButtonThem.buildBorderButton(
                                         context,
@@ -184,7 +204,7 @@ class LoginScreen extends StatelessWidget {
                                                       Preferences.isLogin,
                                                       true);
                                                   ApiServices.header[
-                                                          'accesstoken'] =
+                                                  'accesstoken'] =
                                                       value.data!.accesstoken
                                                           .toString();
 
@@ -207,7 +227,6 @@ class LoginScreen extends StatelessWidget {
                                         btnBorderColor: ConstantColors.primary,
                                       ),
                                     ),
-
                                     // space between the two login buttons
                                     SizedBox(
                                       height: 5.h,
@@ -222,7 +241,7 @@ class LoginScreen extends StatelessWidget {
                                         txtColor: Colors.white,
                                         iconVisibility: true,
                                         iconAssetImage:
-                                            'assets/icons/ic_google.png',
+                                        'assets/icons/ic_google.png',
                                         onPress: () async {
                                           ShowToastDialog.showLoader(
                                               "Please wait");
@@ -270,7 +289,7 @@ class LoginScreen extends StatelessWidget {
                                                         Preferences.isLogin,
                                                         true);
                                                     ApiServices.header[
-                                                            'accesstoken'] =
+                                                    'accesstoken'] =
                                                         value.data!.accesstoken
                                                             .toString();
 
@@ -306,7 +325,7 @@ class LoginScreen extends StatelessWidget {
                                           txtColor: Colors.white,
                                           iconVisibility: true,
                                           iconAssetImage:
-                                              'assets/icons/ic_apple.png',
+                                          'assets/icons/ic_apple.png',
                                           onPress: () async {
                                             ShowToastDialog.showLoader(
                                                 "Please wait");
@@ -317,7 +336,7 @@ class LoginScreen extends StatelessWidget {
                                               // ignore: unnecessary_null_comparison
                                               if (value != null) {
                                                 Map<String, String> bodyParams =
-                                                    {
+                                                {
                                                   'name': value
                                                       .user!.displayName
                                                       .toString(),
@@ -360,7 +379,7 @@ class LoginScreen extends StatelessWidget {
                                                           Preferences.isLogin,
                                                           true);
                                                       ApiServices.header[
-                                                              'accesstoken'] =
+                                                      'accesstoken'] =
                                                           value
                                                               .data!.accesstoken
                                                               .toString();
@@ -383,12 +402,34 @@ class LoginScreen extends StatelessWidget {
                                             });
                                           },
                                           btnBorderColor: Colors.white,
-                                        ))
+                                        )),
+                                    Container(
+                                      padding: EdgeInsets.all(2.w),
+                                      child: RichText(
+                                        textAlign: TextAlign.center,
+                                        text: TextSpan(
+                                          text: "${"Don't have an account?".tr} ",
+                                          style: const TextStyle(color: Colors.white),
+                                          children: <TextSpan>[
+                                            TextSpan(
+                                              text: " ${'Register now!'.tr}",
+                                              style: TextStyle(color: Color(0xFF0F20B6)),
+                                              recognizer: TapGestureRecognizer()
+                                                ..onTap = () => Get.to(SignupScreen(
+                                                  redirectType: redirectType,
+                                                  token: controller.notificationToken.toString(),
+                                                )),
+                                            ),
+                                          ],
+                                        ),
+                                      ),
+                                    ),
                                   ]),
                                 ),
-                                // space  between the sign in text and the text Field "Email"
-                              ],
-                            ),
+
+                              ),
+                              // space  between the sign in text and the text Field "Email"
+                            ],
                           ),
                         ),
                       ),
@@ -448,7 +489,7 @@ class LoginScreen extends StatelessWidget {
                                   side: BorderSide(
                                       color: Colors.purple,
                                       width:
-                                          2.0), // Set the border color and width
+                                      2.0), // Set the border color and width
                                 ),
                               ),
                               foregroundColor: MaterialStateProperty.all<Color>(
@@ -458,7 +499,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                  // layout of the buttons
+                                // layout of the buttons
                                   horizontal: 8.0,
                                   vertical: 10),
                               child: Text('Skip'.tr,
@@ -472,27 +513,10 @@ class LoginScreen extends StatelessWidget {
                   ],
                 );
               }),
-              bottomNavigationBar: Padding(
-                padding: EdgeInsets.all(2.w),
-                child: RichText(
-                  textAlign: TextAlign.center,
-                  text: TextSpan(
-                    text: "${"Don't have an account?".tr} ",
-                    style: const TextStyle(color: Colors.white),
-                    children: <TextSpan>[
-                      TextSpan(
-                        text: " ${'Register now!'.tr}",
-                        style: TextStyle(color: Color(0xFF0F20B6)),
-                        recognizer: TapGestureRecognizer()
-                          ..onTap = () => Get.to(SignupScreen(
-                                redirectType: redirectType,
-                                token: controller.notificationToken.toString(),
-                              )),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
+
+
+
+
             ),
           );
         });
