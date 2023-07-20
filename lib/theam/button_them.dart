@@ -72,7 +72,7 @@ class ButtonThem {
     return Visibility(
       visible: isVisible,
       child: SizedBox(
-        width: Responsive.width(100, context) * btnWidthRatio,
+        width: Responsive.width(70, context) * btnWidthRatio,
         height: btnHeight,
         child: ElevatedButton(
           style: ButtonStyle(
