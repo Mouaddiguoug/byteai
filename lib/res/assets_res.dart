@@ -5,6 +5,7 @@
 class AssetsRes {
   static const String PLUGIN_NAME = 'byteai';
   static const String PLUGIN_VERSION = '1.0.5+9';
+  static const String AI = 'assets/icons/ai.png';
   static const String ARROW = 'assets/icons/arrow.svg';
   static const String ASTROLOGY = 'assets/icons/astrology.png';
   static const String CHAT_GPT_ICON = 'assets/icons/chat_gpt_icon.png';
@@ -32,9 +33,9 @@ class AssetsRes {
   static const String INACTIVE_IC_HOME = 'assets/icons/inactive_ic_home.svg';
   static const String INACTIVE_IC_IMAGE = 'assets/icons/inactive_ic_image.svg';
   static const String INACTIVE_IC_SETTING = 'assets/icons/inactive_ic_setting.svg';
+  static const String REWARD = 'assets/icons/reward.png';
   static const String SEND = 'assets/icons/send.png';
   static const String VVV = 'assets/icons/vvv.svg';
-  static const String AI = 'assets/images/ai.png';
   static const String ANOTHERBG = 'assets/images/anotherbg.png';
   static const String ANOTHERBG_CROPPED = 'assets/images/anotherbg_cropped.png';
   static const String ASTROLOGYICON = 'assets/images/astrologyIcon.png';

@@ -131,6 +131,7 @@ flutter:
     - assets/icons/inactive_ic_home.svg
     - assets/icons/inactive_ic_image.svg
     - assets/icons/inactive_ic_setting.svg
+    - assets/icons/reward.png
     - assets/icons/send.png
     - assets/icons/vvv.svg
     - assets/images/ai.png

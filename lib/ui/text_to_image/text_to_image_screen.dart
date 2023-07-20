@@ -75,9 +75,8 @@ class TextToImageScreen extends StatelessWidget {
                   padding: const EdgeInsets.only(right: 10, top: 5, bottom: 5),
                   child: Column(
                     children: [
-                      Icon(
-                        Icons.slow_motion_video_outlined,
-                        color: ConstantColors.primary,
+                      Image.asset(
+                        AssetsRes.REWARD
                       ),
                       const Expanded(child: Text("Reward ads"))
                     ],

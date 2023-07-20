@@ -48,7 +48,7 @@ class ProfileUpdateScreen extends StatelessWidget {
                         ),
                       ),
                       Padding(
-                        padding: EdgeInsets.all(20.sp),
+                        padding: EdgeInsets.all(8.sp),
                         child: Container(
                           margin: EdgeInsets.only(top: 10.h),
                           decoration: BoxDecoration(

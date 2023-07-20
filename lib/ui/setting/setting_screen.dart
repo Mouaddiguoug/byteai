@@ -76,7 +76,6 @@ class SettingScreen extends StatelessWidget {
                             color: ConstantColors.background,
                             borderRadius: BorderRadius.circular(30)
                           ),
-                          height: 150.h,
                           child: Column(
                             children: [
                               SizedBox(height: 10.h,),

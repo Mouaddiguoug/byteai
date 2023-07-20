@@ -80,18 +80,14 @@ class HomeScreen extends StatelessWidget {
                       },
                     );
                   },
-                  child: Padding(
-                    padding:
-                        const EdgeInsets.only(right: 10, top: 5, bottom: 5),
-                    child: Column(
-                      children: [
-                        Icon(
-                          Icons.slow_motion_video_outlined,
-                          color: ConstantColors.primary,
-                        ),
-                        const Expanded(child: Text("Reward ads"))
-                      ],
-                    ),
+                  child: Column(
+                    children: [
+                      Image.asset(
+                        AssetsRes.REWARD,
+                        width: 30.sp,
+                      ),
+                      const Expanded(child: Text("Reward ads"))
+                    ],
                   ),
                 )
               ]),
