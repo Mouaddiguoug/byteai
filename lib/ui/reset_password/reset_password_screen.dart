@@ -38,25 +38,29 @@ class ResetPasswordScreen extends StatelessWidget {
                     ),
                     SizedBox(height:20),
 
-                    Container(
-                      decoration: BoxDecoration(
-                        image: DecorationImage(
-                          image: AssetImage('assets/icons/arrow.svg'),
-                          fit: BoxFit.cover,
-                        ),
+                    InkWell(
+                      onTap: () {
+                        Get.back();
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                          image: DecorationImage(
+                            image: AssetImage('assets/icons/arrow.svg'),
+                            fit: BoxFit.cover,
+                          ),
 
-                      ),
-                      child: Padding(
-                        padding: const EdgeInsets.fromLTRB(8.0, 14.0, 8.0, 8.0), // Add padding to the top
-                        child: Align(
-                          alignment: Alignment.centerLeft,
-                          child: SvgPicture.asset(
-                            'assets/icons/arrow.svg',
-                            semanticsLabel: 'Acme Logo',
+                        ),
+                        child: Padding(
+                          padding: const EdgeInsets.fromLTRB(8.0, 14.0, 8.0, 8.0), // Add padding to the top
+                          child: Align(
+                            alignment: Alignment.centerLeft,
+                            child: SvgPicture.asset(
+                              'assets/icons/arrow.svg',
+                              semanticsLabel: 'Acme Logo',
+                            ),
                           ),
                         ),
                       ),
-
                     ),
 
                     // Logo - Image
@@ -65,143 +69,145 @@ class ResetPasswordScreen extends StatelessWidget {
                     // Sized Box to add space between the logo and the form
                     // form
 
-                    Center(
-                      child: Container(
-
-                        decoration: BoxDecoration(
-                          image: DecorationImage(
-                            image: AssetImage('assets/images/bg.png'),
-                            fit: BoxFit.cover,
-
-                          ),
-                          borderRadius: BorderRadius.only(
-                            topRight: Radius.circular(100.0),
-                            topLeft: Radius.zero,
-                            bottomRight: Radius.circular(30.0),
-                            bottomLeft: Radius.circular(30.0),
-                          ),
-                        ),
-
-                        padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                    SizedBox(
+                      height: 800,
+                      child: Center(
                         child: Container(
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              SizedBox(height: 20),
-                              // text changer le mot de passe
-                              Center(
-                                child: Text(
-                                  'Changer le mot de passe',
-                                  style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Akshar', fontWeight: FontWeight.w400),
+                          decoration: BoxDecoration(
+                            image: DecorationImage(
+                              image: AssetImage('assets/images/bg.png'),
+                              fit: BoxFit.cover,
 
-                                ),
-                              ),
-                              SizedBox(height: 30),
-                              Text(
-                                'New Password'.tr,
-                                style:  TextStyle(color: Colors.white, fontFamily: 'Roboto', fontWeight: FontWeight.w300, fontSize: 16, height: 1.5),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5, bottom: 10),
-                                child: TextFieldThem.boxBuildTextField(
-                                  hintText: ''.tr,
-                                  controller: controller.passwordController.value,
-                                  obscureText: false,
-                                  validators: (String? value) {
-                                    if (value!.isNotEmpty) {
-                                      return null;
-                                    } else {
-                                      return '*required'.tr;
-                                    }
-                                  },
-                                ),
-                              ),
-                              SizedBox(height: 15),
-                              Text(
-                                'Confirm new password'.tr,
-                                style:  TextStyle(color: Colors.white, fontFamily: 'Roboto', fontWeight: FontWeight.w300, fontSize: 16, height: 1.5),
-                              ),
-                              Padding(
-                                padding: const EdgeInsets.only(top: 5, bottom: 10),
-                                child: TextFieldThem.boxBuildTextField(
-                                  hintText: ''.tr,
-                                  controller: controller.conformPasswordController.value,
-                                  obscureText: false,
-                                  validators: (String? value) {
-                                    if (value!.isNotEmpty) {
-                                      return null;
-                                    } else {
-                                      return '*required'.tr;
-                                    }
-                                  },
-                                ),
-                              ),
-                              SizedBox(height: 15),
-                              // confirm Button
-                              Container(
-                                child: Center(
-                                  child: SizedBox(
-                                    child: Container(
-                                      decoration: BoxDecoration(
-                                        borderRadius: BorderRadius.circular(8),
-                                        gradient: LinearGradient(
+                            ),
+                            borderRadius: BorderRadius.only(
+                              topRight: Radius.circular(100.0),
+                              topLeft: Radius.zero,
+                              bottomRight: Radius.circular(30.0),
+                              bottomLeft: Radius.circular(30.0),
+                            ),
+                          ),
 
-                                          begin: FractionalOffset.centerLeft,
-                                          end: FractionalOffset.centerRight,
+                          padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 8.0),
+                          child: Container(
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                SizedBox(height: 20),
+                                // text changer le mot de passe
+                                Center(
+                                  child: Text(
+                                    'Changer le mot de passe',
+                                    style: TextStyle(fontSize: 20, color: Colors.white, fontFamily: 'Akshar', fontWeight: FontWeight.w400),
 
-                                          colors: [
-                                            Color(0xFF601A81),
-                                            Color.fromRGBO(14, 111, 117, 0.479167),
-                                            Color.fromRGBO(49, 26, 189, 0),
-                                          ],
-                                        ),
-                                      ),
-                                      child: ElevatedButton(
-                                        onPressed: () async {
-                                          if (controller.formKey.value.currentState!.validate()) {
-                                            if (controller.passwordController.value.text ==
-                                                controller.conformPasswordController.value.text) {
-                                              Map<String, String> bodyParams = {
-                                                'user_id': Preferences.getString(Preferences.userId),
-                                                'password': controller.passwordController.value.text,
-                                              };
-                                              await controller.resetPassword(bodyParams).then((value) {
-                                                if (value != null) {
-                                                  if (value == true) {
-                                                    Get.back(result: true);
-                                                  } else {
-                                                    ShowToastDialog.showToast('Something went wrong...'.tr);
-                                                  }
-                                                }
-                                              });
-                                            } else {
-                                              ShowToastDialog.showToast("Password doesn't match".tr);
-                                            }
-                                          }
-                                        },
-                                        // Button style
-                                        style: ElevatedButton.styleFrom(
-                                          foregroundColor: Colors.white,
-                                          shadowColor: Colors.transparent,
-                                          backgroundColor: Colors.transparent,
-                                          minimumSize: Size(244, 50),
-                                          shape: RoundedRectangleBorder(
-                                            borderRadius: BorderRadius.circular(8), // Adjust the value as needed
+                                  ),
+                                ),
+                                SizedBox(height: 30),
+                                Text(
+                                  'New Password'.tr,
+                                  style:  TextStyle(color: Colors.white, fontFamily: 'Roboto', fontWeight: FontWeight.w300, fontSize: 16, height: 1.5),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5, bottom: 10),
+                                  child: TextFieldThem.boxBuildTextField(
+                                    hintText: ''.tr,
+                                    controller: controller.passwordController.value,
+                                    obscureText: false,
+                                    validators: (String? value) {
+                                      if (value!.isNotEmpty) {
+                                        return null;
+                                      } else {
+                                        return '*required'.tr;
+                                      }
+                                    },
+                                  ),
+                                ),
+                                SizedBox(height: 15),
+                                Text(
+                                  'Confirm new password'.tr,
+                                  style:  TextStyle(color: Colors.white, fontFamily: 'Roboto', fontWeight: FontWeight.w300, fontSize: 16, height: 1.5),
+                                ),
+                                Padding(
+                                  padding: const EdgeInsets.only(top: 5, bottom: 10),
+                                  child: TextFieldThem.boxBuildTextField(
+                                    hintText: ''.tr,
+                                    controller: controller.conformPasswordController.value,
+                                    obscureText: false,
+                                    validators: (String? value) {
+                                      if (value!.isNotEmpty) {
+                                        return null;
+                                      } else {
+                                        return '*required'.tr;
+                                      }
+                                    },
+                                  ),
+                                ),
+                                SizedBox(height: 15),
+                                // confirm Button
+                                Container(
+                                  child: Center(
+                                    child: SizedBox(
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                          borderRadius: BorderRadius.circular(8),
+                                          gradient: LinearGradient(
+
+                                            begin: FractionalOffset.centerLeft,
+                                            end: FractionalOffset.centerRight,
+
+                                            colors: [
+                                              Color(0xFF601A81),
+                                              Color.fromRGBO(14, 111, 117, 0.479167),
+                                              Color.fromRGBO(49, 26, 189, 0),
+                                            ],
                                           ),
                                         ),
-                                        child: Padding(
-                                          padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
-                                          child: Text(
-                                            'Login'.tr,
-                                            style: const TextStyle(fontWeight: FontWeight.w600),
+                                        child: ElevatedButton(
+                                          onPressed: () async {
+                                            if (controller.formKey.value.currentState!.validate()) {
+                                              if (controller.passwordController.value.text ==
+                                                  controller.conformPasswordController.value.text) {
+                                                Map<String, String> bodyParams = {
+                                                  'user_id': Preferences.getString(Preferences.userId),
+                                                  'password': controller.passwordController.value.text,
+                                                };
+                                                await controller.resetPassword(bodyParams).then((value) {
+                                                  if (value != null) {
+                                                    if (value == true) {
+                                                      Get.back(result: true);
+                                                    } else {
+                                                      ShowToastDialog.showToast('Something went wrong...'.tr);
+                                                    }
+                                                  }
+                                                });
+                                              } else {
+                                                ShowToastDialog.showToast("Password doesn't match".tr);
+                                              }
+                                            }
+                                          },
+                                          // Button style
+                                          style: ElevatedButton.styleFrom(
+                                            foregroundColor: Colors.white,
+                                            shadowColor: Colors.transparent,
+                                            backgroundColor: Colors.transparent,
+                                            minimumSize: Size(244, 50),
+                                            shape: RoundedRectangleBorder(
+                                              borderRadius: BorderRadius.circular(8), // Adjust the value as needed
+                                            ),
+                                          ),
+                                          child: Padding(
+                                            padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 12),
+                                            child: Text(
+                                              'Login'.tr,
+                                              style: const TextStyle(fontWeight: FontWeight.w600),
+                                            ),
                                           ),
                                         ),
                                       ),
                                     ),
                                   ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
                         ),
                       ),

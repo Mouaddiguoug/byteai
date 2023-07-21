@@ -44,6 +44,7 @@ class SubscriptionScreen extends StatelessWidget {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
+
                         InkWell(
                           onTap: () {
                             Get.back();
