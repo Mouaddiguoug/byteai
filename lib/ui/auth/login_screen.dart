@@ -55,7 +55,7 @@ class LoginScreen extends StatelessWidget {
 
                               Center(
                                   child: Image.asset(
-                                      AssetsRes.LOGIN_LOGO_NEW_V2, height: 20.h,)),
+                                    AssetsRes.LOGIN_LOGO_NEW_V2, height: 20.h,)),
                               // Component : Email + mot de passe + connexion button + login with google
                               Container(
                                 height: 100.h,
@@ -84,7 +84,6 @@ class LoginScreen extends StatelessWidget {
                                     SizedBox(
                                       height: 4.h,
                                     ),
-
                                     Padding(
                                         padding: EdgeInsets.only(top: 1.h),
                                         child: TextFieldThem.boxBuildTextField(
@@ -154,8 +153,9 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                     // vanilla Login Connexion Button
                                     Container(
-                                      decoration: BoxDecoration(
 
+                                      decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(50.w),
                                         gradient: LinearGradient(
                                           begin: FractionalOffset.bottomLeft,
                                           end: FractionalOffset.topRight,
@@ -247,8 +247,11 @@ class LoginScreen extends StatelessWidget {
                                       height: 5.h,
                                     ),
                                     // Google Login Button
+
+
                                     Container(
                                       decoration: BoxDecoration(
+                                        borderRadius: BorderRadius.circular(30),
                                         gradient: LinearGradient(
                                           begin: FractionalOffset.bottomLeft,
                                           end: FractionalOffset.topRight,
@@ -266,12 +269,14 @@ class LoginScreen extends StatelessWidget {
                                         visible: Platform.isAndroid,
                                         child: ButtonThem.buildBorderButton(
                                           context,
-                                          title: "Login with google",
+                                          title: "   Login with google",
                                           btnColor: Colors.transparent,
                                           txtColor: Colors.white,
                                           iconVisibility: true,
+
                                           iconAssetImage:
                                           'assets/icons/ic_google.png',
+
                                           onPress: () async {
                                             ShowToastDialog.showLoader(
                                                 "Please wait");
@@ -344,6 +349,7 @@ class LoginScreen extends StatelessWidget {
                                         ),
                                       ),
                                     ),
+
                                     const SizedBox(
                                       height: 10,
                                     ),
@@ -444,7 +450,7 @@ class LoginScreen extends StatelessWidget {
                                           children: <TextSpan>[
                                             TextSpan(
                                               text: " ${'Register now!'.tr}",
-                                              style: TextStyle(color: Color(0xFF0F20B6)),
+                                              style: TextStyle(color: Color.fromRGBO(15, 32, 182, 1), fontFamily: 'Roboto', fontWeight: FontWeight.w800, fontSize: 10.sp),
                                               recognizer: TapGestureRecognizer()
                                                 ..onTap = () => Get.to(SignupScreen(
                                                   redirectType: redirectType,
@@ -475,10 +481,14 @@ class LoginScreen extends StatelessWidget {
                           width: 24.w,
                           height: 6.h,
                           decoration: BoxDecoration(
-                            borderRadius: BorderRadius.circular(8),
-                            gradient: LinearGradient(
-                              begin: FractionalOffset.topCenter,
-                              end: FractionalOffset.bottomCenter,
+                            borderRadius: BorderRadius.only(
+                              topLeft: Radius.circular(20),     // Specify different radii for each corner
+                              topRight: Radius.circular(40),
+                              bottomLeft: Radius.circular(40),
+                              bottomRight: Radius.circular(20),
+                            ),                            gradient: LinearGradient(
+                              begin: FractionalOffset.bottomLeft,
+                              end: FractionalOffset.topRight,
                               colors: [
                                 Color.fromRGBO(255, 94, 249, 0.47),
 

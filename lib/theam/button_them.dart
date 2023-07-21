@@ -54,39 +54,66 @@ class ButtonThem {
         String iconAssetImage = '',
   }) {
     return Container(
-      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
-      child: Visibility(
-        visible: isVisible,
-        child: Container(
-          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+      child: Container(
 
-          width: Responsive.width(70, context) * btnWidthRatio,
-          height: btnHeight,
+        child: Visibility(
+          visible: isVisible,
           child: Container(
-            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
-            child: ElevatedButton(
-              style: ButtonStyle(
-                backgroundColor: MaterialStateProperty.all(Colors.transparent),
-                foregroundColor: MaterialStateProperty.all(Colors.transparent),
-              ),
-              onPressed: onPress,
-              child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Visibility(
-                    visible: iconVisibility,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 10),
-                      child: Image.asset(iconAssetImage, fit: BoxFit.cover, width: 32),
+
+            width: Responsive.width(60, context) * btnWidthRatio,
+            height: btnHeight,
+            child: Container(
+
+
+              child: ElevatedButton(
+
+                style: ButtonStyle(
+                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                    RoundedRectangleBorder(
+                      // border of the button
+                      borderRadius: BorderRadius.circular(30.0), // Adjust border radius as needed
+                      side: BorderSide(
+                        color: Colors.transparent, // Border color
+                        width: 2.0, // Border width
+                      ),
                     ),
                   ),
-                  Text(
-                    title.toUpperCase(),
-                    textAlign: TextAlign.center,
-                    style: GoogleFonts.roboto(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w600),
-                  ),
-                ],
+
+                  backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                  foregroundColor: MaterialStateProperty.all(Colors.transparent),
+                ),
+                onPressed: onPress,
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Visibility(
+                      visible: iconVisibility,
+                      child: Stack(
+                        children: [
+                          Container(
+                            width: 40, // Adjust container width as needed
+                            height: 30, // Adjust container height as needed
+                            decoration: BoxDecoration(
+                              shape: BoxShape.circle,
+                              color: Colors.white, // Circular white background
+                            ),
+                          ),
+                         Container(
+                           width: 40,
+                          height: 30,
+                          child: Image.asset(iconAssetImage, fit: BoxFit.cover, width: 32),
+                        ),
+                      ]
+                      ),
+                    ),
+                    Text(
+                      title.toUpperCase(),
+                      textAlign: TextAlign.center,
+                      style: GoogleFonts.roboto(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w600),
+                    ),
+                  ],
+                ),
               ),
             ),
           ),
@@ -103,7 +130,7 @@ class ButtonThem {
     required Color iconColor,
     required IconData icon,
     double btnHeight = 50,
-    double txtSize = 16,
+    double txtSize = 20,
     double btnWidthRatio = 0.9,
     iconSize = 18.0,
     required Function() onPress,
@@ -114,7 +141,7 @@ class ButtonThem {
       child: Container(
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
         child: SizedBox(
-          width: Responsive.width(100, context) * btnWidthRatio,
+          width: Responsive.width(90, context) * btnWidthRatio,
           height: btnHeight,
           child: TextButton.icon(
             style: TextButton.styleFrom(

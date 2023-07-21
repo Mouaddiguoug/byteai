@@ -159,6 +159,7 @@ class SignupScreen extends StatelessWidget {
                                         ),
                                         Center(
                                           child: Container(
+
                                             decoration: BoxDecoration(
 
                                               borderRadius: BorderRadius
@@ -226,7 +227,7 @@ class SignupScreen extends StatelessWidget {
                                                     .all<OutlinedBorder>(
                                                   RoundedRectangleBorder(
                                                     borderRadius: BorderRadius
-                                                        .circular(8.0),
+                                                        .circular(30.0),
                                                     // Adjust the border radius as desired
                                                     // Set the border color and width
                                                   ),
