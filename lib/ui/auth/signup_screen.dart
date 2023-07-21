@@ -94,7 +94,7 @@ class SignupScreen extends StatelessWidget {
                                           height: 5,
                                         ),
                                         Text(
-                                          'Email Id'.tr,
+                                          'Email'.tr,
                                           style: const TextStyle(
                                               color: Colors.white),
                                         ),
@@ -159,9 +159,11 @@ class SignupScreen extends StatelessWidget {
                                         ),
                                         Center(
                                           child: Container(
+
                                             decoration: BoxDecoration(
+
                                               borderRadius: BorderRadius
-                                                  .circular(8),
+                                                  .circular(30),
                                               gradient: LinearGradient(
                                                 begin: FractionalOffset
                                                     .centerLeft,
@@ -225,12 +227,9 @@ class SignupScreen extends StatelessWidget {
                                                     .all<OutlinedBorder>(
                                                   RoundedRectangleBorder(
                                                     borderRadius: BorderRadius
-                                                        .circular(8.0),
+                                                        .circular(30.0),
                                                     // Adjust the border radius as desired
-                                                    side: BorderSide(
-                                                        color: Colors.purple,
-                                                        width:
-                                                        2.0), // Set the border color and width
+                                                    // Set the border color and width
                                                   ),
                                                 ),
                                                 foregroundColor: MaterialStateProperty
