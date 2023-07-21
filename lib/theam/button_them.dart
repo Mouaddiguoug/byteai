@@ -19,36 +19,20 @@ class ButtonThem {
   }) {
     return Visibility(
       visible: isVisible,
-      child: Container(
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(8),
-          gradient: LinearGradient(
-
-            begin: FractionalOffset.centerLeft,
-            end: FractionalOffset.centerRight,
-
-            colors: [
-              Color(0xFF601A81),
-              Color.fromRGBO(14, 111, 117, 0.479167),
-              Color.fromRGBO(49, 26, 189, 0),
-            ],
+      child: SizedBox(
+        width: Responsive.width(100, context) * btnWidthRatio,
+        child: MaterialButton(
+          onPressed: onPress,
+          height: btnHeight,
+          elevation: 0.5,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(30),
           ),
-        ),
-        child: SizedBox(
-          width: Responsive.width(100, context) * btnWidthRatio,
-          child: MaterialButton(
-            onPressed: onPress,
-            height: btnHeight,
-            elevation: 0.5,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(30),
-            ),
-            color: btnColor,
-            child: Text(
-              title.toUpperCase(),
-              textAlign: TextAlign.center,
-              style: GoogleFonts.poppins(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w500),
-            ),
+          color: btnColor,
+          child: Text(
+            title.toUpperCase(),
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w500),
           ),
         ),
       ),
@@ -69,42 +53,42 @@ class ButtonThem {
         bool iconVisibility = false,
         String iconAssetImage = '',
   }) {
-    return Visibility(
-      visible: isVisible,
-      child: SizedBox(
-        width: Responsive.width(70, context) * btnWidthRatio,
-        height: btnHeight,
-        child: ElevatedButton(
-          style: ButtonStyle(
-            backgroundColor: MaterialStateProperty.all<Color>(btnColor),
-            foregroundColor: MaterialStateProperty.all<Color>(txtColor),
-            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-              RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(30.0),
-                side: BorderSide(
-                  color: btnBorderColor,
-                ),
+    return Container(
+      decoration: BoxDecoration(borderRadius: BorderRadius.circular(20)),
+      child: Visibility(
+        visible: isVisible,
+        child: Container(
+          decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+
+          width: Responsive.width(70, context) * btnWidthRatio,
+          height: btnHeight,
+          child: Container(
+            decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+            child: ElevatedButton(
+              style: ButtonStyle(
+                backgroundColor: MaterialStateProperty.all(Colors.transparent),
+                foregroundColor: MaterialStateProperty.all(Colors.transparent),
+              ),
+              onPressed: onPress,
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Visibility(
+                    visible: iconVisibility,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 10),
+                      child: Image.asset(iconAssetImage, fit: BoxFit.cover, width: 32),
+                    ),
+                  ),
+                  Text(
+                    title.toUpperCase(),
+                    textAlign: TextAlign.center,
+                    style: GoogleFonts.roboto(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w600),
+                  ),
+                ],
               ),
             ),
-          ),
-          onPressed: onPress,
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Visibility(
-                visible: iconVisibility,
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 10),
-                  child: Image.asset(iconAssetImage, fit: BoxFit.cover, width: 32),
-                ),
-              ),
-              Text(
-                title.toUpperCase(),
-                textAlign: TextAlign.center,
-                style: GoogleFonts.roboto(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w600),
-              ),
-            ],
           ),
         ),
       ),
@@ -127,25 +111,28 @@ class ButtonThem {
   }) {
     return Visibility(
       visible: isVisible,
-      child: SizedBox(
-        width: Responsive.width(100, context) * btnWidthRatio,
-        height: btnHeight,
-        child: TextButton.icon(
-          style: TextButton.styleFrom(
-            backgroundColor: btnColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(6.0),
+      child: Container(
+        decoration: BoxDecoration(borderRadius: BorderRadius.circular(30)),
+        child: SizedBox(
+          width: Responsive.width(100, context) * btnWidthRatio,
+          height: btnHeight,
+          child: TextButton.icon(
+            style: TextButton.styleFrom(
+              backgroundColor: btnColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(6.0),
+              ),
             ),
-          ),
-          onPressed: onPress,
-          label: Text(
-            title,
-            style: TextStyle(color: txtColor, fontSize: txtSize),
-          ),
-          icon: Icon(
-            icon,
-            color: iconColor,
-            size: iconSize,
+            onPressed: onPress,
+            label: Text(
+              title,
+              style: TextStyle(color: txtColor, fontSize: txtSize),
+            ),
+            icon: Icon(
+              icon,
+              color: iconColor,
+              size: iconSize,
+            ),
           ),
         ),
       ),
