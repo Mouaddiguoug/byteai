@@ -32,13 +32,11 @@ class ResetPasswordController extends GetxController {
       Map<String, dynamic> responseBody = json.decode(response.body);
 
       if (response.statusCode == 200 && responseBody['success'] == "Success") {
-        ShowToastDialog.showToast(responseBody['message']);
         ShowToastDialog.closeLoader();
         return true;
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(

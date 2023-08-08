@@ -94,19 +94,19 @@ class CharacterController extends GetxController {
     } on TimeoutException catch (e) {
       isLoading.value = false;
       log("======>${e.message}");
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on SocketException catch (e) {
       log("======>${e.message}");
       isLoading.value = false;
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on Error catch (e) {
       log("======>${e.toString()}");
       isLoading.value = false;
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     } catch (e) {
       log('FireStoreUtils.getCurrencys Parse error $e');
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     }
     return null;
   }
@@ -152,12 +152,10 @@ class CharacterController extends GetxController {
 
       if (response.statusCode == 200 && responseBody['success'] == "Success") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['message']);
         getCharacter();
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['message']);
       } else {
         ShowToastDialog.showToast(
             'Something want wrong. Please try again later'.tr);

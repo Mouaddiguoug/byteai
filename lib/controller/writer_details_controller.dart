@@ -124,7 +124,6 @@ class WriterDetailsController extends GetxController {
         Map<String, dynamic> responseBody = json.decode(response.body);
 
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']['message']);
       }
     } on TimeoutException catch (e) {
       ShowToastDialog.closeLoader();
@@ -161,7 +160,6 @@ class WriterDetailsController extends GetxController {
         return true;
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.showToast(
             'Something want wrong. Please try again later'.tr);
@@ -201,7 +199,6 @@ class WriterDetailsController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(
@@ -246,7 +243,6 @@ class WriterDetailsController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(

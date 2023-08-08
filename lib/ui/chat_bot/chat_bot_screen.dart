@@ -1,5 +1,7 @@
 import 'dart:developer';
 
+import 'package:byteai/ui/dashboard.dart';
+import 'package:byteai/ui/home/home_screen.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -16,14 +18,28 @@ import 'package:byteai/widget/custom_alert_dialog.dart';
 import 'package:selectable/selectable.dart';
 import 'package:sizer/sizer.dart';
 
+import '../../res/assets_res.dart';
+
 class ChatBotScreen extends StatefulWidget {
   const ChatBotScreen({Key? key}) : super(key: key);
 
+
+
   @override
   State<ChatBotScreen> createState() => _ChatBotScreenState();
+
 }
 
+
+
+
 class _ChatBotScreenState extends State<ChatBotScreen> {
+
+  @override
+  void initState() {
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return GetX<ChatBotController>(
@@ -57,13 +73,13 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                             log('$ad onAdDismissedFullScreenContent.');
                             ad.dispose();
                             controller.increaseLimit();
-                            controller.loadRewardAd();
+                            //controller.loadRewardAd();
                           },
                           onAdFailedToShowFullScreenContent:
                               (RewardedAd ad, AdError error) {
                             log('$ad onAdFailedToShowFullScreenContent: $error');
                             ad.dispose();
-                            controller.loadRewardAd();
+                            //controller.loadRewardAd();
                           },
                         );
 
@@ -78,19 +94,21 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                   },
                 );
               },
+
               child: Padding(
                 padding: const EdgeInsets.only(right: 10, top: 5, bottom: 5),
                 child: Column(
                   children: [
-                    Icon(
-                      Icons.slow_motion_video_outlined,
-                      color: ConstantColors.primary,
+                    Image.asset(
+                      AssetsRes.REWARD,
+                      width: 30.sp,
                     ),
                     const Expanded(child: Text("Reward ads"))
                   ],
                 ),
               ),
             ),
+
             PopupMenuButton(
                 onSelected: (value) {
                   if (value == 0) {
@@ -127,7 +145,10 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                             ],
                           )),
                     ])
-          ]),
+          ], leading: new IconButton(
+            icon: new Icon(Icons.arrow_back),
+            onPressed: () => Get.offAll(() => DashBoard()),
+          ),),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: controller.isLoading.value

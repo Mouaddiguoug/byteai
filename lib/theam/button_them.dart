@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:sizer/sizer.dart';
 
 import 'responsive.dart';
 
@@ -32,7 +33,10 @@ class ButtonThem {
           child: Text(
             title.toUpperCase(),
             textAlign: TextAlign.center,
-            style: GoogleFonts.poppins(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w500),
+            style: GoogleFonts.poppins(
+                color: txtColor,
+                fontSize: txtSize,
+                fontWeight: FontWeight.w500),
           ),
         ),
       ),
@@ -50,37 +54,34 @@ class ButtonThem {
     double btnWidthRatio = 0.9,
     required Function() onPress,
     bool isVisible = true,
-        bool iconVisibility = false,
-        String iconAssetImage = '',
+    bool iconVisibility = false,
+    String iconAssetImage = '',
   }) {
     return Container(
       child: Container(
-
         child: Visibility(
           visible: isVisible,
           child: Container(
-
-            width: Responsive.width(60, context) * btnWidthRatio,
+            width: 100.w,
             height: btnHeight,
             child: Container(
-
-
               child: ElevatedButton(
-
                 style: ButtonStyle(
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
                     RoundedRectangleBorder(
                       // border of the button
-                      borderRadius: BorderRadius.circular(30.0), // Adjust border radius as needed
+                      borderRadius: BorderRadius.circular(30.0),
+                      // Adjust border radius as needed
                       side: BorderSide(
                         color: Colors.transparent, // Border color
                         width: 2.0, // Border width
                       ),
                     ),
                   ),
-
-                  backgroundColor: MaterialStateProperty.all(Colors.transparent),
-                  foregroundColor: MaterialStateProperty.all(Colors.transparent),
+                  backgroundColor:
+                      MaterialStateProperty.all(Colors.transparent),
+                  foregroundColor:
+                      MaterialStateProperty.all(Colors.transparent),
                 ),
                 onPressed: onPress,
                 child: Row(
@@ -89,28 +90,32 @@ class ButtonThem {
                   children: [
                     Visibility(
                       visible: iconVisibility,
-                      child: Stack(
-                        children: [
-                          Container(
-                            width: 40, // Adjust container width as needed
-                            height: 30, // Adjust container height as needed
-                            decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Colors.white, // Circular white background
-                            ),
+                      child: Stack(children: [
+                        Container(
+                          width: 40, // Adjust container width as needed
+                          height: 30, // Adjust container height as needed
+                          decoration: BoxDecoration(
+                            shape: BoxShape.circle,
+                            color: Colors.white, // Circular white background
                           ),
-                         Container(
-                           width: 40,
-                          height: 30,
-                          child: Image.asset(iconAssetImage, fit: BoxFit.cover, width: 32),
                         ),
-                      ]
-                      ),
+                        Container(
+                          width: 40,
+                          height: 30,
+                          child: Image.asset(iconAssetImage,
+                              fit: BoxFit.cover, width: 32),
+                        ),
+                      ]),
                     ),
-                    Text(
-                      title.toUpperCase(),
-                      textAlign: TextAlign.center,
-                      style: GoogleFonts.roboto(color: txtColor, fontSize: txtSize, fontWeight: FontWeight.w600),
+                    FittedBox(
+                      child: Text(
+                        title.toUpperCase(),
+                        textAlign: TextAlign.center,
+                        style: GoogleFonts.roboto(
+                            color: txtColor,
+                            fontSize: txtSize,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ],
                 ),

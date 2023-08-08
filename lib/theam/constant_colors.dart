@@ -4,7 +4,7 @@ class ConstantColors {
   static Color primary = const Color(0xff04AC84);
 
   static Color background = const Color(0xff081534);
-  static Color cardViewColor = const Color.fromRGBO(255, 255, 255, 0.15);
+  static Color cardViewColor =  const Color(0xff363141);
   static Color searchField = const Color(0xffFFFFFF);
   static Color tabBarColor = const Color(0xff969696);
 

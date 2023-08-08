@@ -135,7 +135,7 @@ class AiCodeScreen extends StatelessWidget {
                         }
                       },
                       child: Container(
-                        width: MediaQuery.of(context).size.width,
+                        width: 85.w,
                         decoration: BoxDecoration(
 
                             boxShadow: [

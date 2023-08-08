@@ -73,7 +73,7 @@ class CategoryController extends GetxController {
       ShowToastDialog.showToast(e.message.toString());
     } on Error catch (e) {
       isLoading.value = false;
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     } catch (e) {
       log('FireStoreUtils.getCurrencys Parse error $e');
       ShowToastDialog.closeLoader();

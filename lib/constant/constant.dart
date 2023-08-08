@@ -74,8 +74,6 @@ class Constant {
         UserModel userModel = UserModel.fromJson(responseBody);
         Preferences.setString(Preferences.user, jsonEncode(userModel));
         return UserModel.fromJson(responseBody);
-      } else if (response.statusCode == 200 && responseBody['success'] == "Failed") {
-        ShowToastDialog.showToast(responseBody['error']);
       } else if (response.statusCode == 401 && responseBody['response_time'] != "") {
         getUser();
       } else {
@@ -83,13 +81,13 @@ class Constant {
         throw Exception('Failed to load album');
       }
     } on TimeoutException catch (e) {
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on SocketException catch (e) {
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on Error catch (e) {
-      ShowToastDialog.showToast(e.toString());
+     // ShowToastDialog.showToast(e.toString());
     } catch (e) {
-      ShowToastDialog.showToast(e.toString());
+     // ShowToastDialog.showToast(e.toString());
     }
     return null;
   }
@@ -108,7 +106,6 @@ class Constant {
         Preferences.setString(Preferences.user, jsonEncode(userModel));
         return GuestModel.fromJson(responseBody);
       } else if (response.statusCode == 200 && responseBody['success'] == "Failed") {
-        ShowToastDialog.showToast(responseBody['error']);
       } else if (response.statusCode == 401 && responseBody['response_time'] != "") {
         getGuestUserAPI();
       } else {
@@ -116,13 +113,13 @@ class Constant {
         throw Exception('Failed to load album');
       }
     } on TimeoutException catch (e) {
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on SocketException catch (e) {
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on Error catch (e) {
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     } catch (e) {
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     }
     return null;
   }

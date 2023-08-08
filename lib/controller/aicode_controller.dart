@@ -132,7 +132,6 @@ class AiCodeController extends GetxController {
         Map<String, dynamic> responseBody = json.decode(response.body);
 
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']['message']);
       }
     } on TimeoutException catch (e) {
       ShowToastDialog.closeLoader();
@@ -169,20 +168,19 @@ class AiCodeController extends GetxController {
         return true;
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.showToast(
             'Something want wrong. Please try again later'.tr);
         throw Exception('Failed to load album');
       }
     } on TimeoutException catch (e) {
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on SocketException catch (e) {
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on Error catch (e) {
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     } catch (e) {
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     }
     return null;
   }
@@ -210,7 +208,6 @@ class AiCodeController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(
@@ -256,7 +253,6 @@ class AiCodeController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(

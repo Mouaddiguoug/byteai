@@ -47,7 +47,6 @@ class LoginController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(
@@ -56,16 +55,16 @@ class LoginController extends GetxController {
       }
     } on TimeoutException catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on SocketException catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on Error catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     } catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     }
     return null;
   }
@@ -83,7 +82,6 @@ class LoginController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(
@@ -92,16 +90,16 @@ class LoginController extends GetxController {
       }
     } on TimeoutException catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on SocketException catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.message.toString());
+      //ShowToastDialog.showToast(e.message.toString());
     } on Error catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     } catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.toString());
+      //ShowToastDialog.showToast(e.toString());
     }
     return null;
   }
@@ -120,7 +118,6 @@ class LoginController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(

@@ -51,7 +51,7 @@ class DashBoard extends StatelessWidget {
                     initialActiveIndex: controller.index.value,
                     backgroundColor: ConstantColors.cardViewColor.withOpacity(0.9),
                     activeColor: ConstantColors.cardViewColor.withOpacity(0.1),
-                    color: Colors.white,
+                    color: ConstantColors.background,
                     height: 55,
                     onTabNotify: (index) {
                       if (index == 1) {

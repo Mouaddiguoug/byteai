@@ -26,7 +26,6 @@ class OtpController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(

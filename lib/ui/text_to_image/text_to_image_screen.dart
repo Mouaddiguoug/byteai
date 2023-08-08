@@ -76,7 +76,8 @@ class TextToImageScreen extends StatelessWidget {
                   child: Column(
                     children: [
                       Image.asset(
-                        AssetsRes.REWARD
+                        AssetsRes.REWARD,
+                        height: 20.sp,
                       ),
                       const Expanded(child: Text("Reward ads"))
                     ],

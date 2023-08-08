@@ -42,7 +42,6 @@ class AssetsRes {
   static const String BG = 'assets/images/bg.png';
   static const String GALAXY = 'assets/images/galaxy.png';
   static const String GIFT = 'assets/images/gift.png';
-  static const String CHATBOT_MASCOT_REMOVEBG_PREVIEW = 'assets/images/iPhone 13/Chatbot_Mascot-removebg-preview 5.png';
   static const String IC_LAUNCHER = 'assets/images/ic_launcher.png';
   static const String INTRO_1 = 'assets/images/intro_1.gif';
   static const String INTRO_1_NEW = 'assets/images/intro_1_new.png';

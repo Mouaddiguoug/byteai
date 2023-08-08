@@ -180,7 +180,6 @@ class AstrologyController extends GetxController {
         Map<String, dynamic> responseBody = json.decode(response.body);
 
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']['message']);
       }
     } on TimeoutException catch (e) {
       ShowToastDialog.closeLoader();
@@ -217,7 +216,6 @@ class AstrologyController extends GetxController {
         return true;
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.showToast(
             'Something want wrong. Please try again later'.tr);
@@ -258,7 +256,6 @@ class AstrologyController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(
@@ -304,7 +301,6 @@ class AstrologyController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(

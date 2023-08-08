@@ -43,19 +43,18 @@ class LoginScreen extends StatelessWidget {
                     Form(
                       key: controller.formKey.value,
                       child: Container(
-
                         child: SingleChildScrollView(
                           child: Column(
                             // mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(
-                                  height: 5.h
-                              ),
+                              SizedBox(height: 5.h),
 
                               Center(
                                   child: Image.asset(
-                                    AssetsRes.LOGIN_LOGO_NEW_V2, height: 20.h,)),
+                                AssetsRes.LOGIN_LOGO_NEW_V2,
+                                height: 20.h,
+                              )),
                               // Component : Email + mot de passe + connexion button + login with google
                               Container(
                                 height: 100.h,
@@ -72,15 +71,14 @@ class LoginScreen extends StatelessWidget {
                                   ),
                                 ),
                                 child: Padding(
-
                                   padding: const EdgeInsets.all(35.0),
                                   child: Column(children: [
                                     Center(
                                         child: Text(
-                                          'Sign in',
-                                          style: TextStyle(
-                                              color: Colors.white, fontSize: 15.sp),
-                                        )),
+                                      "s'identifier".tr,
+                                      style: TextStyle(
+                                          color: Colors.white, fontSize: 15.sp),
+                                    )),
                                     SizedBox(
                                       height: 4.h,
                                     ),
@@ -89,7 +87,7 @@ class LoginScreen extends StatelessWidget {
                                         child: TextFieldThem.boxBuildTextField(
                                           hintText: 'Email'.tr,
                                           controller:
-                                          controller.emailController.value,
+                                              controller.emailController.value,
                                           validators: (p0) =>
                                               Constant().validateEmail(p0),
                                         )),
@@ -103,8 +101,8 @@ class LoginScreen extends StatelessWidget {
                                           suffixData: IconButton(
                                             onPressed: () {
                                               controller.passwordVisible.value =
-                                              !controller
-                                                  .passwordVisible.value;
+                                                  !controller
+                                                      .passwordVisible.value;
                                               // ignore: invalid_use_of_protected_member
                                               controller.refresh();
                                             },
@@ -120,7 +118,7 @@ class LoginScreen extends StatelessWidget {
                                           controller: controller
                                               .passwordController.value,
                                           obscureText:
-                                          controller.passwordVisible.value,
+                                              controller.passwordVisible.value,
                                           validators: (String? value) {
                                             if (value!.isNotEmpty) {
                                               return null;
@@ -132,7 +130,7 @@ class LoginScreen extends StatelessWidget {
                                     Row(
                                       mainAxisAlignment: MainAxisAlignment.end,
                                       crossAxisAlignment:
-                                      CrossAxisAlignment.end,
+                                          CrossAxisAlignment.end,
                                       children: [
                                         InkWell(
                                           onTap: () {
@@ -143,7 +141,7 @@ class LoginScreen extends StatelessWidget {
                                             'Forgot Password?'.tr,
                                             textAlign: TextAlign.end,
                                             style:
-                                            TextStyle(color: Colors.white),
+                                                TextStyle(color: Colors.white),
                                           ),
                                         ),
                                       ],
@@ -160,107 +158,141 @@ class LoginScreen extends StatelessWidget {
                                           Container(
                                             // linear gradient 1
                                             decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(30),
+                                              borderRadius:
+                                                  BorderRadius.circular(30),
                                               gradient: const LinearGradient(
-                                                colors: [Colors.lightBlueAccent, Colors.purple],
-                                              ),
-                                              border: Border.all(  // Add a border with a LinearGradient
-                                                // border color
-                                                color: Color.fromRGBO(
-                                                    117, 7, 133, 1.0), // Border color
-                                                width: 2.0, // Border width
-                                                style: BorderStyle.solid, // Border style (you can use BorderStyle.solid, BorderStyle.none, etc.)
-                                              ),
-                                            ),
-                                            child : Container(
-                                            decoration: BoxDecoration(
-                                              borderRadius: BorderRadius.circular(50.w),
-                                              gradient: LinearGradient(
-                                                begin: FractionalOffset.bottomLeft,
-                                                end: FractionalOffset.topRight,
                                                 colors: [
-                                                  Color.fromRGBO(92, 142, 196, 1),
-                                                  Color.fromRGBO(76, 21, 101, 0.5),
-                                                  Color.fromRGBO(76, 21, 101, 0.5),
-                                                  Color.fromRGBO(76, 21, 101, 0.5),
-                                                  Color.fromRGBO(76, 21, 101, 0.6),
-                                                  Color.fromRGBO(76, 21, 101, 0.7),
+                                                  Colors.lightBlueAccent,
+                                                  Colors.purple
                                                 ],
                                               ),
+                                              border: Border.all(
+                                                // Add a border with a LinearGradient
+                                                // border color
+                                                color: Color.fromRGBO(
+                                                    117, 7, 133, 1.0),
+                                                // Border color
+                                                width: 2.0,
+                                                // Border width
+                                                style: BorderStyle
+                                                    .solid, // Border style (you can use BorderStyle.solid, BorderStyle.none, etc.)
+                                              ),
                                             ),
-                                            child: ButtonThem.buildBorderButton(
-                                              context,
-                                              title: 'Login'.tr,
-                                              btnColor: Colors.transparent,
-                                              txtColor: Colors.white,
-                                              iconVisibility: false,
-                                              onPress: () async {
-                                                FocusScope.of(context).unfocus();
-                                                if (controller
-                                                    .formKey.value.currentState!
-                                                    .validate()) {
-                                                  Map<String, String> bodyParams = {
-                                                    'email': controller
-                                                        .emailController.value.text,
-                                                    'password': controller
-                                                        .passwordController
-                                                        .value
-                                                        .text,
-                                                    'fcmtoken': controller
-                                                        .notificationToken.value
-                                                  };
-                                                  await controller
-                                                      .loginAPI(bodyParams)
-                                                      .then((value) {
-                                                    if (value != null) {
-                                                      if (value.success ==
-                                                          "Success") {
-                                                        Preferences.setBoolean(
-                                                            Preferences
-                                                                .isFinishOnBoardingKey,
-                                                            true);
-                                                        Preferences.setString(
-                                                            Preferences.user,
-                                                            jsonEncode(value));
-                                                        Preferences.setString(
-                                                            Preferences.accessToken,
-                                                            value.data!.accesstoken
-                                                                .toString());
-                                                        Preferences.setString(
-                                                            Preferences.customerId,
-                                                            value.data!.customerId
-                                                                .toString());
-                                                        Preferences.setString(
-                                                            Preferences.userId,
-                                                            value.data!.id
-                                                                .toString());
-                                                        Preferences.setBoolean(
-                                                            Preferences.isLogin,
-                                                            true);
-                                                        ApiServices.header[
-                                                        'accesstoken'] =
-                                                            value.data!.accesstoken
-                                                                .toString();
+                                            child: Container(
+                                              decoration: BoxDecoration(
+                                                borderRadius:
+                                                    BorderRadius.circular(50.w),
+                                                gradient: LinearGradient(
+                                                  begin: FractionalOffset
+                                                      .bottomLeft,
+                                                  end:
+                                                      FractionalOffset.topRight,
+                                                  colors: [
+                                                    Color.fromRGBO(
+                                                        92, 142, 196, 1),
+                                                    Color.fromRGBO(
+                                                        76, 21, 101, 0.5),
+                                                    Color.fromRGBO(
+                                                        76, 21, 101, 0.5),
+                                                    Color.fromRGBO(
+                                                        76, 21, 101, 0.5),
+                                                    Color.fromRGBO(
+                                                        76, 21, 101, 0.6),
+                                                    Color.fromRGBO(
+                                                        76, 21, 101, 0.7),
+                                                  ],
+                                                ),
+                                              ),
+                                              child:
+                                                  ButtonThem.buildBorderButton(
+                                                context,
+                                                title: 'Login'.tr,
+                                                btnColor: Colors.transparent,
+                                                txtColor: Colors.white,
+                                                iconVisibility: false,
+                                                onPress: () async {
+                                                  FocusScope.of(context)
+                                                      .unfocus();
+                                                  if (controller.formKey.value
+                                                      .currentState!
+                                                      .validate()) {
+                                                    Map<String, String>
+                                                        bodyParams = {
+                                                      'email': controller
+                                                          .emailController
+                                                          .value
+                                                          .text,
+                                                      'password': controller
+                                                          .passwordController
+                                                          .value
+                                                          .text,
+                                                      'fcmtoken': controller
+                                                          .notificationToken
+                                                          .value
+                                                    };
+                                                    await controller
+                                                        .loginAPI(bodyParams)
+                                                        .then((value) {
+                                                      if (value != null) {
+                                                        if (value.success ==
+                                                            "Success") {
+                                                          Preferences.setBoolean(
+                                                              Preferences
+                                                                  .isFinishOnBoardingKey,
+                                                              true);
+                                                          Preferences.setString(
+                                                              Preferences.user,
+                                                              jsonEncode(
+                                                                  value));
+                                                          Preferences.setString(
+                                                              Preferences
+                                                                  .accessToken,
+                                                              value.data!
+                                                                  .accesstoken
+                                                                  .toString());
+                                                          Preferences.setString(
+                                                              Preferences
+                                                                  .customerId,
+                                                              value.data!
+                                                                  .customerId
+                                                                  .toString());
+                                                          Preferences.setString(
+                                                              Preferences
+                                                                  .userId,
+                                                              value.data!.id
+                                                                  .toString());
+                                                          Preferences
+                                                              .setBoolean(
+                                                                  Preferences
+                                                                      .isLogin,
+                                                                  true);
+                                                          ApiServices.header[
+                                                                  'accesstoken'] =
+                                                              value.data!
+                                                                  .accesstoken
+                                                                  .toString();
 
-                                                        if (redirectType ==
-                                                            "subscription") {
-                                                          Get.off(
-                                                              const SubscriptionScreen());
+                                                          if (redirectType ==
+                                                              "subscription") {
+                                                            Get.off(
+                                                                const SubscriptionScreen());
+                                                          } else {
+                                                            Get.offAll(
+                                                                const DashBoard());
+                                                          }
                                                         } else {
-                                                          Get.offAll(
-                                                              const DashBoard());
+                                                          ShowToastDialog
+                                                              .showToast(
+                                                                  value.error);
                                                         }
-                                                      } else {
-                                                        ShowToastDialog.showToast(
-                                                            value.error);
                                                       }
-                                                    }
-                                                  });
-                                                }
-                                              },
-                                              btnBorderColor: Colors.transparent,
+                                                    });
+                                                  }
+                                                },
+                                                btnBorderColor:
+                                                    Colors.transparent,
+                                              ),
                                             ),
-                                          ),
                                           ),
                                         ],
                                       ),
@@ -271,26 +303,31 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                     // Google Login Button
 
-
                                     Container(
                                       // linear gradient effect 1 :
                                       decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(30),
-                                          gradient: const LinearGradient(
-                                            colors: [Colors.lightBlueAccent, Colors.purple],
-                                          ),
-                                        border: Border.all(  // Add a border with a LinearGradient
+                                        borderRadius: BorderRadius.circular(30),
+                                        gradient: const LinearGradient(
+                                          colors: [
+                                            Colors.lightBlueAccent,
+                                            Colors.purple
+                                          ],
+                                        ),
+                                        border: Border.all(
+                                          // Add a border with a LinearGradient
                                           // border color
                                           color: Color.fromRGBO(
                                               117, 7, 133, 1.0), // Border color
                                           width: 2.0, // Border width
-                                          style: BorderStyle.solid, // Border style (you can use BorderStyle.solid, BorderStyle.none, etc.)
+                                          style: BorderStyle
+                                              .solid, // Border style (you can use BorderStyle.solid, BorderStyle.none, etc.)
                                         ),
                                       ),
 
                                       child: Container(
                                         decoration: BoxDecoration(
-                                          borderRadius: BorderRadius.circular(30),
+                                          borderRadius:
+                                              BorderRadius.circular(30),
                                           gradient: LinearGradient(
                                             begin: FractionalOffset.bottomLeft,
                                             end: FractionalOffset.topRight,
@@ -312,10 +349,8 @@ class LoginScreen extends StatelessWidget {
                                             btnColor: Colors.transparent,
                                             txtColor: Colors.white,
                                             iconVisibility: true,
-
                                             iconAssetImage:
-                                            'assets/icons/ic_google.png',
-
+                                                'assets/icons/ic_google.png',
                                             onPress: () async {
                                               ShowToastDialog.showLoader(
                                                   "Please wait");
@@ -324,18 +359,22 @@ class LoginScreen extends StatelessWidget {
                                                   .then((value) async {
                                                 ShowToastDialog.closeLoader();
                                                 if (value != null) {
-                                                  Map<String, String> bodyParams = {
-                                                    'name': value.user!.displayName
+                                                  Map<String, String>
+                                                      bodyParams = {
+                                                    'name': value
+                                                        .user!.displayName
                                                         .toString(),
                                                     'email': value.user!.email
                                                         .toString(),
-                                                    'photo': value.user!.photoURL
+                                                    'photo': value
+                                                        .user!.photoURL
                                                         .toString(),
                                                     'fcmtoken': controller
                                                         .notificationToken.value
                                                   };
                                                   await controller
-                                                      .socialLoginAPI(bodyParams)
+                                                      .socialLoginAPI(
+                                                          bodyParams)
                                                       .then((value) {
                                                     if (value != null) {
                                                       if (value.success ==
@@ -348,12 +387,16 @@ class LoginScreen extends StatelessWidget {
                                                             Preferences.user,
                                                             jsonEncode(value));
                                                         Preferences.setString(
-                                                            Preferences.accessToken,
-                                                            value.data!.accesstoken
+                                                            Preferences
+                                                                .accessToken,
+                                                            value.data!
+                                                                .accesstoken
                                                                 .toString());
                                                         Preferences.setString(
-                                                            Preferences.customerId,
-                                                            value.data!.customerId
+                                                            Preferences
+                                                                .customerId,
+                                                            value.data!
+                                                                .customerId
                                                                 .toString());
                                                         Preferences.setString(
                                                             Preferences.userId,
@@ -363,8 +406,9 @@ class LoginScreen extends StatelessWidget {
                                                             Preferences.isLogin,
                                                             true);
                                                         ApiServices.header[
-                                                        'accesstoken'] =
-                                                            value.data!.accesstoken
+                                                                'accesstoken'] =
+                                                            value.data!
+                                                                .accesstoken
                                                                 .toString();
 
                                                         if (redirectType ==
@@ -376,8 +420,9 @@ class LoginScreen extends StatelessWidget {
                                                               const DashBoard());
                                                         }
                                                       } else {
-                                                        ShowToastDialog.showToast(
-                                                            value.error);
+                                                        ShowToastDialog
+                                                            .showToast(
+                                                                value.error);
                                                       }
                                                     }
                                                   });
@@ -402,7 +447,7 @@ class LoginScreen extends StatelessWidget {
                                           txtColor: Colors.white,
                                           iconVisibility: true,
                                           iconAssetImage:
-                                          'assets/icons/ic_apple.png',
+                                              'assets/icons/ic_apple.png',
                                           onPress: () async {
                                             ShowToastDialog.showLoader(
                                                 "Please wait");
@@ -413,7 +458,7 @@ class LoginScreen extends StatelessWidget {
                                               // ignore: unnecessary_null_comparison
                                               if (value != null) {
                                                 Map<String, String> bodyParams =
-                                                {
+                                                    {
                                                   'name': value
                                                       .user!.displayName
                                                       .toString(),
@@ -456,7 +501,7 @@ class LoginScreen extends StatelessWidget {
                                                           Preferences.isLogin,
                                                           true);
                                                       ApiServices.header[
-                                                      'accesstoken'] =
+                                                              'accesstoken'] =
                                                           value
                                                               .data!.accesstoken
                                                               .toString();
@@ -485,17 +530,28 @@ class LoginScreen extends StatelessWidget {
                                       child: RichText(
                                         textAlign: TextAlign.center,
                                         text: TextSpan(
-                                          text: "${"Don't have an account?".tr} ",
-                                          style: const TextStyle(color: Colors.white),
+                                          text:
+                                              "${"Don't have an account?".tr} ",
+                                          style: const TextStyle(
+                                              color: Colors.white),
                                           children: <TextSpan>[
                                             TextSpan(
                                               text: " ${'Register now!'.tr}",
-                                              style: TextStyle(color: Color.fromRGBO(15, 32, 182, 1), fontFamily: 'Roboto', fontWeight: FontWeight.w800, fontSize: 10.sp),
+                                              style: TextStyle(
+                                                  color: Color.fromRGBO(
+                                                      15, 32, 182, 1),
+                                                  fontFamily: 'Roboto',
+                                                  fontWeight: FontWeight.w800,
+                                                  fontSize: 10.sp),
                                               recognizer: TapGestureRecognizer()
-                                                ..onTap = () => Get.to(SignupScreen(
-                                                  redirectType: redirectType,
-                                                  token: controller.notificationToken.toString(),
-                                                )),
+                                                ..onTap =
+                                                    () => Get.to(SignupScreen(
+                                                          redirectType:
+                                                              redirectType,
+                                                          token: controller
+                                                              .notificationToken
+                                                              .toString(),
+                                                        )),
                                             ),
                                           ],
                                         ),
@@ -503,7 +559,6 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ]),
                                 ),
-
                               ),
                               // space  between the sign in text and the text Field "Email"
                             ],
@@ -519,21 +574,22 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top: 8.h, right: 1.h),
                         child: Container(
                           width: 24.w,
+                          margin: EdgeInsets.only(right: 4.w),
                           height: 6.h,
                           decoration: BoxDecoration(
                             borderRadius: BorderRadius.only(
-                              topLeft: Radius.circular(20),     // Specify different radii for each corner
+                              topLeft: Radius.circular(20),
+                              // Specify different radii for each corner
                               topRight: Radius.circular(40),
                               bottomLeft: Radius.circular(40),
                               bottomRight: Radius.circular(20),
-                            ),                            gradient: LinearGradient(
+                            ),
+                            gradient: LinearGradient(
                               begin: FractionalOffset.bottomLeft,
                               end: FractionalOffset.topRight,
                               colors: [
                                 Color.fromRGBO(255, 94, 249, 0.47),
-
                                 Color.fromRGBO(107, 127, 255, 0.490625),
-
                                 Color.fromRGBO(80, 254, 254, 0.51),
                               ],
                             ),
@@ -567,11 +623,9 @@ class LoginScreen extends StatelessWidget {
                             },
                             style: ButtonStyle(
                               shape: MaterialStateProperty.all<OutlinedBorder>(
-
                                 RoundedRectangleBorder(
-                                  borderRadius: BorderRadius.circular(8.0),
+                                  borderRadius: BorderRadius.circular(40.0),
                                   // Adjust the border radius as desired
-
 
                                   /*
                                   side: BorderSide(
@@ -582,7 +636,6 @@ class LoginScreen extends StatelessWidget {
 
                                    */
                                 ),
-
                               ),
                               foregroundColor: MaterialStateProperty.all<Color>(
                                   Colors.white),
@@ -591,7 +644,7 @@ class LoginScreen extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: const EdgeInsets.symmetric(
-                                // layout of the buttons
+                                  // layout of the buttons
                                   horizontal: 8.0,
                                   vertical: 10),
                               child: Text('Skip'.tr,
@@ -605,14 +658,8 @@ class LoginScreen extends StatelessWidget {
                   ],
                 );
               }),
-
-
-
-
             ),
           );
         });
   }
 }
-
-

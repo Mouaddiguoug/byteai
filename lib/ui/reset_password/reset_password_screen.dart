@@ -1,5 +1,6 @@
 import 'package:byteai/constant/show_toast_dialog.dart';
 import 'package:byteai/controller/reset_password_controller.dart';
+import 'package:byteai/res/assets_res.dart';
 import 'package:byteai/theam/constant_colors.dart';
 import 'package:byteai/theam/text_field_them.dart';
 import 'package:byteai/utils/Preferences.dart';
@@ -64,7 +65,7 @@ class ResetPasswordScreen extends StatelessWidget {
                     ),
 
                     // Logo - Image
-                    Center(child: Image.asset('assets/images/galaxy.png')),
+                    Center(child: Image.asset(AssetsRes.GALAXY)),
 
                     // Sized Box to add space between the logo and the form
                     // form
@@ -141,19 +142,18 @@ class ResetPasswordScreen extends StatelessWidget {
                                     },
                                   ),
                                 ),
-                                SizedBox(height: 15),
+                                SizedBox(height: 40),
                                 // confirm Button
                                 Container(
                                   child: Center(
                                     child: SizedBox(
                                       child: Container(
+                                        width: 100.w,
                                         decoration: BoxDecoration(
                                           borderRadius: BorderRadius.circular(8),
                                           gradient: LinearGradient(
-
                                             begin: FractionalOffset.centerLeft,
                                             end: FractionalOffset.centerRight,
-
                                             colors: [
                                               Color(0xFF601A81),
                                               Color.fromRGBO(14, 111, 117, 0.479167),

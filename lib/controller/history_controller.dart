@@ -101,7 +101,6 @@ class HistoryController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['message'].toString());
       } else {
         ShowToastDialog.closeLoader();
 

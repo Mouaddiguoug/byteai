@@ -19,7 +19,7 @@ class ProfileUpdateScreen extends StatelessWidget {
         builder: (controller) {
           return Scaffold(
             backgroundColor: ConstantColors.background,
-            appBar: AppBar(title: Text('Profile'.tr), centerTitle: true),
+            appBar: AppBar(title: Text('Profile'.tr), centerTitle: true, backgroundColor: Colors.black.withOpacity(0.3)),
             body: SingleChildScrollView(
               child: Form(
                 key: controller.formKey.value,

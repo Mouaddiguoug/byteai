@@ -42,13 +42,11 @@ class ProfileUpdationController extends GetxController {
 
       log(responseBody.toString());
       if (response.statusCode == 200 && responseBody['success'] == "Success") {
-        ShowToastDialog.showToast(responseBody['message']);
         ShowToastDialog.closeLoader();
         return true;
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['error']);
       } else {
         ShowToastDialog.closeLoader();
         ShowToastDialog.showToast(

@@ -65,7 +65,6 @@ class MainSettingController extends GetxController {
         isLoading.value = false;
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
-        ShowToastDialog.showToast(responseBody['error']);
         isLoading.value = false;
       } else {
         ShowToastDialog.showToast(

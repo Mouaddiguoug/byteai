@@ -246,7 +246,6 @@ class HomeController extends GetxController {
 
       if (response.statusCode == 200 && responseBody['success'] == "Success") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['message']);
         if (Preferences.getBoolean(Preferences.isLogin)) {
           await Constant().getUser();
         } else {
@@ -255,7 +254,6 @@ class HomeController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['message']);
       } else {
         ShowToastDialog.showToast(
             'Something want wrong. Please try again later'.tr);
@@ -303,7 +301,6 @@ class HomeController extends GetxController {
       } else if (response.statusCode == 200 &&
           responseBody['success'] == "Failed") {
         ShowToastDialog.closeLoader();
-        ShowToastDialog.showToast(responseBody['message'].toString());
       } else {
         ShowToastDialog.closeLoader();
 

@@ -25,12 +25,6 @@ class ForgotPasswordScreen extends StatelessWidget {
                     child: Icon(Icons.arrow_back_ios, color: Colors.white),
                   ),
                 ),
-                Align(
-                    alignment: Alignment.topRight,
-                    child: Image.asset(
-                      'assets/images/login_logo.png',
-                      width: 180,
-                    )),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 20),

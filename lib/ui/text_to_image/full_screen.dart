@@ -119,6 +119,7 @@ class _ImageViewState extends State<ImageView> {
                             child: LinearProgressIndicator(
                               value: _progress.floorToDouble(),
                               backgroundColor: Colors.transparent,
+                              valueColor: AlwaysStoppedAnimation<Color>(Color(0xff00000)),
                             ),
                           ),
                         ),
