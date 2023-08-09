@@ -71,6 +71,8 @@ dependencies:
   flutter_tts: ^3.0.0
   lottie: ^2.4.0
   float_column: ^2.0.0
+  text_to_speech: ^0.2.3
+  logger: ^2.0.1
   
   
 
@@ -135,6 +137,7 @@ flutter:
     - assets/icons/send.png
     - assets/icons/vvv.svg
     - assets/images/ai.png
+    - assets/images/animation_ll3hqe6i.json
     - assets/images/anotherbg.png
     - assets/images/anotherbg_cropped.png
     - assets/images/astrologyIcon.png
@@ -148,6 +151,7 @@ flutter:
     - assets/images/intro_1_new_v2.png
     - assets/images/intro_2.gif
     - assets/images/intro_3.gif
+    - assets/images/loading_animation.json
     - assets/images/login_logo.png
     - assets/images/login_logo_new.png
     - assets/images/login_logo_new_v2.png

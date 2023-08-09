@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'package:logger/logger.dart';
+import 'package:text_to_speech/text_to_speech.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
@@ -46,6 +48,7 @@ class ChatBotController extends GetxController {
 
   RxBool isBannerLoaded = true.obs;
   RxBool isLoading = true.obs;
+  TextToSpeech tts = TextToSpeech();
 
   RxList chatList = <Chat>[].obs;
   Rx<TextEditingController> messageController = TextEditingController().obs;
@@ -59,6 +62,7 @@ class ChatBotController extends GetxController {
     loadRewardAd();
     getUser();
     getArgument();
+    sayInstructions();
     if (Preferences.getBoolean(Preferences.isLogin)) {
       getChat();
     } else {
@@ -93,6 +97,19 @@ class ChatBotController extends GetxController {
             loadAd();
           },
         ));
+  }
+
+  Future<void> sayInstructions() async {
+    String text = "Bonjour, comment puis-je vous aider aujourd'hui, commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous";
+    await tts.setPitch(1.0);
+    await tts.setRate(1.0);
+    String language = 'fr';
+    List<String>? voices = await tts.getVoiceByLang(language);
+    Logger().i(await tts.getLanguages());
+    tts.setLanguage("fr-FR");
+    await tts.speak(text);
+    await tts.speak(text);
+
   }
 
   BannerAd? bannerAd;
@@ -225,9 +242,8 @@ class ChatBotController extends GetxController {
   }
 
   Future sendResponse(String message) async {
+    debugPrint("hello");
     try {
-      ShowToastDialog.showLoader('Please wait'.tr);
-
       Map<String, dynamic> bodyParams = {
         'model': 'gpt-3.5-turbo',
         'messages': [
@@ -243,7 +259,6 @@ class ChatBotController extends GetxController {
           json.decode(utf8.decode(response.bodyBytes));
 
       if (response.statusCode == 200) {
-        ShowToastDialog.closeLoader();
 
         AiResponceModel aiResponceModel =
             AiResponceModel.fromJson(responseBody);
@@ -461,6 +476,7 @@ class ChatBotController extends GetxController {
 
   speechDown() async {
     messageController.value.text = '';
+
     if (!speech.value.isListening) {
       try {
         speech.value.listen(onResult: (v) {
@@ -469,6 +485,11 @@ class ChatBotController extends GetxController {
         });
       } catch (e) {
         ShowToastDialog.showToast(e.toString());
+      } finally {
+        debugPrint(messageController.value.text);
+        if (messageController.value.text.isNotEmpty) {
+          sendResponse(messageController.value.text);
+        }
       }
     } else {
       speech.value.stop();
