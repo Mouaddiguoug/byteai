@@ -37,13 +37,14 @@ class AssetsRes {
   static const String SEND = 'assets/icons/send.png';
   static const String VVV = 'assets/icons/vvv.svg';
   static const String ANIMATION_LL3HQE6I = 'assets/images/animation_ll3hqe6i.json';
+  static const String ANIMATION_LL5CXUBU = 'assets/images/animation_ll5cxubu.json';
+  static const String ANIMATION_LL5CXZF4 = 'assets/images/animation_ll5cxzf4.json';
   static const String ANOTHERBG = 'assets/images/anotherbg.png';
   static const String ANOTHERBG_CROPPED = 'assets/images/anotherbg_cropped.png';
   static const String ASTROLOGYICON = 'assets/images/astrologyIcon.png';
   static const String BG = 'assets/images/bg.png';
   static const String GALAXY = 'assets/images/galaxy.png';
   static const String GIFT = 'assets/images/gift.png';
-  static const String CHATBOT_MASCOT_REMOVEBG_PREVIEW = 'assets/images/iPhone 13/Chatbot_Mascot-removebg-preview 5.png';
   static const String IC_LAUNCHER = 'assets/images/ic_launcher.png';
   static const String INTRO_1 = 'assets/images/intro_1.gif';
   static const String INTRO_1_NEW = 'assets/images/intro_1_new.png';

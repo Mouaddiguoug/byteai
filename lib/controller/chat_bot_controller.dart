@@ -103,13 +103,8 @@ class ChatBotController extends GetxController {
     String text = "Bonjour, comment puis-je vous aider aujourd'hui, commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous";
     await tts.setPitch(1.0);
     await tts.setRate(1.0);
-    String language = 'fr';
-    List<String>? voices = await tts.getVoiceByLang(language);
-    Logger().i(await tts.getLanguages());
     tts.setLanguage("fr-FR");
     await tts.speak(text);
-    await tts.speak(text);
-
   }
 
   BannerAd? bannerAd;
@@ -216,8 +211,6 @@ class ChatBotController extends GetxController {
       };
       final response = await http.post(Uri.parse(ApiServices.saveChatHistory),
           headers: ApiServices.header, body: jsonEncode(bodyParams));
-      log(response.request.toString());
-      log(response.body);
       Map<String, dynamic> responseBody = json.decode(response.body);
 
       if (response.statusCode == 200 && responseBody['success'] == "Success") {
@@ -242,7 +235,6 @@ class ChatBotController extends GetxController {
   }
 
   Future sendResponse(String message) async {
-    debugPrint("hello");
     try {
       Map<String, dynamic> bodyParams = {
         'model': 'gpt-3.5-turbo',
@@ -252,8 +244,6 @@ class ChatBotController extends GetxController {
       };
       final response = await http.post(Uri.parse(ApiServices.completions),
           headers: ApiServices.headerOpenAI, body: jsonEncode(bodyParams));
-      log(response.statusCode.toString());
-      log(response.body);
 
       Map<String, dynamic> responseBody =
           json.decode(utf8.decode(response.bodyBytes));
@@ -291,6 +281,7 @@ class ChatBotController extends GetxController {
         } else {
           ShowToastDialog.showToast('Resource not found.'.tr);
         }
+        return aiResponceModel.choices!.first.message!.content.toString();
       } else {
         Map<String, dynamic> responseBody = json.decode(response.body);
 
@@ -475,25 +466,35 @@ class ChatBotController extends GetxController {
   }
 
   speechDown() async {
-    messageController.value.text = '';
+    messageController.value.text = 'bonjour';
 
     if (!speech.value.isListening) {
       try {
-        speech.value.listen(onResult: (v) {
+        tts.stop();
+        speech.value.listen(onResult: (v) async {
           messageController.value.text = v.recognizedWords.toString();
           update();
+          Logger().i(messageController.value.text);
+          if (speech.value.lastStatus == "notListening" && messageController.value.text.isNotEmpty) {
+           var responseMessage = await sendResponse(messageController.value.text.replaceAll("convert", ""));
+           if(messageController.value.text[0] == "convert"){
+             debugPrint("hello");
+           }
+           tts.setPitch(1.0);
+           tts.setRate(1.0);
+           tts.setLanguage("en-US");
+
+           tts.speak(responseMessage);
+          }
         });
       } catch (e) {
         ShowToastDialog.showToast(e.toString());
-      } finally {
-        debugPrint(messageController.value.text);
-        if (messageController.value.text.isNotEmpty) {
-          sendResponse(messageController.value.text);
-        }
       }
+
     } else {
       speech.value.stop();
       update();
+
     }
   }
 

@@ -30,7 +30,7 @@ class HomeScreen extends StatelessWidget {
   HomeScreen({Key? key}) : super(key: key);
 
   final PageController _controller =
-  PageController(viewportFraction: 1.0, keepPage: true);
+      PageController(viewportFraction: 1.0, keepPage: true);
 
   @override
   Widget build(BuildContext context) {
@@ -60,27 +60,24 @@ class HomeScreen extends StatelessWidget {
                             }
                             controller.rewardedAd!.fullScreenContentCallback =
                                 FullScreenContentCallback(
-                                  onAdShowedFullScreenContent: (
-                                      RewardedAd ad) =>
-                                      log('ad onAdShowedFullScreenContent.'),
-                                  onAdDismissedFullScreenContent: (
-                                      RewardedAd ad) {
-                                    ad.dispose();
-                                    controller.increaseLimit();
-                                    controller.loadRewardAd();
-                                  },
-                                  onAdFailedToShowFullScreenContent:
-                                      (RewardedAd ad, AdError error) {
-                                    ad.dispose();
-                                    controller.loadRewardAd();
-                                  },
-                                );
+                              onAdShowedFullScreenContent: (RewardedAd ad) =>
+                                  log('ad onAdShowedFullScreenContent.'),
+                              onAdDismissedFullScreenContent: (RewardedAd ad) {
+                                ad.dispose();
+                                controller.increaseLimit();
+                                controller.loadRewardAd();
+                              },
+                              onAdFailedToShowFullScreenContent:
+                                  (RewardedAd ad, AdError error) {
+                                ad.dispose();
+                                controller.loadRewardAd();
+                              },
+                            );
 
                             controller.rewardedAd!.setImmersiveMode(true);
                             controller.rewardedAd!.show(onUserEarnedReward:
                                 (AdWithoutView ad, RewardItem reward) {
-                              log('$ad with reward $RewardItem(${reward
-                                  .amount}, ${reward.type})');
+                              log('$ad with reward $RewardItem(${reward.amount}, ${reward.type})');
                             });
                             controller.rewardedAd = null;
                           },
@@ -104,23 +101,23 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Lottie.asset(AssetsRes.ANIMATION_LL3HQE6I),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: AnimatedTextKit(
-
-                    animatedTexts: [
-                      TypewriterAnimatedText("Bonjour, comment puis-je vous aider aujourd'hui", textStyle: TextStyle(
-                        color: Colors.white
-                      )),
-                      TypewriterAnimatedText("commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous", textStyle: TextStyle(
-                          color: Colors.white
-                      )),
-                      TypewriterAnimatedText("commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous", textStyle: TextStyle(
-                          color: Colors.white
-                      )),
-                    ],),
-                ),
+                    Lottie.asset(AssetsRes.ANIMATION_LL5CXZF4),
+                    Padding(
+                      padding: const EdgeInsets.all(8.0),
+                      child: AnimatedTextKit(
+                        animatedTexts: [
+                          TypewriterAnimatedText(
+                              "Bonjour, comment puis-je vous aider aujourd'hui",
+                              textStyle: TextStyle(color: Colors.white)),
+                          TypewriterAnimatedText(
+                              "commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous",
+                              textStyle: TextStyle(color: Colors.white)),
+                          TypewriterAnimatedText(
+                              "commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous",
+                              textStyle: TextStyle(color: Colors.white)),
+                        ],
+                      ),
+                    ),
                     Center(
                       child: SizedBox(
                         width: 25.w,
@@ -129,21 +126,20 @@ class HomeScreen extends StatelessWidget {
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: ConstantColors.cardViewColor,
                                 shape: CircleBorder()),
-                            onPressed: () {
+                            onPressed: () async {
                               chatController.speechDown();
-
                             },
                             child: GetBuilder<ChatBotController>(
                                 builder: (chatBotController) {
-                                  return chatController.speech.value.isListening
-                                      ? Lottie.asset(AssetsRes.LOADING_ANIMATION,
+                              return chatController.speech.value.isListening
+                                  ? Lottie.asset(AssetsRes.LOADING_ANIMATION,
                                       width: 300)
-                                      : Icon(
-                                    Icons.mic,
-                                    color: Colors.white,
-                                    size: 40,
-                                  );
-                                })),
+                                  : Icon(
+                                      Icons.mic,
+                                      color: Colors.white,
+                                      size: 40,
+                                    );
+                            })),
                       ),
                     )
                   ],

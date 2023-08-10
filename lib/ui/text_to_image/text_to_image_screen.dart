@@ -222,13 +222,15 @@ class TextToImageScreen extends StatelessWidget {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                    image: controller.selectedImageOption.value ==
-                                        "256x256" ? DecorationImage(
-                                      image: AssetImage(AssetsRes.SHADOW),
-                                      fit: BoxFit.fill,
-                                    ) : null,
+                                    image: controller
+                                                .selectedImageOption.value ==
+                                            "256x256"
+                                        ? DecorationImage(
+                                            image: AssetImage(AssetsRes.SHADOW),
+                                            fit: BoxFit.fill,
+                                          )
+                                        : null,
                                     boxShadow: [
-
                                       BoxShadow(
                                         color: Colors.black.withOpacity(0.20),
                                       ),
@@ -247,8 +249,7 @@ class TextToImageScreen extends StatelessWidget {
                                   child: Center(
                                       child: Text(
                                     "256x256".tr,
-                                    style:
-                                        TextStyle(color: Colors.white),
+                                    style: TextStyle(color: Colors.white),
                                   )),
                                 ),
                               ),
@@ -264,13 +265,15 @@ class TextToImageScreen extends StatelessWidget {
                                     "512x512";
                               },
                               child: Container(
-
                                 decoration: BoxDecoration(
-                                    image: controller.selectedImageOption.value ==
-                                    "512x512" ? DecorationImage(
-                                      image: AssetImage(AssetsRes.SHADOW),
-                                      fit: BoxFit.fill,
-                                    ) : null,
+                                    image: controller
+                                                .selectedImageOption.value ==
+                                            "512x512"
+                                        ? DecorationImage(
+                                            image: AssetImage(AssetsRes.SHADOW),
+                                            fit: BoxFit.fill,
+                                          )
+                                        : null,
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.black.withOpacity(0.20),
@@ -290,8 +293,7 @@ class TextToImageScreen extends StatelessWidget {
                                   child: Center(
                                       child: Text(
                                     "512x512".tr,
-                                    style:
-                                        TextStyle(color: Colors.white),
+                                    style: TextStyle(color: Colors.white),
                                   )),
                                 ),
                               ),
@@ -308,12 +310,14 @@ class TextToImageScreen extends StatelessWidget {
                               },
                               child: Container(
                                 decoration: BoxDecoration(
-                                    image: controller.selectedImageOption.value ==
-                                        "1024x024" ? DecorationImage(
-                                      image: AssetImage(AssetsRes.SHADOW),
-                                      fit: BoxFit.fill,
-
-                                    ) : null,
+                                    image: controller
+                                                .selectedImageOption.value ==
+                                            "1024x024"
+                                        ? DecorationImage(
+                                            image: AssetImage(AssetsRes.SHADOW),
+                                            fit: BoxFit.fill,
+                                          )
+                                        : null,
                                     boxShadow: [
                                       BoxShadow(
                                         color: Colors.black.withOpacity(0.20),
