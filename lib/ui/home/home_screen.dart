@@ -101,7 +101,7 @@ class HomeScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Lottie.asset(AssetsRes.ANIMATION_LL5CXZF4),
+                    Lottie.asset(AssetsRes.COMP1, width: 100.w, height: 50.h),
                     Padding(
                       padding: const EdgeInsets.all(8.0),
                       child: AnimatedTextKit(

@@ -2,6 +2,7 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'package:logger/logger.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
 import 'package:http/http.dart' as http;
 import 'package:byteai/constant/constant.dart';
+import 'package:pdf/widgets.dart' as pw;
 import 'package:byteai/constant/show_toast_dialog.dart';
 import 'package:byteai/model/ai_responce_model.dart';
 import 'package:byteai/model/characters_model.dart';
@@ -100,7 +102,8 @@ class ChatBotController extends GetxController {
   }
 
   Future<void> sayInstructions() async {
-    String text = "Bonjour, comment puis-je vous aider aujourd'hui, commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous";
+    String text =
+        "Bonjour, comment puis-je vous aider aujourd'hui, commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous";
     await tts.setPitch(1.0);
     await tts.setRate(1.0);
     tts.setLanguage("fr-FR");
@@ -249,7 +252,6 @@ class ChatBotController extends GetxController {
           json.decode(utf8.decode(response.bodyBytes));
 
       if (response.statusCode == 200) {
-
         AiResponceModel aiResponceModel =
             AiResponceModel.fromJson(responseBody);
         if (aiResponceModel.choices != null &&
@@ -471,30 +473,47 @@ class ChatBotController extends GetxController {
     if (!speech.value.isListening) {
       try {
         tts.stop();
+        tts.setPitch(1.0);
+        tts.setRate(1.0);
+        tts.setLanguage("en-US");
         speech.value.listen(onResult: (v) async {
           messageController.value.text = v.recognizedWords.toString();
           update();
+          var message = messageController.value.text;
           Logger().i(messageController.value.text);
-          if (speech.value.lastStatus == "notListening" && messageController.value.text.isNotEmpty) {
-           var responseMessage = await sendResponse(messageController.value.text.replaceAll("convert", ""));
-           if(messageController.value.text[0] == "convert"){
-             debugPrint("hello");
-           }
-           tts.setPitch(1.0);
-           tts.setRate(1.0);
-           tts.setLanguage("en-US");
+          if (speech.value.lastStatus == "notListening" &&
+              messageController.value.text.isNotEmpty) {
+            var responseMessage = await sendResponse(
+                messageController.value.text.replaceAll("convert", ""));
+            Logger().i(message);
+            if (message.split(" ")[0] == "convert") {
+              final pdf = pw.Document();
+              pdf.addPage(
+                pw.Page(
+                  build: (pw.Context context) {
+                    return pw.Center(
+                      child: pw.Text(responseMessage),
+                    );
+                  }
+                ),
+              );
+              tts.speak("your document is being converted");
+              final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
+              Logger().i('${appDocumentsDir.toString().replaceAll("'", "")}');
+              final file = File('${appDocumentsDir.toString().replaceAll("'", "")}');
+              await file.writeAsBytes(await pdf.save(), mode: FileMode.write);
+            } else {
 
-           tts.speak(responseMessage);
+              tts.speak(responseMessage);
+            }
           }
         });
       } catch (e) {
         ShowToastDialog.showToast(e.toString());
       }
-
     } else {
       speech.value.stop();
       update();
-
     }
   }
 

@@ -50,7 +50,7 @@ dependencies:
   flutter_easyloading: ^3.0.5
   shared_preferences: ^2.1.2
   flutter_svg: ^2.0.6
-  path_provider: ^2.0.14
+  path_provider: ^2.1.0
   convex_bottom_bar: ^3.2.0
   animated_text_kit: ^4.2.2
   image_downloader: ^0.31.0
@@ -71,8 +71,10 @@ dependencies:
   flutter_tts: ^3.0.0
   lottie: ^2.4.0
   float_column: ^2.0.0
-  text_to_speech: ^0.2.3
   logger: ^2.0.1
+  text_to_speech: ^0.2.3
+  pdf: ^3.10.4
+  flutter_localization: ^0.1.13
   
   
 
@@ -136,6 +138,7 @@ flutter:
     - assets/icons/reward.png
     - assets/icons/send.png
     - assets/icons/vvv.svg
+    - assets/images/Comp 1.json
     - assets/images/ai.png
     - assets/images/animation_ll3hqe6i.json
     - assets/images/animation_ll5cxubu.json

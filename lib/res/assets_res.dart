@@ -36,6 +36,7 @@ class AssetsRes {
   static const String REWARD = 'assets/icons/reward.png';
   static const String SEND = 'assets/icons/send.png';
   static const String VVV = 'assets/icons/vvv.svg';
+  static const String COMP1 = 'assets/images/Comp 1.json';
   static const String ANIMATION_LL3HQE6I = 'assets/images/animation_ll3hqe6i.json';
   static const String ANIMATION_LL5CXUBU = 'assets/images/animation_ll5cxubu.json';
   static const String ANIMATION_LL5CXZF4 = 'assets/images/animation_ll5cxzf4.json';
