@@ -1,6 +1,7 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:typed_data';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:text_to_speech/text_to_speech.dart';
@@ -50,6 +51,10 @@ class ChatBotController extends GetxController {
 
   RxBool isBannerLoaded = true.obs;
   RxBool isLoading = true.obs;
+  RxBool isBeingConverted = true.obs;
+  late Rx<Uint8List> PDF = Uint8List(1).obs;
+  RxBool converting = true.obs;
+  RxString message = 'Bonjour'.obs;
   TextToSpeech tts = TextToSpeech();
 
   RxList chatList = <Chat>[].obs;
@@ -65,11 +70,6 @@ class ChatBotController extends GetxController {
     getUser();
     getArgument();
     sayInstructions();
-    if (Preferences.getBoolean(Preferences.isLogin)) {
-      getChat();
-    } else {
-      isLoading.value = false;
-    }
 
     // chatLimit.value = '10';
     super.onInit();
@@ -467,9 +467,10 @@ class ChatBotController extends GetxController {
     }
   }
 
-  speechDown() async {
+speechDown() async {
     messageController.value.text = 'bonjour';
 
+    final pdf = pw.Document();
     if (!speech.value.isListening) {
       try {
         tts.stop();
@@ -478,16 +479,14 @@ class ChatBotController extends GetxController {
         tts.setLanguage("en-US");
         speech.value.listen(onResult: (v) async {
           messageController.value.text = v.recognizedWords.toString();
-          update();
-          var message = messageController.value.text;
+          message.value = messageController.value.text;
           Logger().i(messageController.value.text);
           if (speech.value.lastStatus == "notListening" &&
               messageController.value.text.isNotEmpty) {
+
             var responseMessage = await sendResponse(
-                messageController.value.text.replaceAll("convert", ""));
-            Logger().i(message);
+                messageController.value.text.replaceAll("convert", "make"));
             if (message.split(" ")[0] == "convert") {
-              final pdf = pw.Document();
               pdf.addPage(
                 pw.Page(
                   build: (pw.Context context) {
@@ -498,15 +497,19 @@ class ChatBotController extends GetxController {
                 ),
               );
               tts.speak("your document is being converted");
-              final Directory appDocumentsDir = await getApplicationDocumentsDirectory();
-              Logger().i('${appDocumentsDir.toString().replaceAll("'", "")}');
-              final file = File('${appDocumentsDir.toString().replaceAll("'", "")}');
-              await file.writeAsBytes(await pdf.save(), mode: FileMode.write);
+              PDF.value = await pdf.save();
+              isLoading.value = false;
+              //final file = File('${appDocumentsDir.toString().replaceAll("'", "")}');
+              //await file.writeAsBytes(await pdf.save(), mode: FileMode.write);
             } else {
-
+              converting.value = false;
+              isBeingConverted.value = false;
+              isLoading.value = false;
+              message.value = responseMessage;
               tts.speak(responseMessage);
             }
           }
+
         });
       } catch (e) {
         ShowToastDialog.showToast(e.toString());
