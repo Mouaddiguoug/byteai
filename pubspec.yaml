@@ -161,6 +161,7 @@ flutter:
     - assets/images/login_logo.png
     - assets/images/login_logo_new.png
     - assets/images/login_logo_new_v2.png
+    - assets/images/mic_anime.json
     - assets/images/onbording_bg.png
     - assets/images/playstore.png
     - assets/images/profile_placeholder.png

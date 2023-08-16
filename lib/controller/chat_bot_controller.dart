@@ -2,8 +2,11 @@ import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:typed_data';
+import 'package:byteai/res/assets_res.dart';
 import 'package:logger/logger.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:printing/printing.dart';
+import 'package:sizer/sizer.dart';
 import 'package:text_to_speech/text_to_speech.dart';
 import 'dart:io';
 import 'package:flutter/material.dart';
@@ -467,10 +470,12 @@ class ChatBotController extends GetxController {
     }
   }
 
-speechDown() async {
+  speechDown() async {
     messageController.value.text = 'bonjour';
-
+    converting.value = true;
+    isLoading.value = true;
     final pdf = pw.Document();
+
     if (!speech.value.isListening) {
       try {
         tts.stop();
@@ -483,18 +488,18 @@ speechDown() async {
           Logger().i(messageController.value.text);
           if (speech.value.lastStatus == "notListening" &&
               messageController.value.text.isNotEmpty) {
-
             var responseMessage = await sendResponse(
                 messageController.value.text.replaceAll("convert", "make"));
             if (message.split(" ")[0] == "convert") {
+              final netImage = await networkImage(
+                  'https://images.unsplash.com/photo-1692200929451-15654e4c611d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80');
               pdf.addPage(
-                pw.Page(
-                  build: (pw.Context context) {
-                    return pw.Center(
-                      child: pw.Text(responseMessage),
-                    );
-                  }
-                ),
+                pw.Page(build: (pw.Context context) {
+                  return pw.Center(
+                      child: pw.Column(children: [
+                    pw.Text(responseMessage),
+                  ]));
+                }),
               );
               tts.speak("your document is being converted");
               PDF.value = await pdf.save();
@@ -509,7 +514,6 @@ speechDown() async {
               tts.speak(responseMessage);
             }
           }
-
         });
       } catch (e) {
         ShowToastDialog.showToast(e.toString());

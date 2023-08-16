@@ -56,6 +56,7 @@ class AssetsRes {
   static const String LOGIN_LOGO = 'assets/images/login_logo.png';
   static const String LOGIN_LOGO_NEW = 'assets/images/login_logo_new.png';
   static const String LOGIN_LOGO_NEW_V2 = 'assets/images/login_logo_new_v2.png';
+  static const String MIC_ANIME = 'assets/images/mic_anime.json';
   static const String ONBORDING_BG = 'assets/images/onbording_bg.png';
   static const String PLAYSTORE = 'assets/images/playstore.png';
   static const String PROFILE_PLACEHOLDER = 'assets/images/profile_placeholder.png';
