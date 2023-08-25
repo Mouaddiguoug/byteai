@@ -42,6 +42,7 @@ class AssetsRes {
   static const String ANIMATION_LL5CXZF4 = 'assets/images/animation_ll5cxzf4.json';
   static const String ANOTHERBG = 'assets/images/anotherbg.png';
   static const String ANOTHERBG_CROPPED = 'assets/images/anotherbg_cropped.png';
+  static const String ARROW_RIGHT = 'assets/images/arrow_right.png';
   static const String ASTROLOGYICON = 'assets/images/astrologyIcon.png';
   static const String BG = 'assets/images/bg.png';
   static const String GALAXY = 'assets/images/galaxy.png';

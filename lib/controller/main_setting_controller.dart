@@ -29,9 +29,6 @@ class MainSettingController extends GetxController {
       );
 
       Map<String, dynamic> responseBody = json.decode(response.body);
-      log("::::::::::::REWARD::::::::::::::::");
-      log(response.request.toString());
-      log(response.body);
       if (response.statusCode == 200 && responseBody['success'] == "Success") {
         SettingModel model = SettingModel.fromJson(responseBody);
 

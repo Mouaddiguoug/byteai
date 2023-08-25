@@ -431,7 +431,7 @@ class SubscriptionScreen extends StatelessWidget {
         });
       }
     } on PlatformException catch (e) {
-      ShowToastDialog.showToast(e.message.toString().tr);
+      //ShowToastDialog.showToast(e.message.toString().tr);
       // Error fetching customer info
     }
   }

@@ -91,7 +91,7 @@ class OTPScreen extends StatelessWidget {
 
                                       Get.offAll(const DashBoard());
                                     } else {
-                                      ShowToastDialog.showToast(value.error);
+                                      //ShowToastDialog.showToast(value.error);
                                     }
                                   }
                                 });

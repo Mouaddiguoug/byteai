@@ -57,70 +57,64 @@ class ButtonThem {
     bool iconVisibility = false,
     String iconAssetImage = '',
   }) {
-    return Container(
+    return Visibility(
+      visible: isVisible,
       child: Container(
-        child: Visibility(
-          visible: isVisible,
-          child: Container(
-            width: 100.w,
-            height: btnHeight,
-            child: Container(
-              child: ElevatedButton(
-                style: ButtonStyle(
-                  shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                    RoundedRectangleBorder(
-                      // border of the button
-                      borderRadius: BorderRadius.circular(30.0),
-                      // Adjust border radius as needed
-                      side: BorderSide(
-                        color: Colors.transparent, // Border color
-                        width: 2.0, // Border width
-                      ),
-                    ),
-                  ),
-                  backgroundColor:
-                      MaterialStateProperty.all(Colors.transparent),
-                  foregroundColor:
-                      MaterialStateProperty.all(Colors.transparent),
-                ),
-                onPressed: onPress,
-                child: Row(
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Visibility(
-                      visible: iconVisibility,
-                      child: Stack(children: [
-                        Container(
-                          width: 40, // Adjust container width as needed
-                          height: 30, // Adjust container height as needed
-                          decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: Colors.white, // Circular white background
-                          ),
-                        ),
-                        Container(
-                          width: 40,
-                          height: 30,
-                          child: Image.asset(iconAssetImage,
-                              fit: BoxFit.cover, width: 32),
-                        ),
-                      ]),
-                    ),
-                    FittedBox(
-                      child: Text(
-                        title.toUpperCase(),
-                        textAlign: TextAlign.center,
-                        style: GoogleFonts.roboto(
-                            color: txtColor,
-                            fontSize: txtSize,
-                            fontWeight: FontWeight.w600),
-                      ),
-                    ),
-                  ],
+        width: 100.w,
+        height: btnHeight,
+        child: ElevatedButton(
+          style: ButtonStyle(
+            shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+              RoundedRectangleBorder(
+                // border of the button
+                borderRadius: BorderRadius.circular(10.0),
+                // Adjust border radius as needed
+                side: BorderSide(
+                  color: btnColor, // Border color
+                  width: 2.0, // Border width
                 ),
               ),
             ),
+            backgroundColor:
+                MaterialStateProperty.all(btnColor),
+            foregroundColor:
+                MaterialStateProperty.all(Colors.transparent),
+          ),
+          onPressed: onPress,
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Visibility(
+                visible: iconVisibility,
+                child: Stack(children: [
+                  Container(
+                    width: 40, // Adjust container width as needed
+                    height: 30, // Adjust container height as needed
+                    decoration: BoxDecoration(
+                      shape: BoxShape.circle,
+                      color: Colors.white, // Circular white background
+                    ),
+                  ),
+                  Container(
+                    width: 40,
+                    height: 30,
+                    child: Image.asset(iconAssetImage,
+                        fit: BoxFit.cover, width: 32),
+                  ),
+                ]),
+              ),
+              FittedBox(
+                child: Text(
+                  title.toUpperCase(),
+                  textAlign: TextAlign.center,
+                  style: GoogleFonts.roboto(
+                      color: txtColor,
+                      fontSize: txtSize,
+                      fontWeight: FontWeight.w600),
+                ),
+              ),
+            ],
           ),
         ),
       ),

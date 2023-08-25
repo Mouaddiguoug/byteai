@@ -42,7 +42,6 @@ dependencies:
   firebase_messaging: ^14.6.2
   flutter_local_notifications: ^14.1.1
   crypto: ^3.0.2
-
   get: ^4.6.5
   cached_network_image: 3.2.3
   http: <1.0.0
@@ -76,6 +75,7 @@ dependencies:
   pdf: ^3.10.4
   flutter_localization: ^0.1.13
   printing: ^5.11.0
+  salomon_bottom_bar: ^3.3.2
   
   
 
@@ -146,6 +146,7 @@ flutter:
     - assets/images/animation_ll5cxzf4.json
     - assets/images/anotherbg.png
     - assets/images/anotherbg_cropped.png
+    - assets/images/arrow_right.png
     - assets/images/astrologyIcon.png
     - assets/images/bg.png
     - assets/images/galaxy.png

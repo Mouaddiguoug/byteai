@@ -126,16 +126,16 @@ class LoginController extends GetxController {
       }
     } on TimeoutException catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.message.toString());
+      // ShowToastDialog.showToast(e.message.toString());
     } on SocketException catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.message.toString());
+      // ShowToastDialog.showToast(e.message.toString());
     } on Error catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.toString());
+      //  ShowToastDialog.showToast(e.toString());
     } catch (e) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(e.toString());
+      // ShowToastDialog.showToast(e.toString());
     }
     return null;
   }
@@ -191,7 +191,7 @@ class LoginController extends GetxController {
       // ignore: body_might_complete_normally_catch_error
     ).catchError((error) {
       ShowToastDialog.closeLoader();
-      ShowToastDialog.showToast(error.toString());
+     // ShowToastDialog.showToast(error.toString());
     });
 
     // Create an `OAuthCredential` from the credential returned by Apple.

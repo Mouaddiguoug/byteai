@@ -17,8 +17,9 @@ class TextFieldThem {
     bool enabled = true,
     maxLength = 300,
   }) {
-    return Sizer(builder: (context, orientation, deviceType) {
-      return TextFormField(
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(10),
+      child: TextFormField(
           obscureText: !obscureText,
           validator: validators,
           keyboardType: textInputType,
@@ -32,7 +33,8 @@ class TextFieldThem {
               // ignore: unrelated_type_equality_checks
               suffixIcon: suffixData,
               counterText: "",
-              fillColor: ConstantColors.cardViewColor,
+              fillColor: Color(0xff252C66),
+
               filled: true,
               contentPadding: EdgeInsets.all(4.w),
               focusedBorder: OutlineInputBorder(
@@ -52,7 +54,7 @@ class TextFieldThem {
                     BorderSide(color: ConstantColors.cardViewColor, width: 0.7),
               ),
               hintText: hintText,
-              hintStyle: TextStyle(color: ConstantColors.hintTextColor)));
-    });
+              hintStyle: TextStyle(color: ConstantColors.hintTextColor))),
+    );
   }
 }

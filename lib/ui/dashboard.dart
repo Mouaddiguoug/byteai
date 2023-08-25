@@ -11,6 +11,7 @@ import 'package:byteai/theam/constant_colors.dart';
 import 'package:byteai/ui/chat_bot/select_character_screen.dart';
 import 'package:byteai/ui/home/home_screen.dart';
 import 'package:byteai/ui/subscription/subscription_screen.dart';
+import 'package:salomon_bottom_bar/salomon_bottom_bar.dart';
 import 'package:sizer/sizer.dart';
 
 import '../utils/Preferences.dart';
@@ -29,7 +30,7 @@ class DashBoard extends StatelessWidget {
         initState: (state) {
           if (Constant.isActiveSubscription == false) {
             WidgetsBinding.instance.addPostFrameCallback((_) {
-              showDialog(context);
+            //  showDialog(context);
             });
           }
         },
@@ -47,64 +48,45 @@ class DashBoard extends StatelessWidget {
                 padding: const EdgeInsets.all(10.0),
                 child: ClipRRect(
                   borderRadius: BorderRadius.circular(20),
-                  child: ConvexAppBar(
-                    initialActiveIndex: controller.index.value,
-                    backgroundColor: ConstantColors.cardViewColor.withOpacity(0.9),
-                    activeColor: ConstantColors.cardViewColor.withOpacity(0.1),
-                    color: ConstantColors.background,
-                    height: 55,
-                    onTabNotify: (index) {
-                      if (index == 1) {
-                        setCharacter();
-                        // Get.to(const ChatBotScreen());
-                        return false;
-                      }
-                      return true;
-                    },
+                  child: SalomonBottomBar(
+                    selectedItemColor: Colors.white,
+                    currentIndex: controller.index.value,
+                    backgroundColor:
+                        ConstantColors.cardViewColor.withOpacity(0.9),
                     items: [
-                      TabItem(
-                        activeIcon: Padding(
-                          padding:  EdgeInsets.only(top: 3.5.h),
-                          child: SvgPicture.asset('assets/icons/ic_home.svg',
-                              semanticsLabel: 'Acme Logo'.tr),
-                        ),
+                      SalomonBottomBarItem(
                         icon: SvgPicture.asset(
                             'assets/icons/inactive_ic_home.svg',
                             semanticsLabel: 'Acme Logo'.tr),
+                        activeIcon: Icon(Icons.home_outlined),
+                        title: Text("Home"),
                       ),
-                      TabItem(
-                        activeIcon: Padding(
-                          padding:  EdgeInsets.only(top: 3.5.h),
-                          child: SvgPicture.asset(
-                              'assets/icons/inactive_ic_chat.svg',
-                              semanticsLabel: 'Acme Logo'.tr),
-                        ),
+                      SalomonBottomBarItem(
                         icon: SvgPicture.asset(
                             'assets/icons/inactive_ic_chat.svg',
                             semanticsLabel: 'Acme Logo'.tr),
+                        activeIcon: Icon(Icons.chat_outlined),
+                        title: Text("Chat"),
                       ),
-                      TabItem(
-                        activeIcon: Padding(
-                          padding:  EdgeInsets.only(top: 3.5.h),
-                          child: SvgPicture.asset('assets/icons/ic_image.svg',
-                              semanticsLabel: 'Acme Logo'.tr),
-                        ),
+                      SalomonBottomBarItem(
+                        activeIcon: Icon(Icons.image_outlined),
                         icon: SvgPicture.asset(
                             'assets/icons/inactive_ic_image.svg',
                             semanticsLabel: 'Acme Logo'.tr),
+                        title: Text("Images"),
                       ),
-                      TabItem(
-                        activeIcon: Padding(
-                          padding: EdgeInsets.only(top: 3.h),
-                          child: SvgPicture.asset('assets/icons/ic_setting.svg',
-                              semanticsLabel: 'Acme Logo'.tr,),
-                        ),
+                      SalomonBottomBarItem(
+                        activeIcon: Icon(Icons.settings_outlined),
                         icon: SvgPicture.asset(
                             'assets/icons/inactive_ic_setting.svg',
                             semanticsLabel: 'Acme Logo'.tr),
+                        title: Text("Settings"),
                       ),
                     ],
                     onTap: (index) {
+                      if(index == 1) {
+                        return setCharacter();
+                      }
                       controller.index.value = index;
                     },
                   ),
@@ -130,6 +112,6 @@ Future<void> setCharacter() async {
   var characters = Get.put(CharacterController());
   await Preferences.setString(Preferences.selectedCharacters,
       characters.selectedCharacter.value!.name.toString());
-  Get.to(const ChatBotScreen(),
+   Get.to(const ChatBotScreen(),
       arguments: {'charactersData': characters.selectedCharacter.value});
 }

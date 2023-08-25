@@ -1,27 +1,13 @@
 import 'dart:developer';
 import 'dart:ui';
-
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:byteai/controller/chat_bot_controller.dart';
 import 'package:byteai/res/assets_res.dart';
-import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:google_mobile_ads/google_mobile_ads.dart';
-import 'package:byteai/constant/constant.dart';
 import 'package:byteai/controller/home_controller.dart';
-import 'package:byteai/model/banner_model.dart';
-import 'package:byteai/model/category_model.dart';
-import 'package:byteai/model/history_model.dart';
 import 'package:byteai/theam/constant_colors.dart';
-import 'package:byteai/ui/ai_code/aicode_screen.dart';
-import 'package:byteai/ui/astrology/astrology_screen.dart';
-import 'package:byteai/ui/history/history_details_screen.dart';
-import 'package:byteai/ui/history/history_screen.dart';
-import 'package:byteai/ui/home/category_list_screen.dart';
-import 'package:byteai/ui/writer_screen/writer_screen.dart';
 import 'package:lottie/lottie.dart';
-import 'package:pdf/pdf.dart';
 import 'package:printing/printing.dart';
 import 'package:sizer/sizer.dart';
 
@@ -131,18 +117,23 @@ class HomeScreen extends StatelessWidget {
                                   child: Column(
                                     crossAxisAlignment:
                                         CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.start,
+                                    mainAxisAlignment:
+                                        MainAxisAlignment.start,
                                     children: [
                                       Row(
                                         mainAxisAlignment:
                                             MainAxisAlignment.end,
                                         children: [
                                           IconButton(
+                                              highlightColor:
+                                                  Colors.transparent,
+                                              splashColor: Colors.transparent,
                                               onPressed: () {
-                                                chatController.isBeingConverted
+                                                chatController
+                                                    .isBeingConverted
                                                     .value = true;
-                                                chatController.isLoading.value =
-                                                    true;
+                                                chatController
+                                                    .isLoading.value = true;
                                               },
                                               icon: Icon(
                                                 Icons.close,
@@ -248,8 +239,6 @@ class HomeScreen extends StatelessWidget {
                                     borderRadius:
                                         BorderRadius.all(Radius.circular(20)),
                                     child: PdfPreview(
-                                        pdfPreviewPageDecoration: BoxDecoration(
-                                            color: Colors.transparent),
                                         build: (context) =>
                                             chatController.PDF.value),
                                   ),

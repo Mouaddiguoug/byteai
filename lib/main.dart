@@ -41,7 +41,7 @@ class MyApp extends StatelessWidget {
           translations: LocalizationService(),
           locale: const Locale('en', 'US'),
           fallbackLocale: const Locale('en', 'US'),
-          title: 'byteai'.tr,
+          title: 'ByteAi'.tr,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
             appBarTheme: AppBarTheme(

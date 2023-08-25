@@ -151,13 +151,7 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
           ),),
           body: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
-            child: controller.isLoading.value
-                ? const Center(
-                    child: CircularProgressIndicator(
-                      color: Colors.white,
-                    ),
-                  )
-                : Column(
+            child: Column(
                     children: [
                       Visibility(
                         visible: controller.bannerAdIsLoaded.value &&
@@ -198,21 +192,6 @@ class _ChatBotScreenState extends State<ChatBotScreen> {
                                 readOnly: controller.speech.value.isListening,
                                 maxLines: null,
                                 decoration: InputDecoration(
-                                  prefixIcon: IconButton(
-                                    onPressed: () {
-                                      FocusScope.of(context).unfocus();
-                                      controller.speechDown();
-                                    },
-                                    icon: controller.speech.value.isListening
-                                        ? const Icon(
-                                            Icons.mic,
-                                            color: Colors.greenAccent,
-                                          )
-                                        : const Icon(
-                                            Icons.mic,
-                                            color: Colors.white,
-                                          ),
-                                  ),
                                   hintMaxLines: 50,
                                   hintText: controller.speech.value.isListening
                                       ? 'Listening...'

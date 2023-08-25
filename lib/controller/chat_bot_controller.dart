@@ -1,10 +1,9 @@
 import 'dart:async';
 import 'dart:convert';
 import 'dart:developer';
+import 'dart:ui';
 import 'dart:typed_data';
-import 'package:byteai/res/assets_res.dart';
 import 'package:logger/logger.dart';
-import 'package:path_provider/path_provider.dart';
 import 'package:printing/printing.dart';
 import 'package:sizer/sizer.dart';
 import 'package:text_to_speech/text_to_speech.dart';
@@ -105,11 +104,21 @@ class ChatBotController extends GetxController {
   }
 
   Future<void> sayInstructions() async {
-    String text =
-        "Bonjour, comment puis-je vous aider aujourd'hui, commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous";
+    Locale deviceLocale = window.locale;
+    String text;
+    String langCode = deviceLocale.languageCode;
+    if (langCode == "fr") {
+      tts.setLanguage("fr-FR");
+      text =
+          "Bonjour, comment puis-je vous aider aujourd'hui, commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous";
+    } else {
+      tts.setLanguage("en-US");
+      text =
+          "hello, how can i help you today. start your sentence with convert so i can convert your document to a pdf.";
+    }
     await tts.setPitch(1.0);
     await tts.setRate(1.0);
-    tts.setLanguage("fr-FR");
+
     await tts.speak(text);
   }
 
@@ -476,12 +485,20 @@ class ChatBotController extends GetxController {
     isLoading.value = true;
     final pdf = pw.Document();
 
+    Locale deviceLocale = window.locale; // or html.window.locale
+    String langCode = deviceLocale.languageCode;
+
     if (!speech.value.isListening) {
       try {
         tts.stop();
         tts.setPitch(1.0);
         tts.setRate(1.0);
-        tts.setLanguage("en-US");
+        if (langCode == "en") {
+          tts.setLanguage("en-US");
+        } else {
+          tts.setLanguage("fr-FR");
+        }
+
         speech.value.listen(onResult: (v) async {
           messageController.value.text = v.recognizedWords.toString();
           message.value = messageController.value.text;
@@ -490,18 +507,24 @@ class ChatBotController extends GetxController {
               messageController.value.text.isNotEmpty) {
             var responseMessage = await sendResponse(
                 messageController.value.text.replaceAll("convert", "make"));
-            if (message.split(" ")[0] == "convert") {
+            if (message.split(" ")[0] == "convert" ||
+                message.split(" ")[0] == "convertir") {
               final netImage = await networkImage(
                   'https://images.unsplash.com/photo-1692200929451-15654e4c611d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80');
               pdf.addPage(
                 pw.Page(build: (pw.Context context) {
-                  return pw.Center(
-                      child: pw.Column(children: [
+                  return pw.Column(crossAxisAlignment: pw.CrossAxisAlignment.end ,children: [
+                    pw.Image(netImage, width: 10.w, height: 10.h),
+                    pw.SizedBox(height: 2.h),
                     pw.Text(responseMessage),
-                  ]));
+                  ]);
                 }),
               );
-              tts.speak("your document is being converted");
+              if (langCode == "en") {
+                tts.speak("your document is being converted");
+              } else {
+                tts.speak("votre document est en cours de conversion");
+              }
               PDF.value = await pdf.save();
               isLoading.value = false;
               //final file = File('${appDocumentsDir.toString().replaceAll("'", "")}');

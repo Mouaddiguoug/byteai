@@ -11,7 +11,7 @@ class OnBoardingController extends GetxController {
   List<OnboardingModel> onBoardingList = [
     OnboardingModel(
         'assets/images/intro_1_new_v2.png',
-        'Quickl is intended to boost your productivity by quick access to information.'
+        'ByteAi is intended to boost your productivity by quick access to information.'
             .tr,
         'Your AI assistant'.tr),
 

@@ -44,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
 
   redirect() {
     if (Preferences.getBoolean(Preferences.isFinishOnBoardingKey) == false) {
-      Get.offAll(const OnBoardingScreen());
+      Get.offAll(const DashBoard());
     } else if (Preferences.getBoolean(Preferences.isLogin) == false) {
       Get.offAll(const LoginScreen(
         redirectType: "",
