@@ -68,13 +68,9 @@ class ButtonThem {
               RoundedRectangleBorder(
                 // border of the button
                 borderRadius: BorderRadius.circular(10.0),
-                // Adjust border radius as needed
-                side: BorderSide(
-                  color: btnColor, // Border color
-                  width: 2.0, // Border width
-                ),
               ),
             ),
+
             backgroundColor:
                 MaterialStateProperty.all(btnColor),
             foregroundColor:

@@ -52,7 +52,7 @@ class DashBoard extends StatelessWidget {
                     selectedItemColor: Colors.white,
                     currentIndex: controller.index.value,
                     backgroundColor:
-                        ConstantColors.cardViewColor.withOpacity(0.9),
+                        ConstantColors.background,
                     items: [
                       SalomonBottomBarItem(
                         icon: SvgPicture.asset(

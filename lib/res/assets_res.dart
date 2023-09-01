@@ -5,6 +5,9 @@
 class AssetsRes {
   static const String PLUGIN_NAME = 'byteai';
   static const String PLUGIN_VERSION = '1.0.5+9';
+  static const String AUDIO_WAVE = 'assets/animations/audio_wave.json';
+  static const String BLOOM_GIF = 'assets/animations/bloom_gif.gif';
+  static const String BLOOM = 'assets/bloom.png';
   static const String AI = 'assets/icons/ai.png';
   static const String ARROW = 'assets/icons/arrow.svg';
   static const String ASTROLOGY = 'assets/icons/astrology.png';
@@ -45,8 +48,11 @@ class AssetsRes {
   static const String ARROW_RIGHT = 'assets/images/arrow_right.png';
   static const String ASTROLOGYICON = 'assets/images/astrologyIcon.png';
   static const String BG = 'assets/images/bg.png';
+  static const String COLOR_SHARP = 'assets/images/color_sharp.png';
   static const String GALAXY = 'assets/images/galaxy.png';
   static const String GIFT = 'assets/images/gift.png';
+  static const String HOME_SHAPE = 'assets/images/home_shape.png';
+  static const String HOME_SHAPE2 = 'assets/images/home_shape2.png';
   static const String IC_LAUNCHER = 'assets/images/ic_launcher.png';
   static const String INTRO_1 = 'assets/images/intro_1.gif';
   static const String INTRO_1_NEW = 'assets/images/intro_1_new.png';
@@ -57,8 +63,12 @@ class AssetsRes {
   static const String LOGIN_LOGO = 'assets/images/login_logo.png';
   static const String LOGIN_LOGO_NEW = 'assets/images/login_logo_new.png';
   static const String LOGIN_LOGO_NEW_V2 = 'assets/images/login_logo_new_v2.png';
+  static const String LOGIN_SHAPE_LEFT = 'assets/images/login_shape_left.png';
+  static const String LOGIN_SHAPE_RIGHT = 'assets/images/login_shape_right.png';
   static const String MIC_ANIME = 'assets/images/mic_anime.json';
+  static const String ONBOARDING = 'assets/images/onboarding.png';
   static const String ONBORDING_BG = 'assets/images/onbording_bg.png';
+  static const String PLACEHOLDER_COLOR = 'assets/images/placeholder_color.png';
   static const String PLAYSTORE = 'assets/images/playstore.png';
   static const String PROFILE_PLACEHOLDER = 'assets/images/profile_placeholder.png';
   static const String SHADOW = 'assets/images/shadow.png';
@@ -69,6 +79,7 @@ class AssetsRes {
   static const String SUBSCRIPTION_BACKGROUND_2 = 'assets/images/subscription_background_2.png';
   static const String SUBSCRIPTION_ICON = 'assets/images/subscription_icon.png';
   static const String SUBSCRPTION_ITEM = 'assets/images/subscrption_item.png';
+  static const String TITLE_LOGO = 'assets/images/title_logo.png';
   static const String SPEECH_TO_TEXT_CANCEL = 'assets/sounds/speech_to_text_cancel.m4r';
   static const String SPEECH_TO_TEXT_LISTENING = 'assets/sounds/speech_to_text_listening.m4r';
   static const String SPEECH_TO_TEXT_STOP = 'assets/sounds/speech_to_text_stop.m4r';

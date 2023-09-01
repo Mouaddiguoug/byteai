@@ -1,7 +1,9 @@
 import 'dart:io';
-
+import 'dart:ui';
 import 'package:byteai/splash_screen.dart';
 import 'package:byteai/theam/constant_colors.dart';
+import 'package:byteai/ui/on_boarding_screen.dart';
+import 'package:byteai/ui/subscription/subscription_screen.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_easyloading/flutter_easyloading.dart';
@@ -33,14 +35,17 @@ void main() async {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
+    Locale deviceLocale = window.locale;
+    String langCode = deviceLocale.languageCode;
     return Sizer(builder: (context, orientation, deviceType) {
       return GetMaterialApp(
           translations: LocalizationService(),
-          locale: const Locale('en', 'US'),
-          fallbackLocale: const Locale('en', 'US'),
+          locale: langCode == "fr" ? const Locale('en', 'US') : const Locale('fr', 'FR'),
+          fallbackLocale: langCode == "fr" ? const Locale('en', 'US') : const Locale('fr', 'FR'),
           title: 'ByteAi'.tr,
           debugShowCheckedModeBanner: false,
           theme: ThemeData(

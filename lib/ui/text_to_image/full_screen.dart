@@ -10,6 +10,7 @@ import 'package:path_provider/path_provider.dart';
 import 'package:byteai/model/image_model.dart';
 import 'package:byteai/theam/constant_colors.dart';
 import 'package:share_plus/share_plus.dart';
+import 'package:sizer/sizer.dart';
 
 import '../../constant/show_toast_dialog.dart';
 
@@ -67,7 +68,7 @@ class _ImageViewState extends State<ImageView> {
         children: <Widget>[
           Builder(
             builder: (context) {
-              final double height = MediaQuery.of(context).size.height;
+              final double height = 100.h;
               return CarouselSlider(
                 options: CarouselOptions(
                   height: height,
@@ -84,8 +85,10 @@ class _ImageViewState extends State<ImageView> {
                 items: widget.imageList
                     .map((item) => Center(
                             child: CachedNetworkImage(
+                              width: 100.w,
                           imageUrl: item.url.toString(),
-                          height: height,
+                          height: 60.h,
+                          fit: BoxFit.cover,
                           placeholder: (context, url) => Container(
                             color: const Color(0xfff5f8fd),
                           ),
@@ -95,7 +98,7 @@ class _ImageViewState extends State<ImageView> {
             },
           ),
           Container(
-            height: MediaQuery.of(context).size.height,
+            height: 100.h,
             width: MediaQuery.of(context).size.width,
             alignment: Alignment.bottomCenter,
             child: Column(

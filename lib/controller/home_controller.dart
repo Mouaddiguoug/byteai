@@ -19,6 +19,9 @@ class HomeController extends GetxController {
   RxList<CategorySuggestionModel> topCategoryList =
       <CategorySuggestionModel>[].obs;
 
+  Rx<String> listeningState = "Welcome 👋".obs;
+  Rx<bool> isRepeating = false.obs;
+
   @override
   void onInit() {
     // TODO: implement onInit

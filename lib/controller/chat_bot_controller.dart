@@ -56,8 +56,11 @@ class ChatBotController extends GetxController {
   RxBool isBeingConverted = true.obs;
   late Rx<Uint8List> PDF = Uint8List(1).obs;
   RxBool converting = true.obs;
+  RxBool doneListening = false.obs;
+  RxBool isWorking = false.obs;
   RxString message = 'Bonjour'.obs;
   TextToSpeech tts = TextToSpeech();
+  Rx<String> initialHello = "".obs;
 
   RxList chatList = <Chat>[].obs;
   Rx<TextEditingController> messageController = TextEditingController().obs;
@@ -73,6 +76,7 @@ class ChatBotController extends GetxController {
     getArgument();
     sayInstructions();
 
+    messageController.value.text = 'bonjour';
     // chatLimit.value = '10';
     super.onInit();
   }
@@ -93,6 +97,7 @@ class ChatBotController extends GetxController {
         rewardedAdLoadCallback: RewardedAdLoadCallback(
           onAdLoaded: (RewardedAd ad) {
             log('$ad loaded.');
+            log('$ad loaded.');
             rewardedAd = ad;
           },
           onAdFailedToLoad: (LoadAdError error) {
@@ -105,21 +110,21 @@ class ChatBotController extends GetxController {
 
   Future<void> sayInstructions() async {
     Locale deviceLocale = window.locale;
-    String text;
     String langCode = deviceLocale.languageCode;
+
     if (langCode == "fr") {
       tts.setLanguage("fr-FR");
-      text =
+      initialHello.value =
           "Bonjour, comment puis-je vous aider aujourd'hui, commencez votre phrase par convertir afin que je puisse convertir votre document en pdf pour vous";
     } else {
       tts.setLanguage("en-US");
-      text =
+      initialHello.value =
           "hello, how can i help you today. start your sentence with convert so i can convert your document to a pdf.";
     }
     await tts.setPitch(1.0);
     await tts.setRate(1.0);
 
-    await tts.speak(text);
+    await tts.speak(initialHello.value);
   }
 
   BannerAd? bannerAd;
@@ -263,6 +268,8 @@ class ChatBotController extends GetxController {
       Map<String, dynamic> responseBody =
           json.decode(utf8.decode(response.bodyBytes));
 
+      Logger().i(responseBody);
+
       if (response.statusCode == 200) {
         AiResponceModel aiResponceModel =
             AiResponceModel.fromJson(responseBody);
@@ -295,6 +302,7 @@ class ChatBotController extends GetxController {
         } else {
           ShowToastDialog.showToast('Resource not found.'.tr);
         }
+
         return aiResponceModel.choices!.first.message!.content.toString();
       } else {
         Map<String, dynamic> responseBody = json.decode(response.body);
@@ -323,7 +331,6 @@ class ChatBotController extends GetxController {
         'user_id': Preferences.getString(Preferences.userId),
         'type': 'chat',
       };
-      ShowToastDialog.showLoader('Please wait'.tr);
       final response = await http.post(Uri.parse(ApiServices.resetLimit),
           headers: ApiServices.header, body: jsonEncode(bodyParams));
 
@@ -480,9 +487,9 @@ class ChatBotController extends GetxController {
   }
 
   speechDown() async {
-    messageController.value.text = 'bonjour';
     converting.value = true;
     isLoading.value = true;
+
     final pdf = pw.Document();
 
     Locale deviceLocale = window.locale; // or html.window.locale
@@ -500,42 +507,48 @@ class ChatBotController extends GetxController {
         }
 
         speech.value.listen(onResult: (v) async {
+          Logger().i(speech.value.lastStatus);
           messageController.value.text = v.recognizedWords.toString();
           message.value = messageController.value.text;
           Logger().i(messageController.value.text);
           if (speech.value.lastStatus == "notListening" &&
               messageController.value.text.isNotEmpty) {
+            isWorking.value = true;
             var responseMessage = await sendResponse(
                 messageController.value.text.replaceAll("convert", "make"));
             if (message.split(" ")[0] == "convert" ||
-                message.split(" ")[0] == "convertir") {
-              final netImage = await networkImage(
-                  'https://images.unsplash.com/photo-1692200929451-15654e4c611d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80');
-              pdf.addPage(
-                pw.Page(build: (pw.Context context) {
-                  return pw.Column(crossAxisAlignment: pw.CrossAxisAlignment.end ,children: [
-                    pw.Image(netImage, width: 10.w, height: 10.h),
-                    pw.SizedBox(height: 2.h),
-                    pw.Text(responseMessage),
-                  ]);
-                }),
-              );
+                message.split(" ")[0] == "convertir" ||
+                message.split(" ")[0] == "write" ||
+                message.split(" ")[0] == "ecrire") {
               if (langCode == "en") {
                 tts.speak("your document is being converted");
               } else {
                 tts.speak("votre document est en cours de conversion");
               }
+              final netImage = await networkImage(
+                  'https://images.unsplash.com/photo-1692200929451-15654e4c611d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2080&q=80');
+              pdf.addPage(
+                pw.Page(build: (pw.Context context) {
+                  return pw.Text(responseMessage);
+                }),
+              );
+
               PDF.value = await pdf.save();
               isLoading.value = false;
+              isWorking.value = false;
               //final file = File('${appDocumentsDir.toString().replaceAll("'", "")}');
               //await file.writeAsBytes(await pdf.save(), mode: FileMode.write);
             } else {
               converting.value = false;
               isBeingConverted.value = false;
               isLoading.value = false;
+              Logger().i(responseMessage);
               message.value = responseMessage;
               tts.speak(responseMessage);
+              isWorking.value = false;
             }
+          } else if (messageController.value.text.isEmpty) {
+            doneListening.value = true;
           }
         });
       } catch (e) {

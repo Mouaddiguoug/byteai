@@ -40,6 +40,7 @@ class LoginScreen extends StatelessWidget {
               body: Sizer(builder: (context, orientation, deviceType) {
                 return Stack(
                   children: [
+                    Image.asset(AssetsRes.COLOR_SHARP),
                     Form(
                       key: controller.formKey.value,
                       child: Container(
@@ -48,12 +49,12 @@ class LoginScreen extends StatelessWidget {
                             // mainAxisAlignment: MainAxisAlignment.center,
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              SizedBox(height: 5.h),
+                              SizedBox(height: 20.h),
 
                               Center(
                                   child: Image.asset(
                                 AssetsRes.LOGIN_LOGO_NEW_V2,
-                                height: 20.h,
+                                height: 15.h,
                               )),
                               // Component : Email + mot de passe + connexion button + login with google
                               Padding(
@@ -135,30 +136,31 @@ class LoginScreen extends StatelessWidget {
 
                                   // vanilla Login Connexion Button
 
-                                  ClipRRect(
-                                    child: Column(
-                                      children: [
-                                        Container(
-                                          // linear gradient 1
-                                          decoration: BoxDecoration(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            border: Border.all(
-                                              // Add a border with a LinearGradient
-                                              // border color
-                                              color: Color.fromRGBO(
-                                                  117, 7, 133, 1.0),
-                                              // Border color
-                                              width: 2.0,
-                                              // Border width
-                                              style: BorderStyle
-                                                  .solid, // Border style (you can use BorderStyle.solid, BorderStyle.none, etc.)
-                                            ),
-                                          ),
-                                          child: ButtonThem.buildBorderButton(
+                                  Container(
+                                    decoration: BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          color: Color(0xFF060C18),
+                                          blurRadius: 4,
+                                          offset: Offset(4, 4),
+                                          spreadRadius: 0,
+                                        ),
+                                        BoxShadow(
+                                          color: Color(0x7F3A445D),
+                                          blurRadius: 4,
+                                          offset: Offset(-4, -4),
+                                          spreadRadius: 0,
+                                        )
+                                      ],
+                                    ),
+                                    child: ClipRRect(
+                                      child: Column(
+                                        children: [
+                                          ButtonThem.buildBorderButton(
                                             context,
                                             title: 'Login'.tr,
-                                            btnColor: Color(0xff010927),
+                                            btnColor: Color(0xff060A33),
+
                                             txtColor: Colors.white,
                                             iconVisibility: false,
                                             onPress: () async {
@@ -233,14 +235,30 @@ class LoginScreen extends StatelessWidget {
                                               }
                                             },
                                             btnBorderColor: Colors.transparent,
+
                                           ),
-                                        ),
-                                      ],
+                                        ],
+                                      ),
                                     ),
                                   ),
                                   // space between the two login buttons
-                                  SizedBox(
-                                    height: 5.h,
+                                  Padding(
+                                    padding: EdgeInsets.symmetric(vertical: 2.h),
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Image.asset(AssetsRes.LOGIN_SHAPE_LEFT, width: 30.w,),
+                                        FittedBox(
+                                          child: Text(
+                                              "Où".tr,
+                                            style: TextStyle(
+                                              color: Colors.white
+                                            ),
+                                          ),
+                                        ),
+                                        Image.asset(AssetsRes.LOGIN_SHAPE_RIGHT, width: 30.w,),
+                                      ],
+                                    ),
                                   ),
                                   // Google Login Button
 
@@ -342,9 +360,6 @@ class LoginScreen extends StatelessWidget {
                                     ),
                                   ),
 
-                                  const SizedBox(
-                                    height: 10,
-                                  ),
                                   Visibility(
                                       visible: Platform.isIOS,
                                       child: ButtonThem.buildBorderButton(
@@ -472,7 +487,7 @@ class LoginScreen extends StatelessWidget {
                         padding: EdgeInsets.only(top: 8.h, right: 1.h),
                         child: Container(
                           decoration: BoxDecoration(
-                              borderRadius: BorderRadius.circular(20),
+                              borderRadius: BorderRadius.circular(30),
                               border:
                                   Border.all(width: 0.6, color: Colors.white)),
                           child: ElevatedButton(
@@ -509,15 +524,20 @@ class LoginScreen extends StatelessWidget {
                                   Colors.transparent),
                             ),
                             child: SizedBox(
-                              width: 16.w,
+                              width: 18.w,
                               child: Row(
                                 children: [
                                   Text('Skip'.tr,
-                                      style:  TextStyle(
-                                        fontSize: 10.sp,
+                                      style: TextStyle(
+                                          fontSize: 10.sp,
                                           fontWeight: FontWeight.w600)),
-                                  SizedBox(width: 2.w,),
-                                  Image.asset(AssetsRes.ARROW_RIGHT, width: 2.w,)
+                                  SizedBox(
+                                    width: 2.w,
+                                  ),
+                                  Image.asset(
+                                    AssetsRes.ARROW_RIGHT,
+                                    width: 2.w,
+                                  )
                                 ],
                               ),
                             ),
