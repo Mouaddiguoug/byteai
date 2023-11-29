@@ -74,7 +74,6 @@ dependencies:
   logger: ^2.0.1
   text_to_speech: ^0.2.3
   pdf: ^3.10.4
-  flutter_localization: ^0.1.13
   printing: ^5.11.0
   salomon_bottom_bar: ^3.3.2
   
